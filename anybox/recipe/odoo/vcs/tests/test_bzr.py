@@ -212,7 +212,7 @@ class BzrTestCase(BzrBaseTestCase):
         branch = BzrBranch(target_dir, self.src_repo)
         try:
             branch.clean()
-        except:
+        except:  # noqa: E722
             self.fail("clean() should not fail if "
                       "branch not already done")
 

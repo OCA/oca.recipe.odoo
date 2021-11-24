@@ -94,7 +94,7 @@ class HgTestCase(HgBaseTestCase):
 
         try:
             repo.clean()
-        except:
+        except:  # noqa: E722
             self.fail("clean() should not fail if "
                       "clone not already done")
 

@@ -824,7 +824,7 @@ class BaseRecipe(object):
                 else:  # vcs
                     repo_url, addons_dir, repo_rev = split[1:4]
                     location_spec = (repo_url, repo_rev)
-            except:
+            except:  # noqa: E722
                 raise UserError("Could not parse addons line: %r. "
                                 "Please check format " % line)
 

@@ -35,7 +35,7 @@ import sys
 
 try:
     import openerp
-except:
+except ImportError:
     # this file must stay importable by nose tests
     pass
 else:

@@ -240,7 +240,7 @@ class RecipeTestCase(unittest.TestCase):
             # grabbing it with getLogger, even after the import is not
             # effective: the level gets overwritten afterwards
             from zc.buildout.easy_install import logger as zc_logger
-        except:
+        except ImportError:
             logger.warn("Could not grab zc.buildout.easy_install logger")
         else:
             zc_logger.setLevel(logging.ERROR)

@@ -34,7 +34,7 @@ class IntegrationTestCase(unittest.TestCase):
                             self.buildout_dir)
             os.chdir(self.buildout_dir)
             self.provide_dependencies()
-        except:
+        except:  # noqa: E722
             self.tearDown()
             raise
 
@@ -75,7 +75,7 @@ class IntegrationTestCase(unittest.TestCase):
     def tearDown(self):
         try:
             shutil.rmtree(self.sandbox_dir)
-        except:
+        except:  # noqa: E722
             pass
 
         sys.modules['pip'] = self.pip_original
@@ -91,7 +91,7 @@ class IntegrationTestCase(unittest.TestCase):
         with open(os.path.join('bin', 'start_odoo')) as f:
             start_odoo = f.read()
         self.assertTrue('foobar-0.0.4' + EGG_SUFFIX in start_odoo)
-        self.assertFalse('foobar-0.0.3'in start_odoo)
+        self.assertFalse('foobar-0.0.3' in start_odoo)
 
     def test_requirements_file_integration(self):
         """Requirements.txt is applied."""
@@ -101,4 +101,4 @@ class IntegrationTestCase(unittest.TestCase):
         with open(os.path.join('bin', 'start_odoo')) as f:
             start_odoo = f.read()
         self.assertTrue('foobar-0.0.3' + EGG_SUFFIX in start_odoo)
-        self.assertFalse('foobar-0.0.4'in start_odoo)
+        self.assertFalse('foobar-0.0.4' in start_odoo)
