@@ -19,6 +19,7 @@ before_install:
   # TODO: change to main
   - git config --global init.defaultBranch master
   - git config --global advice.detachedHead false
+  - git config --global pull.rebase false
   # For tests running hg command
   # set up username
   - echo '[ui]' > ~/.hgrc
