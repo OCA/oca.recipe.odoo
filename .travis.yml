@@ -8,17 +8,15 @@ virtualenv:
 
 jobs:
   include:
-    - python: "2.7"
-      env:
-        - TEST_FOR_PIP='<21.0.0'
-        - COVERALLS='<2.0.0'
-        - CRYPTOGRAPHY='<3.4'
-        - BZR=1
     - python: "3.7"
       env:
-        - TEST_FOR_PIP='>=21.3.1'
         - COVERALLS='>=3.3.1'
-        - CRYPTOGRAPHY=''
+    - python: "3.8"
+      env:
+        - COVERALLS='>=3.3.1'
+    - python: "3.9"
+      env:
+        - COVERALLS='>=3.3.1'
         - FLAKE8=1
 
 before_install:
@@ -35,21 +33,17 @@ before_install:
   - pip uninstall -y wheel
 
 install:
-  - pip install --upgrade pip${TEST_FOR_PIP}
   # zc.buildout < 3.0.0 depends on easy_install, dropped by setuptools 52.0
   - pip install "setuptools<52.0"
-  - pip install cryptography${CRYPTOGRAPHY}
   - pip install coveralls${COVERALLS}
   - pip install -e .[test]
-  # bzrlib is not compatible with Python 3
-  - if [[ "$BZR" = "1" ]]; then pip install bzr; fi
 
 script:
   - |
     if [[ "$FLAKE8" = "1" ]];
     then
         pip install flake8;
-        python setup.py flake8;
+        flake8 anybox;
     fi
   - python setup.py nosetests
   # install sphinx only after running tests to avoid failing tests
