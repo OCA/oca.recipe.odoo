@@ -191,5 +191,11 @@ class TestFreeze(RecipeTestCase):
 
         # the key in the addons sources for the standalone one has been
         # shifted, that's just what the group option does internally
-        self.assertEqual(outconf.get('odoo', 'revisions').splitlines(),
-                         ['refspec', 'target rev1', 'stdl/stdln rev2'])
+        self.assertEqual(
+            outconf.get('odoo', 'revisions').splitlines(),
+            [
+                'refspec  ; main software part',
+                'target rev1',
+                'stdl/stdln rev2',
+            ]
+        )
