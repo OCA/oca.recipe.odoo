@@ -22,4 +22,4 @@ def main(starter, conf, version=()):
     glob = globals()
     glob['__name__'] = '__main__'
     glob['__file__'] = starter
-    execfile(starter, globals())
+    exec(open(starter).read(), globals())

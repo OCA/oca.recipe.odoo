@@ -81,9 +81,6 @@ def main(starter, conf, version=None, just_test=False,
     glob['__file__'] = starter
     sys.argv[0] = starter
     try:
-        if sys.version_info < (3, 0):
-            execfile(starter, globals())
-        else:
-            exec(open(starter).read(), globals())
+        exec(open(starter).read(), globals())
     except SystemExit as exc:
         return exc.code
