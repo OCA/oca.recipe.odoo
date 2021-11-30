@@ -6,10 +6,10 @@ import shutil
 import subprocess
 import logging
 from tempfile import mkdtemp
-from UserDict import UserDict
+from collections import UserDict
 
 from zc.buildout.easy_install import Installer
-from pip.vcs import vcs as pip_vcs
+from pip._internal.vcs import vcs as pip_vcs
 
 from . import vcs
 from .base import BaseRecipe
