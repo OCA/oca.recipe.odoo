@@ -47,6 +47,8 @@ class FakeRepo(vcs.base.BaseRepo):
 
     name = 'fakevcs'  # for pip.vcs.VersionSupport registration
 
+    schemes = ['fakevcs+http']  # for pip._internal.vcs scheme checking
+
     def __init__(self, target_dir='.fake', url='.fake', **options):
         super().__init__(target_dir, url, **options)
 
