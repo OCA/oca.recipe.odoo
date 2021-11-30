@@ -4,7 +4,7 @@ import tempfile
 from configparser import ConfigParser, NoOptionError
 from ..base import GP_VCS_EXTEND_DEVELOP
 from ..base import GP_DEVELOP_DIR
-from ..testing import RecipeTestCase
+from ..testing import RecipeTestCase, FakeRepo
 
 
 class TestExtraction(RecipeTestCase):
@@ -14,6 +14,8 @@ class TestExtraction(RecipeTestCase):
     def setUp(self):
         super(TestExtraction, self).setUp()
         self.extract_target_dir = tempfile.mkdtemp('test_recipe_extract')
+        from pip._internal.vcs import vcs as pip_vcs
+        pip_vcs.register(FakeRepo)
 
     def tearDown(self):
         shutil.rmtree(self.extract_target_dir)

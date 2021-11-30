@@ -9,7 +9,6 @@ from tempfile import mkdtemp
 from collections import UserDict
 
 from zc.buildout.easy_install import Installer
-from pip._internal.vcs import vcs as pip_vcs
 
 from . import vcs
 from .base import BaseRecipe
@@ -83,8 +82,6 @@ class FakeRepo(vcs.base.BaseRepo):
 
 
 vcs.SUPPORTED['fakevcs'] = FakeRepo
-
-pip_vcs.register(FakeRepo)  # for tests around gp.vcsdevelop
 
 
 def get_vcs_log():
