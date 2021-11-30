@@ -4,6 +4,7 @@ NB: zc.buildout.testing provides utilities for integration tests, with
 an embedded http server, etc.
 """
 import os
+from collections import UserDict
 from pkg_resources import Requirement
 
 from ..base import MissingDistribution
@@ -23,6 +24,14 @@ class TestingRecipe(ServerRecipe):
     """
     release_filenames = {'10.0': 'fake-release-%s.tgz'}
     release_dl_url = {'10.0': 'http://release.odoo.test/src/'}
+
+    def __init__(self, buildout, name, options):
+        # we need to make buildout a regular object, because some subsystems
+        # will set extra attributes on it
+        # TODO: common inheritance base with testing.py's TestingRecipe
+        if isinstance(buildout, dict):
+            buildout = UserDict(buildout)
+        super(TestingRecipe, self).__init__(buildout, name, options)
 
 
 class TestServer(RecipeTestCase):
