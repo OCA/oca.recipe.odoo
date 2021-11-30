@@ -99,7 +99,7 @@ class GitTestCase(GitBaseTestCase):
         with open(os.path.join(target_dir, 'tracked')) as f:
             self.assertEquals(f.read().strip(), 'last')
 
-        self.assertEqual(repo.get_current_remote_fetch(), self.src_repo)
+        self.assertShaEqual(repo.get_current_remote_fetch(), self.src_repo)
 
     def test_dangerous(self):
         """Test the warning message for dangerous *_HEAD revisions """
@@ -114,7 +114,7 @@ class GitTestCase(GitBaseTestCase):
         repo = GitRepo(target_dir, self.src_repo, depth='1')('master')
 
         self.assertTrue(os.path.isdir(target_dir))
-        self.assertEqual(repo.parents(), [self.commit_2_sha])
+        self.assertShaEqual(repo.parents(), [self.commit_2_sha])
         self.assertDepthEquals(repo, 1)
 
     def test_archive(self):
@@ -172,15 +172,15 @@ class GitTestCase(GitBaseTestCase):
         target_dir = os.path.join(self.dst_dir, "My clone")
         repo = GitRepo(target_dir, self.src_repo)
         repo(self.commit_1_sha)
-        self.assertEqual(repo.parents(), [self.commit_1_sha])
+        self.assertShaEqual(repo.parents(), [self.commit_1_sha])
         repo(self.commit_2_sha)
-        self.assertEqual(repo.parents(), [self.commit_2_sha])
+        self.assertShaEqual(repo.parents(), [self.commit_2_sha])
 
         # new commit in origin will need to be fetched
         new_sha = git_write_commit(self.src_repo, 'tracked',
                                    "new contents", msg="new commit")
         repo(new_sha)
-        self.assertEqual(repo.parents(), [new_sha])
+        self.assertShaEqual(repo.parents(), [new_sha])
 
         # see launchpad #1215873
         repo(new_sha)
@@ -215,7 +215,7 @@ class GitTestCase(GitBaseTestCase):
 
         # update our clone
         repo('master')
-        self.assertEqual(repo.parents(), [new_sha])
+        self.assertShaEqual(repo.parents(), [new_sha])
         if depth is not None:
             self.assertDepthEquals(repo, depth)
 
@@ -227,14 +227,14 @@ class GitTestCase(GitBaseTestCase):
 
         # base assumptions
         self.assertFalse(repo.uncommitted_changes())
-        self.assertEqual(repo.parents(), [self.commit_2_sha])
+        self.assertShaEqual(repo.parents(), [self.commit_2_sha])
 
         repo.offline = True
         repo(self.commit_1_sha)
-        self.assertEqual(repo.parents(), [self.commit_1_sha])
+        self.assertShaEqual(repo.parents(), [self.commit_1_sha])
 
         repo('master')
-        self.assertEqual(repo.parents(), [self.commit_2_sha])
+        self.assertShaEqual(repo.parents(), [self.commit_2_sha])
 
         repo.url = 'file:///as/if/it/repointed/elsewhere/before'
         self.assertRaises(UserError, repo, 'master')
@@ -275,14 +275,14 @@ class GitTestCase(GitBaseTestCase):
         self.assertRaises(UpdateError, repo, 'master')
         repo.clear_retry = True
         repo('master')
-        self.assertEqual(repo.parents(), [new_sha])
+        self.assertShaEqual(repo.parents(), [new_sha])
 
         # future updates work wihout help (we are back to normal conditions)
         repo.clear_retry = False
         new_sha2 = git_write_commit(self.src_repo, 'tracked',
                                     "back to normal", msg="regular commit")
         repo('master')
-        self.assertEqual(repo.parents(), [new_sha2])
+        self.assertShaEqual(repo.parents(), [new_sha2])
 
     def test_query_unknown_remote_ref(self):
         """Querying of remote works.
@@ -304,7 +304,7 @@ class GitTestCase(GitBaseTestCase):
         subprocess.check_call(['git', 'checkout', self.commit_1_sha],
                               cwd=self.src_repo)
         repo('HEAD')
-        self.assertEqual(repo.parents(), [self.commit_1_sha])
+        self.assertShaEqual(repo.parents(), [self.commit_1_sha])
 
     def test_clone_update_remote_HEAD(self):
         """Remote HEAD should be usable to clone onto."""
@@ -313,7 +313,7 @@ class GitTestCase(GitBaseTestCase):
         subprocess.check_call(['git', 'checkout', self.commit_1_sha],
                               cwd=self.src_repo)
         repo('HEAD')
-        self.assertEqual(repo.parents(), [self.commit_1_sha])
+        self.assertShaEqual(repo.parents(), [self.commit_1_sha])
 
 
 class GitBranchTestCase(GitBaseTestCase):
@@ -435,7 +435,7 @@ class GitBranchTestCase(GitBaseTestCase):
         sha = git_write_commit(self.src_repo, 'tracked',
                                "in branch", msg="last version")
         repo("somebranch")
-        self.assertEqual(repo.parents(), [sha])
+        self.assertShaEqual(repo.parents(), [sha])
 
     def test_clone_on_branch_update_HEAD(self):
         """Update on remote HEAD works even if that's a branch change"""
@@ -446,7 +446,7 @@ class GitBranchTestCase(GitBaseTestCase):
                                       "in branch", msg="last version")
         repo("somebranch")
         # verify test base assumption: we are indeed where we think
-        self.assertEqual(repo.parents(), [sha_branch])
+        self.assertShaEqual(repo.parents(), [sha_branch])
         subprocess.check_call(['git', 'checkout', 'master'],
                               cwd=self.src_repo)
         sha_master = git_write_commit(self.src_repo, 'tracked',
@@ -454,7 +454,7 @@ class GitBranchTestCase(GitBaseTestCase):
                                       msg="new commit on master")
 
         repo('HEAD')
-        self.assertEqual(repo.parents(), [sha_master])
+        self.assertShaEqual(repo.parents(), [sha_master])
 
         # maybe that's unnecessary, but fun for now:
         descr = check_output(['git', 'describe', '--all'], cwd=target_dir)
@@ -485,7 +485,7 @@ class GitBranchTestCase(GitBaseTestCase):
 
         repo = GitRepo(target_dir, self.src_repo, branch='somebranch')
         repo(sha)
-        self.assertEqual(repo.parents(), [sha])
+        self.assertShaEqual(repo.parents(), [sha])
         self.assertNotEqual(
             subprocess.call(['git', 'cat-file', '-e', sha_master],
                             cwd=target_dir),
@@ -633,7 +633,7 @@ class GitTagTestCase(GitBaseTestCase):
         target_dir = os.path.join(self.dst_dir, "to_repo")
         repo = GitRepo(target_dir, self.src_repo, depth=depth)
         repo('sometag')
-        self.assertEqual(repo.parents(), [self.commit_1_sha])
+        self.assertShaEqual(repo.parents(), [self.commit_1_sha])
 
         self.assertTrue(repo.is_local_fixed_revision('sometag'))
 
@@ -645,7 +645,7 @@ class GitTagTestCase(GitBaseTestCase):
                                '+refs/tags/sometag:refs/tags/sometag'],
                               cwd=target_dir)
         repo.revert('sometag')
-        self.assertEqual(repo.parents(), [self.commit_1_sha])
+        self.assertShaEqual(repo.parents(), [self.commit_1_sha])
 
         with open(os.path.join(target_dir, 'tracked'), 'w') as f:
             f.write("local modification")
@@ -662,10 +662,10 @@ class GitTagTestCase(GitBaseTestCase):
         repo = GitRepo(target_dir, self.src_repo, depth=depth)
         repo('master')
         # checking that test base assumptions are right
-        self.assertEqual(repo.parents(), [self.commit_2_sha])
+        self.assertShaEqual(repo.parents(), [self.commit_2_sha])
 
         repo('sometag')
-        self.assertEqual(repo.parents(), [self.commit_1_sha])
+        self.assertShaEqual(repo.parents(), [self.commit_1_sha])
         subprocess.check_call(['git', 'checkout', 'sometag'],
                               cwd=repo.target_dir)
 
@@ -682,7 +682,7 @@ class GitTagTestCase(GitBaseTestCase):
             check_output(['git', 'tag'], cwd=repo.target_dir).strip(),
             'sometag')
         repo('master')
-        self.assertEqual(repo.parents(), [self.commit_2_sha])
+        self.assertShaEqual(repo.parents(), [self.commit_2_sha])
 
     def test_update_tag_to_head_depth(self):
         self.test_update_tag_to_head(depth='1')
@@ -696,7 +696,7 @@ class GitTagTestCase(GitBaseTestCase):
         repo = GitRepo(target_dir, self.src_repo, depth='1')
         repo('tag2')
         repo('sometag')
-        self.assertEqual(repo.parents(), [self.commit_1_sha])
+        self.assertShaEqual(repo.parents(), [self.commit_1_sha])
         self.assertDepthEquals(repo, 1)
 
 

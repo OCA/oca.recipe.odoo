@@ -74,7 +74,7 @@ class HgBaseTestCase(VcsTestCase):
         p = subprocess.Popen(['hg', '--cwd', branch.target_dir,
                               'parents', '--template={rev}\n'],
                              stdout=subprocess.PIPE)
-        self.assertEquals(p.communicate()[0].split(), [str(revno)])
+        self.assertShaEqual(p.communicate()[0].split(), [str(revno)])
 
 
 class HgTestCase(HgBaseTestCase):
