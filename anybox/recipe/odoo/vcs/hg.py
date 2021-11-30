@@ -109,6 +109,8 @@ class HgRepo(BaseRepo):
         third party upstream should complain to upstream for utterly bad
         practices.
         """
+        if isinstance(revstr, bytes):
+            revstr = revstr.decode()
         revstr = revstr.strip()
         if revstr == 'tip' or not revstr:
             return False

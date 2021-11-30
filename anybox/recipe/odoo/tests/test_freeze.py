@@ -74,7 +74,7 @@ class TestFreeze(RecipeTestCase):
         out, err = hg.communicate()
         if hg.returncode or err:
             self.fail("Invalid extracted revision: %r" % rev)
-        self.assertEquals(out, '', 'Extracted revision shows some diff')
+        self.assertEquals(out, b'', 'Extracted revision shows some diff')
 
     def test_freeze_vcs_source_already_frozen(self):
         self.make_recipe(version='10.0')
