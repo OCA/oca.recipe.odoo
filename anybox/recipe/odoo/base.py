@@ -208,6 +208,9 @@ class BaseRecipe(object):
         self.recipe_requirements_path = []
         self.buildout, self.name, self.options = buildout, name, options
         self.b_options = self.buildout['buildout']
+        # TODO: is adding allow-unknown-extras only necessary for tests?
+        self.b_options['allow-unknown-extras'] = self.b_options.get(
+            'allow-unknown-extras', 'false')
         self.buildout_dir = self.b_options['directory']
         # GR: would prefer lower() but doing as in 'zc.recipe.egg'
         # (later) the standard way for all booleans is to use
