@@ -48,6 +48,9 @@ class FakeRepo(vcs.base.BaseRepo):
 
     name = 'fakevcs'  # for pip.vcs.VersionSupport registration
 
+    def __init__(self, target_dir='.fake', url='.fake', **options):
+        super().__init__(target_dir, url, **options)
+
     def get_update(self, revision):
         self.revision = revision
         if not os.path.isdir(self.target_dir):
