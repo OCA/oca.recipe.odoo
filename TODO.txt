@@ -7,5 +7,6 @@ TODO
  - honor offline option (-o) in new auto update capability for addons
  - insecure mode for hg??
  - remove legacy support for pip < 8.2
+ - remove legacy support for Python < 3.x
  - remove legacy support for bzr
  - update branch name to main (also in tests)

@@ -6,28 +6,18 @@ import logging
 from distutils.version import Version
 from optparse import OptionParser  # we support python >= 2.6
 
-try:
-    import openerp as odoo
-except ImportError:
-    try:
-        import odoo
-    except ImportError:
-        warnings.warn("This must be imported with a buildout odoo recipe "
-                      "driven sys.path", RuntimeWarning)
-try:
+try:  # Allow nose to import this path
+    import odoo
     startup = odoo.cli.server
-except AttributeError:
-    from .backports.cli import server as startup
-config = odoo.tools.config
-SUPERUSER_ID = odoo.SUPERUSER_ID
-parse_version = odoo.tools.parse_version
-version_info = odoo.release.version_info
-try:
-    # Odoo 10.0: This is deprecated, use :class:`Registry` instead.
-    Registry = odoo.modules.registry.RegistryManager
-except AttributeError:
-    # Odoo 11.0: class has been removed
+    config = odoo.tools.config
+    SUPERUSER_ID = odoo.SUPERUSER_ID
+    parse_version = odoo.tools.parse_version
+    version_info = odoo.release.version_info
     Registry = odoo.modules.registry.Registry
+except ImportError:
+    warnings.warn("This must be imported with a buildout odoo recipe "
+                  "driven sys.path", RuntimeWarning)
+
 
 logger = logging.getLogger(__name__)
 
