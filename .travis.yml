@@ -8,7 +8,8 @@ virtualenv:
 
 jobs:
   include:
-    - python: "3.7"
+    # Disabled Python 3.7 due to pickle problems in working_set deepcopy
+    # - python: "3.7"
     - python: "3.8"
     - python: "3.9"
       env:
