@@ -4,7 +4,7 @@ vcs Subpackage
 :mod:`vcs` Package
 ------------------
 
-.. automodule:: anybox.recipe.odoo.vcs
+.. automodule:: oca.recipe.odoo.vcs
     :members:
     :undoc-members:
     :show-inheritance:
@@ -12,7 +12,7 @@ vcs Subpackage
 :mod:`base` Module
 ------------------
 
-.. automodule:: anybox.recipe.odoo.vcs.base
+.. automodule:: oca.recipe.odoo.vcs.base
     :members:
     :undoc-members:
     :show-inheritance:
@@ -20,7 +20,7 @@ vcs Subpackage
 :mod:`bzr` Module
 -----------------
 
-.. automodule:: anybox.recipe.odoo.vcs.bzr
+.. automodule:: oca.recipe.odoo.vcs.bzr
     :members:
     :undoc-members:
     :show-inheritance:
@@ -28,7 +28,7 @@ vcs Subpackage
 :mod:`git` Module
 -----------------
 
-.. automodule:: anybox.recipe.odoo.vcs.git
+.. automodule:: oca.recipe.odoo.vcs.git
     :members:
     :undoc-members:
     :show-inheritance:
@@ -36,7 +36,7 @@ vcs Subpackage
 :mod:`hg` Module
 ----------------
 
-.. automodule:: anybox.recipe.odoo.vcs.hg
+.. automodule:: oca.recipe.odoo.vcs.hg
     :members:
     :undoc-members:
     :show-inheritance:
@@ -44,7 +44,7 @@ vcs Subpackage
 :mod:`svn` Module
 -----------------
 
-.. automodule:: anybox.recipe.odoo.vcs.svn
+.. automodule:: oca.recipe.odoo.vcs.svn
     :members:
     :undoc-members:
     :show-inheritance:
@@ -52,7 +52,7 @@ vcs Subpackage
 :mod:`testing` Module
 ---------------------
 
-.. automodule:: anybox.recipe.odoo.vcs.testing
+.. automodule:: oca.recipe.odoo.vcs.testing
     :members:
     :undoc-members:
     :show-inheritance:

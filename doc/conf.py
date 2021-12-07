@@ -41,8 +41,9 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Odoo buildout recipe'
-copyright = (u'2011-2015, <a href="http://anybox.fr/">Anybox SAS</a> '
-             u'and contributors')
+copyright = ('2011-2021, <a href="http://anybox.fr/">Anybox SAS</a>; '
+             '2021 <a href="https://odoo-community.org/">Odoo Community Association</a> '
+             'and contributors')
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -85,7 +86,7 @@ add_module_names = True
 pygments_style = 'sphinx'
 
 # A list of ignored prefixes for module index sorting.
-modindex_common_prefix = ['anybox.recipe.openerp.']
+modindex_common_prefix = ['oca.recipe.odoo.']
 
 # If true, keep warnings as "system message" paragraphs in the built documents.
 #keep_warnings = False
@@ -116,7 +117,7 @@ html_theme_options = {
     # an arbitrary url.
     'navbar_links': [
         ("Home", "index"),
-        ("Anybox", "http://anybox.fr", True),
+        ("OCA", "https://odoo-community.org", True),
     ],
 
     # Render the next and previous page links in navbar. (Default: true)

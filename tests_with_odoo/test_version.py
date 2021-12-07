@@ -1,5 +1,5 @@
 import os
-from anybox.recipe.odoo.runtime.session import Session
+from oca.recipe.odoo.runtime.session import Session
 try:
     from odoo.tests.common import TransactionCase, get_db_name
 except:

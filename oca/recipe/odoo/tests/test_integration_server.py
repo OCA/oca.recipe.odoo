@@ -41,7 +41,7 @@ class IntegrationTestCase(unittest.TestCase):
     def provide_dependencies(self):
         """Add paths for resolution from inner buildout's Environment.
 
-        These paths tend to vary according to the way anybox.recipe.odoo has
+        These paths tend to vary according to the way oca.recipe.odoo has
         been installed, notably there's a big difference between issueing in a
         virtualenv ``python setup.py develop`` and
         ``python setup.py develop --upgrade```, the latter putting the
@@ -66,7 +66,7 @@ class IntegrationTestCase(unittest.TestCase):
         autopath = buildout_and_setuptools_path
         self.autopath_original = autopath[:]
         forward_projects = ['pip', 'zc.buildout', 'zc.recipe.egg',
-                            'anybox.recipe.odoo']
+                            'oca.recipe.odoo']
         if sys.version_info < (2, 7):
             forward_projects.extend(('argparse', 'ordereddict'))
         autopath.extend(working_set.find(Requirement.parse(project)).location

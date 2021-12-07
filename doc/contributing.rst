@@ -3,20 +3,15 @@ For contributors
 
 Source and tracking
 ~~~~~~~~~~~~~~~~~~~
-The recipes are currently both hosted in a `single Git repository
-<https://github.com/anybox/anybox.recipe.odoo>`_, the master branch being
-``anybox.recipe.odoo``, whereas ``anybox.recipe.openerp`` is to be found in
-the ``a.r.openerp-x.y`` branches (currently only 1.9 and the legacy
-1.8). This unusual structure because they still have most in common,
-``a.r.odoo`` being ``a.r.openerp`` without the bits for backward compatibility
-before Odoo v8.
+The recipe is being hosted in a `Git repository
+<https://github.com/OCA/oca.recipe.odoo>`_.
 
 We follow the standard GitHub workflow (issues, pull requests…).
 Code contributors are systematically added to the list of
 contributors at the end of the README, unless they explicitely wish
 not to (what GitHub does is obviously out of our scope).
 
-Members of the "Anybox" organization have push privileges on this repository.
+Members of the "OCA" project have push privileges on this repository.
 
 Using a development version
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -25,16 +20,16 @@ To use a local version of the recipe, you may use the ``develop``
 general buildout option::
 
   [buildout]
-  develop = /path/to/anybox.recipe.o
+  develop = /path/to/oca.recipe.odoo
 
 To track a Git branch, we find the
 `gp.vcsdevelop <https://pypi.python.org/pypi/gp.vcsdevelop>`_
 extension simple and useful. Here's an example for
-``anybox.recipe.openerp`` (notice the ``@`` notation for the branch)::
+``oca.recipe.odoo`` (notice the ``@`` notation for the branch)::
 
   [buildout]
   extensions = gp.vcsdevelop
-  vcs-extend-develop = git+https://github.com/anybox/anybox.recipe.odoo@a.r.openerp-1.9#egg=a.r.openerp
+  vcs-extend-develop = git+https://github.com/OCA/oca.recipe.odoo@main#egg=oca.recipe.odoo
   vcs-update = True
 
 .. note:: ``gp.vcsdevelop`` leverages internally pip, and the
@@ -54,8 +49,8 @@ We recommend "developing" the source code in a virtualenv, for instance::
 
   virtualenv recipe-env
   cd recipe-env
-  git clone https://github.com/anybox/anybox.recipe.odoo
-  cd anybox.recipe.odoo
+  git clone https://github.com/OCA/oca.recipe.odoo
+  cd oca.recipe.odoo
   ../bin/pip install -e.[test]
 
 Building documentation
@@ -65,18 +60,18 @@ We are using `sphinx_bootstrap_theme
 <https://pypi.python.org/pypi/sphinx-bootstrap-theme/>`_ to easly get responsive
 design documentation.
 
-You will find ``sphinx_static/united.anybox.bootswatch.bootstrap.min.css`` file
+You will find ``sphinx_static/united.oca.bootswatch.bootstrap.min.css`` file
 which use `bootswatch <https://bootswatch.com>`_ **united** theme using
-``sphinx_static/united.anybox.bootswatch.variables.less`` variables file. To
+``sphinx_static/united.oca.bootswatch.variables.less`` variables file. To
 generate ``.css`` file, please follow `bootswatch instructions
 <https://bootswatch.com/help/>`_.
 
 *HowTo* build documentation::
 
   virtualenv doc-recipe-env
-  git clone https://github.com/anybox/anybox.recipe.odoo
+  git clone https://github.com/OCA/oca.recipe.odoo
   doc-recipe-env/bin/pip install sphinx sphinx_bootstrap_theme
-  cd anybox.recipe.odoo/doc
+  cd oca.recipe.odoo/doc
   doc-recipe-env/bin/sphinx-build . sphinx_build/
 
 Coding style

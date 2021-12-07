@@ -151,7 +151,7 @@ example.
 There is a special argument: ``session``, which is an object provided
 by the recipe to expose Odoo API in a convenient manner for script
 authors. Check
-:py:class:`anybox.recipe.openerp.runtime.session.Session` to learn
+:py:class:`oca.recipe.odoo.runtime.session.Session` to learn
 what can be done with it.
 
 Scripts written for these ``session`` objects must be declared as such::
@@ -231,7 +231,7 @@ or `bPython <http://bpython-interpreter.org>`_::
 
   [odoo]
   version = git http://github.com/odoo/odoo.git odoo 8.0 depth=1
-  recipe = anybox.recipe.odoo:server
+  recipe = oca.recipe.odoo:server
   eggs =
       ipython
       bpython
@@ -271,7 +271,7 @@ Script authors have to:
       my_script = my.script.main:my_run
       """
 * (recommended) use the
-  :py:class:`anybox.recipe.openerp.runtime.session.Session` API. For
+  :py:class:`oca.recipe.odoo.runtime.session.Session` API. For
   that, let your callable accept a ``session`` argument, and tell
   users to :ref:`pass it in their buildout configuration <arguments_session>`.
 
@@ -365,7 +365,7 @@ produces the actual executable, with its command-line parsing, etc.
 
 Project maintainers have to produce a callable using the
 high-level methods of
-:py:class:`anybox.recipe.openerp.runtime.session.Session`. Here's an
+:py:class:`oca.recipe.odoo.runtime.session.Session`. Here's an
 example::
 
    def run_upgrade(session, logger):
@@ -409,7 +409,7 @@ it according to needs, and maybe track it in version control.
 In truth, upgrade scripts are nothing but Odoo scripts, with the
 entry point console script being provided by the recipe itself, and
 in turn relaying to that user-level callable.
-See :py:mod:`anybox.recipe.openerp.runtime.upgrade` for more details
+See :py:mod:`oca.recipe.odoo.runtime.upgrade` for more details
 on how it works.
 
 Usage for instance creation

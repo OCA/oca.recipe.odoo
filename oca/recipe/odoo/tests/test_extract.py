@@ -22,7 +22,7 @@ class TestExtraction(RecipeTestCase):
         super(TestExtraction, self).tearDown()
 
     def make_recipe(self, **kwargs):
-        kwargs.setdefault('recipe', 'anybox.recipe.odoo:testrecipe')
+        kwargs.setdefault('recipe', 'oca.recipe.odoo:testrecipe')
         super(TestExtraction, self).make_recipe(**kwargs)
 
     def test_prepare_extracted_buildout(self):
@@ -132,32 +132,32 @@ class TestExtraction(RecipeTestCase):
     def test_prepare_extracted_buildout_remove_bzr(self):
         self.make_recipe(version='local mainsoftware')
         target_dir = self.extract_target_dir
-        self.recipe.options['recipe'] = 'anybox.recipe.odoo[bzr]:server'
+        self.recipe.options['recipe'] = 'oca.recipe.odoo[bzr]:server'
 
         conf = ConfigParser()
         self.recipe._extract_sources(conf, target_dir, set())
         self.assertEqual(conf.get(self.recipe.name, 'recipe'),
-                         'anybox.recipe.odoo:server')
+                         'oca.recipe.odoo:server')
 
     def test_prepare_extracted_buildout_keep_other_extras(self):
         self.make_recipe(version='local mainsoftware')
         target_dir = self.extract_target_dir
-        self.recipe.options['recipe'] = 'anybox.recipe.odoo[bzr,other]:server'
+        self.recipe.options['recipe'] = 'oca.recipe.odoo[bzr,other]:server'
 
         conf = ConfigParser()
         self.recipe._extract_sources(conf, target_dir, set())
         self.assertEqual(conf.get(self.recipe.name, 'recipe'),
-                         'anybox.recipe.odoo[other]:server')
+                         'oca.recipe.odoo[other]:server')
 
     def test_prepare_extracted_buildout_no_extras(self):
         self.make_recipe(version='local mainsoftware')
         target_dir = self.extract_target_dir
-        self.recipe.options['recipe'] = 'anybox.recipe.odoo:server'
+        self.recipe.options['recipe'] = 'oca.recipe.odoo:server'
 
         conf = ConfigParser()
         self.recipe._extract_sources(conf, target_dir, set())
         self.assertEqual(conf.get(self.recipe.name, 'recipe'),
-                         'anybox.recipe.odoo:server')
+                         'oca.recipe.odoo:server')
 
     def test_extract_downloads_to(self):
         """Test the whole freeze method."""

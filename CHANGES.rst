@@ -1,16 +1,18 @@
 Changes
 ~~~~~~~
 
-The 1.9 series of ``anybox.recipe.openerp`` and ``anybox.recipe.odoo``
-are stable versions.
+The 2.0 series of ``oca.recipe.odoo`` is the stable version.
 
-This changelog displays timelines for the two recipes
-``anybox.recipe.openerp`` was considered upstream of
-``anybox.recipe.odoo`` until release of version 1.9.2b1 of the latter.
+This changelog displays timelines for ``oca.recipe.odoo`` and its two
+anchestors ``anybox.recipe.odoo`` and ``anybox.recipe.openerp``.
 
-anybox.recipe.odoo 1.9.3 (UNRELEASED)
+oca.recipe.odoo 2.0.0 (UNRELEASED)
 -------------------------------------
--
+- renamed from anybox.recipe.odoo
+- dropped support for Python 2.7
+- dropped support for Odoo 10.0 and earlier
+- dropped support for bzr
+- dropped support for Pip < 10.0
 
 anybox.recipe.odoo 1.9.2 (2016-09-20)
 -------------------------------------

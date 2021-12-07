@@ -20,18 +20,18 @@ if sys.version_info < (2, 7):
 tests_require = ['nose']
 
 setup(
-    name="anybox.recipe.odoo",
+    name="oca.recipe.odoo",
     version=version,
-    author="Anybox",
-    author_email="contact@anybox.fr",
+    author="OCA",
+    author_email="tools@odoo-community.org",
     description="A buildout recipe to install and configure Odoo",
     license="AGPLv3+",
     long_description='\n'.join((
         open('README.rst').read(),
         open('CHANGES.rst').read())),
-    url="https://github.com/anybox/anybox.recipe.odoo",
+    url="https://github.com/OCA/oca.recipe.odoo",
     packages=find_packages(),
-    namespace_packages=['anybox', 'anybox.recipe'],
+    namespace_packages=['oca', 'oca.recipe'],
     zip_safe=False,
     include_package_data=True,
     install_requires=requires,
@@ -47,7 +47,7 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
     entry_points={'zc.buildout': [
-        'server = anybox.recipe.odoo.server:ServerRecipe',
+        'server = oca.recipe.odoo.server:ServerRecipe',
     ]},
     extras_require={
         'test': tests_require,

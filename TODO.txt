@@ -1,7 +1,6 @@
 TODO
 ====
 
- - missing deps for the gtk client (hippocanvas)
  - allow a different DOWNLOAD_URL
  - stop on error behavior for external programs
  - honor offline option (-o) in new auto update capability for addons
@@ -10,3 +9,6 @@ TODO
  - remove legacy support for Python < 3.x
  - remove legacy support for bzr
  - update branch name to main (also in tests)
+ - update documentation and README
+ - set up documentation builds as a Github workflow
+ - push releases to Pypi
