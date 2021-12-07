@@ -208,6 +208,9 @@ class BaseRecipe(object):
         self.recipe_requirements_path = []
         self.buildout, self.name, self.options = buildout, name, options
         self.b_options = self.buildout['buildout']
+        # TODO: is adding allow-unknown-extras only necessary for tests?
+        self.b_options['allow-unknown-extras'] = self.b_options.get(
+            'allow-unknown-extras', 'false')
         self.buildout_dir = self.b_options['directory']
         # GR: would prefer lower() but doing as in 'zc.recipe.egg'
         # (later) the standard way for all booleans is to use
@@ -824,7 +827,7 @@ class BaseRecipe(object):
                 else:  # vcs
                     repo_url, addons_dir, repo_rev = split[1:4]
                     location_spec = (repo_url, repo_rev)
-            except:
+            except:  # noqa: E722
                 raise UserError("Could not parse addons line: %r. "
                                 "Please check format " % line)
 
@@ -1298,7 +1301,7 @@ class BaseRecipe(object):
             return ()
 
         try:
-            import pip.req
+            from pip._internal.req import constructors
         except ImportError:
             logger.error("You have vcs-extends-develop distributions "
                          "but pip is not available. That means that "
@@ -1306,22 +1309,12 @@ class BaseRecipe(object):
                          "you ever run that buildout ?")
             raise
 
-        if 'parse_editable' in dir(pip.req):  # pip < 6.0
-            def parse_egg_dir(req_str):
-                return pip.req.parse_editable(req_str)[0]
-        else:
-            def parse_egg_dir(req_str):
-                ireq = pip.req.InstallRequirement.from_editable(req_str)
-                # GR I'm worried because now this is also used as project
-                # name in requirement, whereas it used to just be the target
-                # directory
-                editable_options = getattr(ireq, 'editable_options', None)
-                if editable_options is not None:  # pip < 8.1.0
-                    return editable_options['egg']
-                try:
-                    return ireq.req.name  # pip >= 8.1.2
-                except AttributeError:
-                    return ireq.req.project_name  # pip >=8.1.0, < 8.1.2
+        def parse_egg_dir(req_str):
+            ireq = constructors.install_req_from_editable(req_str)
+            # GR I'm worried because now this is also used as project
+            # name in requirement, whereas it used to just be the target
+            # directory
+            return ireq.req.name  # pip >= 8.1.2
 
         ret = []
         for raw in option_splitlines(lines):

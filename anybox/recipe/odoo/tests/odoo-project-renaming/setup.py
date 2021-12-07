@@ -125,7 +125,7 @@ def py2exe_options():
     else:
         return {}
 
-execfile(join(os.path.dirname(__file__), 'odoo', 'release.py'))
+exec(open(join(os.path.dirname(__file__), 'odoo', 'release.py')).read())
 
 # Notes for OpenERP developer on windows:
 #

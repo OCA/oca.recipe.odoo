@@ -1,6 +1,6 @@
 """Test VCS methods (common part).
 
-These tests depend on system executables, such as 'hg', 'bzr', etc.
+These tests depend on system executables, such as 'hg' etc.
 """
 
 import os

@@ -6,10 +6,9 @@ import shutil
 import subprocess
 import logging
 from tempfile import mkdtemp
-from UserDict import UserDict
+from collections import UserDict
 
 from zc.buildout.easy_install import Installer
-from pip.vcs import vcs as pip_vcs
 
 from . import vcs
 from .base import BaseRecipe
@@ -48,6 +47,11 @@ class FakeRepo(vcs.base.BaseRepo):
 
     name = 'fakevcs'  # for pip.vcs.VersionSupport registration
 
+    schemes = ['fakevcs+http']  # for pip._internal.vcs scheme checking
+
+    def __init__(self, target_dir='.fake', url='.fake', **options):
+        super().__init__(target_dir, url, **options)
+
     def get_update(self, revision):
         self.revision = revision
         if not os.path.isdir(self.target_dir):
@@ -80,8 +84,6 @@ class FakeRepo(vcs.base.BaseRepo):
 
 
 vcs.SUPPORTED['fakevcs'] = FakeRepo
-
-pip_vcs.register(FakeRepo)  # for tests around gp.vcsdevelop
 
 
 def get_vcs_log():
@@ -240,7 +242,7 @@ class RecipeTestCase(unittest.TestCase):
             # grabbing it with getLogger, even after the import is not
             # effective: the level gets overwritten afterwards
             from zc.buildout.easy_install import logger as zc_logger
-        except:
+        except ImportError:
             logger.warn("Could not grab zc.buildout.easy_install logger")
         else:
             zc_logger.setLevel(logging.ERROR)

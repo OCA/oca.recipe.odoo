@@ -2,7 +2,7 @@ import os
 import tempfile
 import shutil
 import subprocess
-from ConfigParser import ConfigParser, NoOptionError
+from configparser import ConfigParser, NoOptionError
 from ..base import GP_VCS_EXTEND_DEVELOP
 from ..testing import RecipeTestCase
 from ..testing import COMMIT_USER_FULL
@@ -74,7 +74,7 @@ class TestFreeze(RecipeTestCase):
         out, err = hg.communicate()
         if hg.returncode or err:
             self.fail("Invalid extracted revision: %r" % rev)
-        self.assertEquals(out, '', 'Extracted revision shows some diff')
+        self.assertEquals(out, b'', 'Extracted revision shows some diff')
 
     def test_freeze_vcs_source_already_frozen(self):
         self.make_recipe(version='10.0')
@@ -191,5 +191,11 @@ class TestFreeze(RecipeTestCase):
 
         # the key in the addons sources for the standalone one has been
         # shifted, that's just what the group option does internally
-        self.assertEqual(outconf.get('odoo', 'revisions').splitlines(),
-                         ['refspec', 'target rev1', 'stdl/stdln rev2'])
+        self.assertEqual(
+            outconf.get('odoo', 'revisions').splitlines(),
+            [
+                'refspec  ; main software part',
+                'target rev1',
+                'stdl/stdln rev2',
+            ]
+        )

@@ -29,3 +29,17 @@ class VcsTestCase(unittest.TestCase):
 
     def tearDown(self):
         shutil.rmtree(self.sandbox)
+
+    def assertShaEqual(self, this, other, msg=None):
+        """Compare a SHA or a list of SHAs passed as str or bytes array"""
+
+        def normalize(arg):
+            if isinstance(arg, (list, tuple)):
+                arg = list(arg)
+                for idx, item in enumerate(arg):
+                    arg[idx] = normalize(item)
+            elif isinstance(arg, bytes):
+                arg = arg.decode()
+            return arg
+
+        self.assertEqual(normalize(this), normalize(other), msg=msg)

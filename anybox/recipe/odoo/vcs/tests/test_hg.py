@@ -2,7 +2,7 @@
 
 import os
 import subprocess
-from ConfigParser import ConfigParser, RawConfigParser
+from configparser import ConfigParser, RawConfigParser
 from zc.buildout import UserError
 
 from ..testing import COMMIT_USER_FULL
@@ -74,7 +74,7 @@ class HgBaseTestCase(VcsTestCase):
         p = subprocess.Popen(['hg', '--cwd', branch.target_dir,
                               'parents', '--template={rev}\n'],
                              stdout=subprocess.PIPE)
-        self.assertEquals(p.communicate()[0].split(), [str(revno)])
+        self.assertShaEqual(p.communicate()[0].split(), [str(revno)])
 
 
 class HgTestCase(HgBaseTestCase):
@@ -94,7 +94,7 @@ class HgTestCase(HgBaseTestCase):
 
         try:
             repo.clean()
-        except:
+        except:  # noqa: E722
             self.fail("clean() should not fail if "
                       "clone not already done")
 

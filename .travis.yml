@@ -1,39 +1,47 @@
+---
 language: python
-sudo: false
-
-python:
-  - "2.7"
+os: linux
+dist: bionic
 
 virtualenv:
   system_site_packages: false
 
-env:
-  matrix:
-    - TEST_FOR_PIP='==1.4.1'  # the minimum version we require for now
-    - TEST_FOR_PIP='<8.1'
-    - TEST_FOR_PIP='==8.1.1'
-    - TEST_FOR_PIP=">=8.1.2"
+jobs:
+  include:
+    # Disabled Python 3.7 due to pickle problems in working_set deepcopy
+    # - python: "3.7"
+    - python: "3.8"
+    - python: "3.9"
+      env:
+        - FLAKE8=1
 
 before_install:
+  # setup git
+  # TODO: change to main
+  - git config --global init.defaultBranch master
+  - git config --global advice.detachedHead false
+  - git config --global pull.rebase false
   # For tests running hg command
   # set up username
   - echo '[ui]' > ~/.hgrc
   - echo 'username = anybox-test' >> ~/.hgrc
-  # print setuptools version
-  - easy_install --version
   # if the wheel package is present, then pip will build an unusable wheel
   # for zc.recipe.egg (see commit msg for analysis of that)
   - pip uninstall -y wheel
 
-
 install:
-  - pip install --upgrade pip${TEST_FOR_PIP}
-  - pip install coveralls
-  - pip install flake8
+  # zc.buildout < 3.0.0 depends on easy_install, dropped by setuptools 52.0
+  - pip install "setuptools<52.0"
+  - pip install coveralls${COVERALLS}
   - pip install -e .[test]
 
 script:
-  - python setup.py flake8
+  - |
+    if [[ "$FLAKE8" = "1" ]];
+    then
+        pip install flake8;
+        flake8 anybox;
+    fi
   - python setup.py nosetests
   # install sphinx only after running tests to avoid failing tests
   # gracinet: after merging of the PR this commit concludes,
@@ -42,7 +50,10 @@ script:
 
 after_script:
   # Dump version of all installed packages
-  - echo 'Versions of all installed packages';  echo '=================================='; pip freeze -l anybox.recipe.odoo
+  - |
+    echo 'Versions of all installed packages';
+    echo '==================================';
+    pip freeze -l anybox.recipe.odoo
 
 after_success:
-  - coveralls 
+  - coveralls

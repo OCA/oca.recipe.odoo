@@ -114,13 +114,13 @@ def clean_object_files(directory):
         for p in to_delete:
             try:
                 os.unlink(p)
-            except:
+            except:  # noqa: E722
                 logger.exception("Error attempting to unlink %r. "
                                  "Proceeding anyway.", p)
     for d in dirs_to_remove:
         try:
             os.rmdir(d)
-        except:
+        except:  # noqa: E722
             logger.exception("Error attempting to rmdir %r",
                              "Proceeding anyway.", p)
 
@@ -230,8 +230,8 @@ def option_splitlines(opt_val):
         return ()
 
     lines = opt_val.splitlines()
-    return tuple(l for l in (option_strip(line) for line in lines)
-                 if l)
+    return tuple(li for li in (option_strip(line) for line in lines)
+                 if li)
 
 
 def option_strip(opt_val):

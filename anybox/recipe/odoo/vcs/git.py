@@ -251,6 +251,10 @@ class GitRepo(BaseRepo):
                             "it'll retrieve the commit %r. Please consider "
                             "adding a branch indication for more efficiency "
                             "and possibly reliability.", self.target_dir, sha)
+                # Bare fetch first
+                self.log_call(fetch_cmd, callwith=update_check_call)
+                # Second fetch with sha
+                fetch_cmd.append(sha)
             else:
                 fetch_cmd.append(branch)
             self.log_call(fetch_cmd, callwith=update_check_call)
