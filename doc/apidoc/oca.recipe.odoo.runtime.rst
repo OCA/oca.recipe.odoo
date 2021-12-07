@@ -4,7 +4,7 @@ runtime Subpackage
 :mod:`runtime` Package
 ----------------------
 
-.. automodule:: anybox.recipe.odoo.runtime
+.. automodule:: oca.recipe.odoo.runtime
     :members:
     :undoc-members:
     :show-inheritance:
@@ -12,7 +12,7 @@ runtime Subpackage
 :mod:`session` Module
 ---------------------
 
-.. automodule:: anybox.recipe.odoo.runtime.session
+.. automodule:: oca.recipe.odoo.runtime.session
     :members:
     :undoc-members:
     :show-inheritance:
@@ -20,7 +20,7 @@ runtime Subpackage
 :mod:`upgrade` Module
 ---------------------
 
-.. automodule:: anybox.recipe.odoo.runtime.upgrade
+.. automodule:: oca.recipe.odoo.runtime.upgrade
     :members:
     :undoc-members:
     :show-inheritance:
@@ -28,7 +28,7 @@ runtime Subpackage
 :mod:`start_openerp` Module
 ---------------------------
 
-.. automodule:: anybox.recipe.odoo.runtime.start_openerp
+.. automodule:: oca.recipe.odoo.runtime.start_openerp
     :members:
     :undoc-members:
     :show-inheritance:
@@ -36,7 +36,7 @@ runtime Subpackage
 :mod:`test_openerp` Module
 --------------------------
 
-.. automodule:: anybox.recipe.odoo.runtime.test_openerp
+.. automodule:: oca.recipe.odoo.runtime.test_openerp
     :members:
     :undoc-members:
     :show-inheritance:

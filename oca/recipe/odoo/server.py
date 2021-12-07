@@ -30,7 +30,7 @@ class ServerRecipe(BaseRecipe):
     """
 
     recipe_requirements = ('babel',)
-    requirements = ('anybox.recipe.odoo',)
+    requirements = ('oca.recipe.odoo',)
     soft_requirements = ('odoo-command',)
     with_gunicorn = False
     with_upgrade = True
@@ -290,7 +290,7 @@ conf = odoo.tools.config
         initialization = ['']
         if self.with_devtools:
             initialization.extend((
-                'from anybox.recipe.odoo import devtools',
+                'from oca.recipe.odoo import devtools',
                 'devtools.load(for_tests=False)',
                 ''))
 
@@ -317,7 +317,7 @@ conf = odoo.tools.config
         desc.update(
             entry='odoo_starter',
             initialization=os.linesep.join((
-                "from anybox.recipe.odoo import devtools",
+                "from oca.recipe.odoo import devtools",
                 "devtools.load(for_tests=True)",
                 "")),
             arguments=arguments
@@ -390,7 +390,7 @@ conf = odoo.tools.config
 
         if self.with_devtools:
             initialization.extend([
-                'from anybox.recipe.odoo import devtools',
+                'from oca.recipe.odoo import devtools',
                 'devtools.load(for_tests=False)',
                 ''])
 
@@ -443,7 +443,7 @@ conf = odoo.tools.config
 
         initialization = os.linesep.join((
             "",
-            "from anybox.recipe.odoo.runtime.session import Session",
+            "from oca.recipe.odoo.runtime.session import Session",
             "session = Session(%s, %s)" % (
                 self._relativitize(self.config_path),
                 self._relativitize(self.buildout_dir),
@@ -464,7 +464,7 @@ conf = odoo.tools.config
             "        from openerp import release",
             "    except ImportError:",
             "        from odoo import release",
-            "    from anybox.recipe.odoo.utils import major_version",
+            "    from oca.recipe.odoo.utils import major_version",
             "    if major_version(release.version)[0] >= 8:",
             "        print('Or using new api:')",
             "        print(\"    session.env['res.users'].browse(1)\")"
@@ -494,7 +494,7 @@ conf = odoo.tools.config
 
         common_init = os.linesep.join((
             "",
-            "from anybox.recipe.odoo.runtime.session import Session",
+            "from oca.recipe.odoo.runtime.session import Session",
             "session = Session(%s, %s)" % (
                 self._relativitize(self.config_path),
                 self._relativitize(self.buildout_dir)),
@@ -534,13 +534,13 @@ conf = odoo.tools.config
         # provide additional needed entry points for main start/test scripts
         self.eggs_reqs.extend((
             ('odoo_starter',
-             'anybox.recipe.odoo.runtime.start_odoo',
+             'oca.recipe.odoo.runtime.start_odoo',
              'main'),
             ('odoo_cron_worker',
-             'anybox.recipe.odoo.runtime.start_odooo',
+             'oca.recipe.odoo.runtime.start_odooo',
              'main'),
             ('odoo_upgrader',
-             'anybox.recipe.odoo.runtime.upgrade',
+             'oca.recipe.odoo.runtime.upgrade',
              'upgrade'),
         ))
 

@@ -1,5 +1,5 @@
 from unittest import TestCase
-from anybox.recipe.odoo.runtime.session import Session
+from oca.recipe.odoo.runtime.session import Session
 try:
     from odoo.tests.common import get_db_name
     from odoo.release import version_info

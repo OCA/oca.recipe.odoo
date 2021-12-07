@@ -73,7 +73,7 @@ class MainSoftware(object):
     Should just have a singleton instance: :data:`main_software`,
     whose meaning depends on the concrete recipe class using it.
 
-    For example, in :class:`anybox.recipe.odoo.server.ServerRecipe`,
+    For example, in :class:`oca.recipe.odoo.server.ServerRecipe`,
     :data:`main_software` represents the OpenObject server or the Odoo
     standard distribution.
     """
@@ -138,7 +138,7 @@ class BaseRecipe(object):
                         directory is actually a subdir of the specified one.
 
                         VCS support classes (see
-                        :mod:`anybox.recipe.odoo.vcs`) can implemented their
+                        :mod:`oca.recipe.odoo.vcs`) can implemented their
                         dedicated options
 
     The :attr:`merges` attribute is a ``dict`` storing how to fetch additional

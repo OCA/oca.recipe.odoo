@@ -20,7 +20,7 @@
 #
 ##############################################################################
 #
-# anybox.recipe.odoo is also under AGPL v3+
+# oca.recipe.odoo is also under AGPL v3+
 #
 
 """

@@ -6,10 +6,9 @@
 Odoo buildout recipe
 =======================
 
-.. note:: if you wish to manage OpenERP/Odoo versions before the
-          product rename that occurred for v8, you should go to
-          `anybox.recipe.openerp
-          <https://pypi.python.org/pypi/anybox.recipe.openerp>`_.
+.. note:: if you wish to manage OpenERP/Odoo versions using Python 2.7,
+          you should go to `anybox.recipe.odoo
+          <https://pypi.python.org/pypi/anybox.recipe.odoo>`_.
 
 This recipe for `Buildout <https://github.com/buildout/buildout>`_ is
 a fully featured tool allowing you to define and deploy quickly
@@ -37,19 +36,18 @@ About this documentation
 ------------------------
 
 Released *stable* versions of this documentation are uploaded to `pythonhosted
-<http://pythonhosted.org/anybox.recipe.odoo>`_.
+<http://pythonhosted.org/oca.recipe.odoo>`_.
 
 The full documentation is written with `Sphinx
 <http://sphinx-doc.org>`_, built continuously and
-uploaded to http://docs.anybox.fr/anybox.recipe.odoo/current by Anybox' public
-buildbot.
+uploaded to https://oca.github.io/oca.recipe.odoo
 The Sphinx source tree is to be found under the ``doc`` subdirectory
 of this project.
 
 Although this Sphinx documentation started with version 1.8.0, most of
 its contents applies to the 1.7 series: features introduced with 1.8
 are highlighted, and readers may consult the `changelog on PyPI
-<https://pypi.python.org/pypi/anybox.recipe.odoo#changes>`_.
+<https://pypi.python.org/pypi/oca.recipe.odoo#changes>`_.
 
 Contents
 --------
@@ -72,7 +70,7 @@ Code documentation
    :maxdepth: 1
    :glob:
 
-   apidoc/anybox*
+   apidoc/oca*
 
 
 Indices and tables

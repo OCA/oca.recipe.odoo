@@ -55,7 +55,7 @@ An extra dependency of the recipe gets required at runtime like this::
           support them.
 
           For more detail, check
-          :py:func:`anybox.recipe.openerp.utils.option_splitlines`.
+          :py:func:`oca.recipe.odoo.utils.option_splitlines`.
 
 Command line
 ------------

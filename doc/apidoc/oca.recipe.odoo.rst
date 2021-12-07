@@ -1,10 +1,10 @@
-anybox.recipe.odoo Package
+oca.recipe.odoo Package
 ==========================
 
-:mod:`anybox.recipe.odoo` Package
+:mod:`oca.recipe.odoo` Package
 ---------------------------------
 
-.. automodule:: anybox.recipe.odoo
+.. automodule:: oca.recipe.odoo
     :members:
     :undoc-members:
     :show-inheritance:
@@ -12,7 +12,7 @@ anybox.recipe.odoo Package
 :mod:`base` Module
 ------------------
 
-.. automodule:: anybox.recipe.odoo.base
+.. automodule:: oca.recipe.odoo.base
     :members:
     :undoc-members:
     :show-inheritance:
@@ -20,7 +20,7 @@ anybox.recipe.odoo Package
 :mod:`devtools` Module
 ----------------------
 
-.. automodule:: anybox.recipe.odoo.devtools
+.. automodule:: oca.recipe.odoo.devtools
     :members:
     :undoc-members:
     :show-inheritance:
@@ -28,7 +28,7 @@ anybox.recipe.odoo Package
 :mod:`server` Module
 --------------------
 
-.. automodule:: anybox.recipe.odoo.server
+.. automodule:: oca.recipe.odoo.server
     :members:
     :undoc-members:
     :show-inheritance:
@@ -36,7 +36,7 @@ anybox.recipe.odoo Package
 :mod:`testing` Module
 ---------------------
 
-.. automodule:: anybox.recipe.odoo.testing
+.. automodule:: oca.recipe.odoo.testing
     :members:
     :undoc-members:
     :show-inheritance:
@@ -44,7 +44,7 @@ anybox.recipe.odoo Package
 :mod:`utils` Module
 -------------------
 
-.. automodule:: anybox.recipe.odoo.utils
+.. automodule:: oca.recipe.odoo.utils
     :members:
     :undoc-members:
     :show-inheritance:
@@ -54,6 +54,6 @@ Subpackages
 
 .. toctree::
 
-    anybox.recipe.odoo.runtime
-    anybox.recipe.odoo.vcs
+    oca.recipe.odoo.runtime
+    oca.recipe.odoo.vcs
 

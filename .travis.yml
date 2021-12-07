@@ -24,7 +24,7 @@ before_install:
   # For tests running hg command
   # set up username
   - echo '[ui]' > ~/.hgrc
-  - echo 'username = anybox-test' >> ~/.hgrc
+  - echo 'username = oca-test' >> ~/.hgrc
   # if the wheel package is present, then pip will build an unusable wheel
   # for zc.recipe.egg (see commit msg for analysis of that)
   - pip uninstall -y wheel
@@ -40,7 +40,7 @@ script:
     if [[ "$FLAKE8" = "1" ]];
     then
         pip install flake8;
-        flake8 anybox;
+        flake8 oca;
     fi
   - python setup.py nosetests
   # install sphinx only after running tests to avoid failing tests
@@ -53,7 +53,7 @@ after_script:
   - |
     echo 'Versions of all installed packages';
     echo '==================================';
-    pip freeze -l anybox.recipe.odoo
+    pip freeze -l oca.recipe.odoo
 
 after_success:
   - coveralls

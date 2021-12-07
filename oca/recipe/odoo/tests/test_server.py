@@ -199,7 +199,7 @@ class TestServer(RecipeTestCase):
         self.recipe.version_detected = '10.0-1'
         self.recipe.merge_requirements()
         self.assertEquals(set(self.recipe.requirements),
-                          set(['anybox.recipe.odoo',
+                          set(['oca.recipe.odoo',
                                'odoo']))
 
     def test_merge_requirements_new_project_name(self):
@@ -209,7 +209,7 @@ class TestServer(RecipeTestCase):
         self.recipe.version_detected = '10.0'
         self.recipe.merge_requirements()
         self.assertEquals(set(self.recipe.requirements),
-                          set(['anybox.recipe.odoo',
+                          set(['oca.recipe.odoo',
                                'odoo']))
 
     def test_merge_requirements_gunicorn(self):
