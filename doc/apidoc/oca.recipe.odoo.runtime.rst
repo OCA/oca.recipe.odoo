@@ -28,7 +28,7 @@ runtime Subpackage
 :mod:`start_openerp` Module
 ---------------------------
 
-.. automodule:: oca.recipe.odoo.runtime.start_openerp
+.. automodule:: oca.recipe.odoo.runtime.start_odoo
     :members:
     :undoc-members:
     :show-inheritance:
@@ -36,7 +36,7 @@ runtime Subpackage
 :mod:`test_openerp` Module
 --------------------------
 
-.. automodule:: oca.recipe.odoo.runtime.test_openerp
+.. automodule:: oca.recipe.odoo.runtime.test_odoo
     :members:
     :undoc-members:
     :show-inheritance:
