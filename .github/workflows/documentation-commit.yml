@@ -2,7 +2,7 @@ name: Build and commit documentation
 
 on:
   push:
-    branches: ["imp/build_docs", "main"]
+    branches: ["main"]
 
 jobs:
   documentation:
