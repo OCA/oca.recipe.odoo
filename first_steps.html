@@ -1,0 +1,579 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>First steps &#8212; Odoo buildout recipe 1.9.3.dev0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Configuration reference" href="configuration.html" />
+    <link rel="prev" title="Odoo buildout recipe" href="index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="_static/js/jquery-1.12.4.min.js "></script>
+<script type="text/javascript" src="_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html"><span><img src="_static/logo.png"></span>
+          Odoo buildout recipe</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.9</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="index.html">Home</a></li>
+                <li><a href="https://odoo-community.org">OCA</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">First steps</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-create-and-bootstrap-a-buildout">How to create and bootstrap a buildout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-openerp-7-0-buildouts">Example OpenERP 7.0 buildouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-openerp-6-1-buildout-with-a-custom-addon">Example OpenERP 6.1 buildout with a custom addon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-openerp-6-0-buildout-server-and-clients">Example OpenERP 6.0 buildout (server and clients)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#continuously-tested-examples">Continuously tested examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#other-sample-buildouts">Other sample buildouts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#the-buildout-configuration-file-and-parts">The buildout configuration file and parts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#odoo-recipes">Odoo recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#options-for-assembly-and-source-management">Options for assembly and source management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#options-for-buildout-relocation">Options for buildout relocation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#odoo-options">Odoo options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#options-for-executables-generation-and-serving">Options for executables generation and serving</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#options-for-development-qa-and-introspection">Options for development, QA and introspection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#options-for-download-and-caching-strategies">Options for download and caching strategies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#options-for-release-and-packaging">Options for release and packaging</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scripts.html">Odoo Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scripts.html#use-cases">Use cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripts.html#declaring-odoo-scripts">Declaring Odoo Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripts.html#interactive-consoles">Interactive Consoles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripts.html#writing-odoo-scripts">Writing Odoo Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripts.html#upgrade-scripts">Upgrade scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripts.html#startup-scripts">Startup scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripts.html#list-of-internal-entry-points">List of internal entry points</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dev_prod_workflow.html">Full development to production example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dev_prod_workflow.html#common-setup">Common setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev_prod_workflow.html#developer-s-setup">Developer’s setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev_prod_workflow.html#release-and-packaging">Release and packaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev_prod_workflow.html#deployment-with-a-server-local-configuration-file">Deployment with a server-local configuration file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">For contributors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#source-and-tracking">Source and tracking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#using-a-development-version">Using a development version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#development-setup">Development setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#building-documentation">Building documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#coding-style">Coding style</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#launching-static-analysis-and-unit-tests">Launching static analysis and unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#integration-tests">Integration tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#continuous-integration">Continuous integration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="devnotes/index.html">Development notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="devnotes/git-sparse-shallow.html">Git shallow clones and selective branch fetching</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="apidoc/oca.recipe.odoo.html">oca.recipe.odoo Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="apidoc/oca.recipe.odoo.html#id1"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oca.recipe.odoo</span></code> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.base"><code class="xref py py-mod docutils literal notranslate"><span class="pre">base</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.devtools"><code class="xref py py-mod docutils literal notranslate"><span class="pre">devtools</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.server"><code class="xref py py-mod docutils literal notranslate"><span class="pre">server</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.testing"><code class="xref py py-mod docutils literal notranslate"><span class="pre">testing</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.utils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">utils</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apidoc/oca.recipe.odoo.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="apidoc/oca.recipe.odoo.runtime.html">runtime Subpackage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime"><code class="xref py py-mod docutils literal notranslate"><span class="pre">runtime</span></code> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime.session"><code class="xref py py-mod docutils literal notranslate"><span class="pre">session</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime.upgrade"><code class="xref py py-mod docutils literal notranslate"><span class="pre">upgrade</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime.start_odoo"><code class="xref py py-mod docutils literal notranslate"><span class="pre">start_openerp</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime.test_odoo"><code class="xref py py-mod docutils literal notranslate"><span class="pre">test_openerp</span></code> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="apidoc/oca.recipe.odoo.vcs.html">vcs Subpackage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs"><code class="xref py py-mod docutils literal notranslate"><span class="pre">vcs</span></code> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.base"><code class="xref py py-mod docutils literal notranslate"><span class="pre">base</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.bzr"><code class="xref py py-mod docutils literal notranslate"><span class="pre">bzr</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.git"><code class="xref py py-mod docutils literal notranslate"><span class="pre">git</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.hg"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hg</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.svn"><code class="xref py py-mod docutils literal notranslate"><span class="pre">svn</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.testing"><code class="xref py py-mod docutils literal notranslate"><span class="pre">testing</span></code> Module</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">First steps</a><ul>
+<li><a class="reference internal" href="#how-to-create-and-bootstrap-a-buildout">How to create and bootstrap a buildout</a><ul>
+<li><a class="reference internal" href="#creating-the-buildout">Creating the buildout</a></li>
+<li><a class="reference internal" href="#installing-build-dependencies">Installing build dependencies</a></li>
+<li><a class="reference internal" href="#bootstrapping-the-buildout">Bootstrapping the buildout</a></li>
+<li><a class="reference internal" href="#running-the-build">Running the build</a></li>
+<li><a class="reference internal" href="#starting-odoo">Starting Odoo</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#example-openerp-7-0-buildouts">Example OpenERP 7.0 buildouts</a></li>
+<li><a class="reference internal" href="#example-openerp-6-1-buildout-with-a-custom-addon">Example OpenERP 6.1 buildout with a custom addon</a></li>
+<li><a class="reference internal" href="#example-openerp-6-0-buildout-server-and-clients">Example OpenERP 6.0 buildout (server and clients)</a></li>
+<li><a class="reference internal" href="#continuously-tested-examples">Continuously tested examples</a></li>
+<li><a class="reference internal" href="#other-sample-buildouts">Other sample buildouts</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="index.html" title="Previous Chapter: Odoo buildout recipe"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Odoo buildout recipe</span>
+    </a>
+  </li>
+  <li>
+    <a href="configuration.html" title="Next Chapter: Configuration reference"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Configuration... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/first_steps.rst.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <section id="first-steps">
+<h1>First steps<a class="headerlink" href="#first-steps" title="Permalink to this headline">¶</a></h1>
+<section id="how-to-create-and-bootstrap-a-buildout">
+<span id="howto"></span><h2>How to create and bootstrap a buildout<a class="headerlink" href="#how-to-create-and-bootstrap-a-buildout" title="Permalink to this headline">¶</a></h2>
+<p>To create a buildout and run the build, you just need <strong>1 file</strong> and <strong>2 commands</strong>:</p>
+<ul class="simple">
+<li><p>Create a single <code class="docutils literal notranslate"><span class="pre">buildout.cfg</span></code> file.</p></li>
+<li><p>Be sure you installed all your build dependencies</p></li>
+<li><p>Bootstrap the buildout with: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">bootstrap.py</span></code></p></li>
+<li><p>Run the build with: <code class="docutils literal notranslate"><span class="pre">bin/buildout</span></code></p></li>
+</ul>
+<p>The same with more details below :</p>
+<section id="creating-the-buildout">
+<h3>Creating the buildout<a class="headerlink" href="#creating-the-buildout" title="Permalink to this headline">¶</a></h3>
+<p>Create a <code class="docutils literal notranslate"><span class="pre">buildout.cfg</span></code> file in an empty directory, containing the
+configuration of the <a class="reference internal" href="#example-6-1">example 6.1</a> section.</p>
+</section>
+<section id="installing-build-dependencies">
+<span id="dependencies"></span><h3>Installing build dependencies<a class="headerlink" href="#installing-build-dependencies" title="Permalink to this headline">¶</a></h3>
+<p>You basically need typical development tools needed to build all the Python
+dependency eggs of Odoo. You can do this by yourself with your system or
+Linux distribution.</p>
+<p>Or if you’re using a Debian based distribution, we provide a single
+dependency package you can use to install all dependencies in one shot:</p>
+<p>Add the following line in your <code class="docutils literal notranslate"><span class="pre">/etc/apt/sources.list</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">deb</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">apt</span><span class="o">.</span><span class="n">anybox</span><span class="o">.</span><span class="n">fr</span><span class="o">/</span><span class="n">openerp</span> <span class="n">common</span> <span class="n">main</span>
+</pre></div>
+</div>
+<p>If you don’t want your system to complain about non-signed packages,
+have it accept the signing key, e.g. by issuing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">key</span> <span class="n">adv</span> <span class="o">--</span><span class="n">keyserver</span> <span class="n">hkp</span><span class="p">:</span><span class="o">//</span><span class="n">subkeys</span><span class="o">.</span><span class="n">pgp</span><span class="o">.</span><span class="n">net</span> <span class="o">--</span><span class="n">recv</span><span class="o">-</span><span class="n">keys</span> <span class="mh">0xE38CEB07</span>
+</pre></div>
+</div>
+<p>(sometimes, the key server is too busy, you may need to wait a few
+minutes and try again)</p>
+<p>Install the dependency package:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo aptitude update
+$ sudo aptitude install openerp-server-system-build-deps
+</pre></div>
+</div>
+<p>You can uninstall this package with <code class="docutils literal notranslate"><span class="pre">aptitude</span></code> after the build to
+automatically remove all un-needed dependencies, but you need to
+install <em>run dependencies</em> before that</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo aptitude install openerp-server-system-run-deps
+$ sudo aptitude remove openerp-server-system-build-deps
+</pre></div>
+</div>
+<p>Please note that these package will have your system install the
+<em>client</em> part of PostgreSQL software only. If you want a
+PostgreSQL server on the same host, that’s not in the recipe scope,
+just install it as well.</p>
+</section>
+<section id="bootstrapping-the-buildout">
+<h3>Bootstrapping the buildout<a class="headerlink" href="#bootstrapping-the-buildout" title="Permalink to this headline">¶</a></h3>
+<p>Bootstrapping the buildout consists in creating the basic structure of
+the buildout, and installing buildout itself in the directory.
+Once it’s been done, everything is under tight control.</p>
+<p>The easiest way to bootstrap is to use the <code class="docutils literal notranslate"><span class="pre">bootstrap.py</span></code> script:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wget https://raw.github.com/buildout/buildout/master/bootstrap/bootstrap.py
+</pre></div>
+</div>
+<p>As of zc.buildout version 2.2, strong isolation from the system-wide Python
+installation has been abandoned because of its redundancy with the
+very popular <a class="reference external" href="https://pypi.python.org/pypi/virtualenv">virtualenv</a>.
+Besides, the bootstrap actually fails if a version of
+setuptools older than 0.7 is present system-wide (happens easily
+enough at the time of this writing).</p>
+<p>The universal current way of doing is therefore to start from a
+virtualenv <em>without setuptools</em>. For virtualenv &gt;= 1.9, just do:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ virtualenv sandbox --no-setuptools
+</pre></div>
+</div>
+<p>For older versions of virtualenv:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ virtualenv sandbox
+$ sandbox/bin/pip uninstall setuptools pip
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>to install virtualenv.</p>
+<ul class="simple">
+<li><p>Debian family: sudo aptitude install python-virtualenv</p></li>
+<li><p>Redhat/Fedora/CenOS family: sudo yum install python-virtualenv</p></li>
+</ul>
+</div>
+<p>Finally, perform the bootstrap with the virtualenv’s Python:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sandbox/bin/python bootstrap.py
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><code class="docutils literal notranslate"><span class="pre">boostrap.py</span></code> will fail if you don’t already have a valid
+<code class="docutils literal notranslate"><span class="pre">buildout.cfg</span></code> file. Don’t hesitate over options, you
+can bootstrap with a really minimal one and tweak it
+later.</p>
+</div>
+<p>From now on, all buildout related operations, including Odoo
+startup script, custom scripts will be protected by the virtualenv.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>nothing, not even <code class="docutils literal notranslate"><span class="pre">zc.buildout</span></code> actually gets installed by
+buildout in such a virtualenv.
+It’s <em>totally safe</em> if you’re managing several buildouts to
+share a single such virtualenv among all of them.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>since the bootstrap operation is so sensitive, we recommend
+package managers to include the precise <code class="docutils literal notranslate"><span class="pre">bootstrap.py</span></code> in
+their distributed buildout, and to bundle a future-proof
+shell script, using options such as <code class="docutils literal notranslate"><span class="pre">-v</span></code>.</p>
+</div>
+</section>
+<section id="running-the-build">
+<h3>Running the build<a class="headerlink" href="#running-the-build" title="Permalink to this headline">¶</a></h3>
+<p>This is the day-to-day operation. Just run</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ bin/buildout
+</pre></div>
+</div>
+<p>And rerun to apply any changes you could later make to <code class="docutils literal notranslate"><span class="pre">buildout.cfg</span></code>.</p>
+</section>
+<section id="starting-odoo">
+<h3>Starting Odoo<a class="headerlink" href="#starting-odoo" title="Permalink to this headline">¶</a></h3>
+<p>Just run</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ bin/start_openerp
+</pre></div>
+</div>
+</section>
+</section>
+<section id="example-openerp-7-0-buildouts">
+<span id="example-7-0"></span><h2>Example OpenERP 7.0 buildouts<a class="headerlink" href="#example-openerp-7-0-buildouts" title="Permalink to this headline">¶</a></h2>
+<p>This example builds the latest nightly OpenERP 7 version.
+Note how most Python distribution versions are pinned.</p>
+<p>While not mandatory, version pinning is an
+important part of the buildout culture. Note also how even <code class="docutils literal notranslate"><span class="pre">zc.buildout</span></code>
+and the current recipe versions can be pinned:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">buildout</span><span class="p">]</span>
+<span class="n">parts</span> <span class="o">=</span> <span class="n">openerp</span>
+<span class="n">versions</span> <span class="o">=</span> <span class="n">versions</span>
+<span class="n">find</span><span class="o">-</span><span class="n">links</span> <span class="o">=</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">download</span><span class="o">.</span><span class="n">gna</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">pychart</span><span class="o">/</span>
+
+<span class="p">[</span><span class="n">openerp</span><span class="p">]</span>
+<span class="n">recipe</span> <span class="o">=</span> <span class="n">anybox</span><span class="o">.</span><span class="n">recipe</span><span class="o">.</span><span class="n">openerp</span><span class="p">[</span><span class="n">bzr</span><span class="p">]:</span><span class="n">server</span>
+<span class="n">version</span> <span class="o">=</span> <span class="n">nightly</span> <span class="mf">7.0</span> <span class="n">latest</span>
+
+<span class="p">[</span><span class="n">versions</span><span class="p">]</span>
+<span class="n">setuptools</span> <span class="o">=</span> <span class="mf">1.1.0</span>
+<span class="n">zc</span><span class="o">.</span><span class="n">buildout</span> <span class="o">=</span> <span class="mf">2.2.1</span>
+<span class="n">zc</span><span class="o">.</span><span class="n">recipe</span><span class="o">.</span><span class="n">eggs</span> <span class="o">=</span> <span class="mf">2.0.0</span>
+<span class="n">anybox</span><span class="o">.</span><span class="n">recipe</span><span class="o">.</span><span class="n">openerp</span> <span class="o">=</span> <span class="mf">1.7.1</span>
+<span class="n">babel</span> <span class="o">=</span> <span class="mf">0.9.6</span>
+<span class="n">Pillow</span> <span class="o">=</span> <span class="mf">1.7.1</span>
+<span class="n">pywebdav</span> <span class="o">=</span> <span class="mf">0.9.4.1</span>
+<span class="n">PyXML</span> <span class="o">=</span> <span class="mf">0.8.4</span>
+<span class="n">pyyaml</span> <span class="o">=</span> <span class="mf">3.10</span>
+<span class="n">werkzeug</span> <span class="o">=</span> <span class="mf">0.8.3</span>
+<span class="n">zsi</span> <span class="o">=</span> <span class="mf">2.0</span><span class="o">-</span><span class="n">rc3</span>
+<span class="n">feedparser</span> <span class="o">=</span> <span class="mf">5.1.1</span>
+<span class="n">gdata</span> <span class="o">=</span> <span class="mf">2.0.16</span>
+<span class="n">lxml</span> <span class="o">=</span> <span class="mf">2.3.3</span>
+<span class="n">psycopg2</span> <span class="o">=</span> <span class="mf">2.4.4</span>
+<span class="n">pydot</span> <span class="o">=</span> <span class="mf">1.0.28</span>
+<span class="n">pyparsing</span> <span class="o">=</span> <span class="mf">1.5.6</span>
+<span class="n">python</span><span class="o">-</span><span class="n">dateutil</span> <span class="o">=</span> <span class="mf">1.5</span>
+<span class="n">python</span><span class="o">-</span><span class="n">ldap</span> <span class="o">=</span> <span class="mf">2.4.9</span>
+<span class="n">python</span><span class="o">-</span><span class="n">openid</span> <span class="o">=</span> <span class="mf">2.2.5</span>
+<span class="n">pytz</span> <span class="o">=</span> <span class="mi">2012</span><span class="n">b</span>
+<span class="n">vatnumber</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">vobject</span> <span class="o">=</span> <span class="mf">0.8.1</span><span class="n">c</span>
+<span class="n">xlwt</span> <span class="o">=</span> <span class="mf">0.7.3</span>
+</pre></div>
+</div>
+<p>Of course, installing the latest nightly release provided by Odoo
+is not really interesting. The flexibility is.</p>
+<p>Here’s an example with the latest versions of the 7.0 Bazaar branches
+on Launchpad as lightweight checkouts (to avoid hour long downloads).
+We don’t repeat the <code class="docutils literal notranslate"><span class="pre">buildout</span></code> and <code class="docutils literal notranslate"><span class="pre">versions</span></code> sections:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">openerp</span><span class="p">]</span>
+<span class="n">recipe</span> <span class="o">=</span> <span class="n">anybox</span><span class="o">.</span><span class="n">recipe</span><span class="o">.</span><span class="n">openerp</span><span class="p">[</span><span class="n">bzr</span><span class="p">]:</span><span class="n">server</span>
+<span class="n">version</span> <span class="o">=</span> <span class="n">bzr</span> <span class="n">lp</span><span class="p">:</span><span class="n">openobject</span><span class="o">-</span><span class="n">server</span><span class="o">/</span><span class="mf">7.0</span> <span class="n">openerp</span><span class="o">-</span><span class="mf">7.0</span> <span class="n">last</span><span class="p">:</span><span class="mi">1</span> <span class="n">bzr</span><span class="o">-</span><span class="n">init</span><span class="o">=</span><span class="n">lightweight</span><span class="o">-</span><span class="n">checkout</span>
+<span class="n">addons</span> <span class="o">=</span> <span class="n">bzr</span> <span class="n">lp</span><span class="p">:</span><span class="n">openobject</span><span class="o">-</span><span class="n">addons</span><span class="o">/</span><span class="mf">7.0</span> <span class="n">addons</span><span class="o">-</span><span class="mf">7.0</span> <span class="n">last</span><span class="p">:</span><span class="mi">1</span> <span class="n">bzr</span><span class="o">-</span><span class="n">init</span><span class="o">=</span><span class="n">lightweight</span><span class="o">-</span><span class="n">checkout</span>
+         <span class="n">bzr</span> <span class="n">lp</span><span class="p">:</span><span class="n">openerp</span><span class="o">-</span><span class="n">web</span><span class="o">/</span><span class="mf">7.0</span> <span class="n">addons</span><span class="o">-</span><span class="n">web</span><span class="o">-</span><span class="mf">7.0</span> <span class="n">last</span><span class="p">:</span><span class="mi">1</span> <span class="n">subdir</span><span class="o">=</span><span class="n">addons</span> <span class="n">bzr</span><span class="o">-</span><span class="n">init</span><span class="o">=</span><span class="n">lightweight</span><span class="o">-</span><span class="n">checkout</span>
+</pre></div>
+</div>
+<p>Now imagine how easily one can switch branches and redistribute a
+ready-to-run buildout on some dedicated support branch, Git mirrors, etc.</p>
+<p>The next example is on 6.1 and demonstrates both how to add specific addons
+directories, and how uniform it is.</p>
+</section>
+<section id="example-openerp-6-1-buildout-with-a-custom-addon">
+<span id="example-6-1"></span><h2>Example OpenERP 6.1 buildout with a custom addon<a class="headerlink" href="#example-openerp-6-1-buildout-with-a-custom-addon" title="Permalink to this headline">¶</a></h2>
+<p>Here is a very simple example for a latest OpenERP 6.1 nightly and a
+custom addon hosted on Bitbucket:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">buildout</span><span class="p">]</span>
+<span class="n">parts</span> <span class="o">=</span> <span class="n">openerp</span>
+<span class="n">versions</span> <span class="o">=</span> <span class="n">versions</span>
+<span class="n">find</span><span class="o">-</span><span class="n">links</span> <span class="o">=</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">download</span><span class="o">.</span><span class="n">gna</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">pychart</span><span class="o">/</span>
+
+<span class="p">[</span><span class="n">openerp</span><span class="p">]</span>
+<span class="n">recipe</span> <span class="o">=</span> <span class="n">anybox</span><span class="o">.</span><span class="n">recipe</span><span class="o">.</span><span class="n">openerp</span><span class="p">:</span><span class="n">server</span>
+<span class="n">version</span> <span class="o">=</span> <span class="n">nightly</span> <span class="mf">6.1</span> <span class="n">latest</span>
+<span class="n">addons</span> <span class="o">=</span> <span class="n">hg</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">bitbucket</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">anybox</span><span class="o">/</span><span class="n">anytracker</span> <span class="n">addons</span><span class="o">-</span><span class="n">at</span> <span class="n">default</span>
+
+<span class="p">[</span><span class="n">versions</span><span class="p">]</span>
+<span class="n">MarkupSafe</span> <span class="o">=</span> <span class="mf">0.15</span>
+<span class="n">Pillow</span> <span class="o">=</span> <span class="mf">1.7.7</span>
+<span class="n">PyXML</span> <span class="o">=</span> <span class="mf">0.8.4</span>
+<span class="n">babel</span> <span class="o">=</span> <span class="mf">0.9.6</span>
+<span class="n">feedparser</span> <span class="o">=</span> <span class="mf">5.1.1</span>
+<span class="n">gdata</span> <span class="o">=</span> <span class="mf">2.0.16</span>
+<span class="n">lxml</span> <span class="o">=</span> <span class="mf">2.3.3</span>
+<span class="n">mako</span> <span class="o">=</span> <span class="mf">0.6.2</span>
+<span class="n">psycopg2</span> <span class="o">=</span> <span class="mf">2.4.4</span>
+<span class="n">pychart</span> <span class="o">=</span> <span class="mf">1.39</span>
+<span class="n">pydot</span> <span class="o">=</span> <span class="mf">1.0.28</span>
+<span class="n">pyparsing</span> <span class="o">=</span> <span class="mf">1.5.6</span>
+<span class="n">python</span><span class="o">-</span><span class="n">dateutil</span> <span class="o">=</span> <span class="mf">1.5</span>
+<span class="n">python</span><span class="o">-</span><span class="n">ldap</span> <span class="o">=</span> <span class="mf">2.4.9</span>
+<span class="n">python</span><span class="o">-</span><span class="n">openid</span> <span class="o">=</span> <span class="mf">2.2.5</span>
+<span class="n">pytz</span> <span class="o">=</span> <span class="mi">2012</span><span class="n">b</span>
+<span class="n">pywebdav</span> <span class="o">=</span> <span class="mf">0.9.4.1</span>
+<span class="n">pyyaml</span> <span class="o">=</span> <span class="mf">3.10</span>
+<span class="n">reportlab</span> <span class="o">=</span> <span class="mf">2.5</span>
+<span class="n">simplejson</span> <span class="o">=</span> <span class="mf">2.4.0</span>
+<span class="n">vatnumber</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">vobject</span> <span class="o">=</span> <span class="mf">0.8.1</span><span class="n">c</span>
+<span class="n">werkzeug</span> <span class="o">=</span> <span class="mf">0.8.3</span>
+<span class="n">xlwt</span> <span class="o">=</span> <span class="mf">0.7.3</span>
+<span class="n">zc</span><span class="o">.</span><span class="n">buildout</span> <span class="o">=</span> <span class="mf">1.5.2</span>
+<span class="n">zc</span><span class="o">.</span><span class="n">recipe</span><span class="o">.</span><span class="n">egg</span> <span class="o">=</span> <span class="mf">1.3.2</span>
+<span class="n">zsi</span> <span class="o">=</span> <span class="mf">2.0</span><span class="o">-</span><span class="n">rc3</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>with OpenERP 6.1 the web client is natively included in the server as a
+simple module. In that case you don’t need to write a separate part for the web
+client, unless that’s what you really want to do.</p>
+</div>
+</section>
+<section id="example-openerp-6-0-buildout-server-and-clients">
+<h2>Example OpenERP 6.0 buildout (server and clients)<a class="headerlink" href="#example-openerp-6-0-buildout-server-and-clients" title="Permalink to this headline">¶</a></h2>
+<p>Here is a sample buildout with version specification, 2 OpenERP servers (with
+one using the latest 6.0 branch on the launchpad) using only NETRPC and
+listening on 2 different ports, and 2 web clients:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">buildout</span><span class="p">]</span>
+<span class="n">parts</span> <span class="o">=</span> <span class="n">openerp1</span> <span class="n">web1</span> <span class="n">openerp2</span> <span class="n">web2</span>
+<span class="c1">#allow-picked-versions = false</span>
+<span class="n">versions</span> <span class="o">=</span> <span class="n">versions</span>
+<span class="n">find</span><span class="o">-</span><span class="n">links</span> <span class="o">=</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">download</span><span class="o">.</span><span class="n">gna</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">pychart</span><span class="o">/</span>
+
+<span class="p">[</span><span class="n">openerp1</span><span class="p">]</span>
+<span class="n">recipe</span> <span class="o">=</span> <span class="n">anybox</span><span class="o">.</span><span class="n">recipe</span><span class="o">.</span><span class="n">openerp</span><span class="p">:</span><span class="n">server</span>
+<span class="n">version</span> <span class="o">=</span> <span class="mf">6.0.3</span>
+<span class="n">options</span><span class="o">.</span><span class="n">xmlrpc</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">options</span><span class="o">.</span><span class="n">xmlrpcs</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="p">[</span><span class="n">web1</span><span class="p">]</span>
+<span class="n">recipe</span> <span class="o">=</span> <span class="n">anybox</span><span class="o">.</span><span class="n">recipe</span><span class="o">.</span><span class="n">openerp</span><span class="p">:</span><span class="n">webclient</span>
+<span class="n">version</span> <span class="o">=</span> <span class="mf">6.0.3</span>
+
+<span class="p">[</span><span class="n">openerp2</span><span class="p">]</span>
+<span class="n">recipe</span> <span class="o">=</span> <span class="n">anybox</span><span class="o">.</span><span class="n">recipe</span><span class="o">.</span><span class="n">openerp</span><span class="p">[</span><span class="n">bzr</span><span class="p">]:</span><span class="n">server</span>
+<span class="n">version</span> <span class="o">=</span> <span class="n">bzr</span> <span class="n">lp</span><span class="p">:</span><span class="n">openobject</span><span class="o">-</span><span class="n">server</span><span class="o">/</span><span class="mf">6.0</span> <span class="n">openobject</span><span class="o">-</span><span class="n">server</span><span class="o">-</span><span class="mf">6.</span><span class="n">x</span> <span class="n">last</span><span class="p">:</span><span class="mi">1</span>
+
+<span class="n">options</span><span class="o">.</span><span class="n">xmlrpc</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">options</span><span class="o">.</span><span class="n">xmlrpcs</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">options</span><span class="o">.</span><span class="n">netrpc_port</span> <span class="o">=</span> <span class="mi">8170</span>
+
+<span class="p">[</span><span class="n">web2</span><span class="p">]</span>
+<span class="n">recipe</span> <span class="o">=</span> <span class="n">anybox</span><span class="o">.</span><span class="n">recipe</span><span class="o">.</span><span class="n">openerp</span><span class="p">:</span><span class="n">webclient</span>
+<span class="n">version</span> <span class="o">=</span> <span class="mf">6.0.3</span>
+<span class="k">global</span><span class="o">.</span><span class="n">openerp</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="s1">&#39;8170&#39;</span>
+<span class="k">global</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">socket_port</span> <span class="o">=</span> <span class="mi">8180</span>
+
+<span class="p">[</span><span class="n">versions</span><span class="p">]</span>
+<span class="n">MarkupSafe</span> <span class="o">=</span> <span class="mf">0.15</span>
+<span class="n">Pillow</span> <span class="o">=</span> <span class="mf">1.7.7</span>
+<span class="n">anybox</span><span class="o">.</span><span class="n">recipe</span><span class="o">.</span><span class="n">openerp</span> <span class="o">=</span> <span class="mf">0.9</span>
+<span class="n">caldav</span> <span class="o">=</span> <span class="mf">0.1.10</span>
+<span class="n">collective</span><span class="o">.</span><span class="n">recipe</span><span class="o">.</span><span class="n">cmd</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">coverage</span> <span class="o">=</span> <span class="mf">3.5</span>
+<span class="n">distribute</span> <span class="o">=</span> <span class="mf">0.6.25</span>
+<span class="n">feedparser</span> <span class="o">=</span> <span class="mf">5.0.1</span>
+<span class="n">lxml</span> <span class="o">=</span> <span class="mf">2.1.5</span>
+<span class="n">mako</span> <span class="o">=</span> <span class="mf">0.4.2</span>
+<span class="n">nose</span> <span class="o">=</span> <span class="mf">1.1.2</span>
+<span class="n">psycopg2</span> <span class="o">=</span> <span class="mf">2.4.2</span>
+<span class="n">pychart</span> <span class="o">=</span> <span class="mf">1.39</span>
+<span class="n">pydot</span> <span class="o">=</span> <span class="mf">1.0.25</span>
+<span class="n">pyparsing</span> <span class="o">=</span> <span class="mf">1.5.6</span>
+<span class="n">python</span><span class="o">-</span><span class="n">dateutil</span> <span class="o">=</span> <span class="mf">1.5</span>
+<span class="n">pytz</span> <span class="o">=</span> <span class="mi">2012</span><span class="n">b</span>
+<span class="n">pywebdav</span> <span class="o">=</span> <span class="mf">0.9.4.1</span>
+<span class="n">pyyaml</span> <span class="o">=</span> <span class="mf">3.10</span>
+<span class="n">reportlab</span> <span class="o">=</span> <span class="mf">2.5</span>
+<span class="n">vobject</span> <span class="o">=</span> <span class="mf">0.8.1</span><span class="n">c</span>
+<span class="n">z3c</span><span class="o">.</span><span class="n">recipe</span><span class="o">.</span><span class="n">scripts</span> <span class="o">=</span> <span class="mf">1.0.1</span>
+<span class="n">zc</span><span class="o">.</span><span class="n">buildout</span> <span class="o">=</span> <span class="mf">1.5.2</span>
+<span class="n">zc</span><span class="o">.</span><span class="n">recipe</span><span class="o">.</span><span class="n">egg</span> <span class="o">=</span> <span class="mf">1.3.2</span>
+<span class="n">Babel</span> <span class="o">=</span> <span class="mf">0.9.6</span>
+<span class="n">FormEncode</span> <span class="o">=</span> <span class="mf">1.2.4</span>
+<span class="n">simplejson</span> <span class="o">=</span> <span class="mf">2.1.6</span>
+</pre></div>
+</div>
+</section>
+<section id="continuously-tested-examples">
+<h2>Continuously tested examples<a class="headerlink" href="#continuously-tested-examples" title="Permalink to this headline">¶</a></h2>
+<p>Other examples are available in the <code class="docutils literal notranslate"><span class="pre">buildbot</span></code> subdirectory of the
+source distribution archive of this recipe (the <code class="docutils literal notranslate"><span class="pre">tar.gz</span></code> file that
+can be downloaded <a class="reference external" href="http://pypi.python.org/pypi/anybox.recipe.openerp">from the PyPI</a>), and are
+continuously tested in the
+<a class="reference external" href="http://buildbot.anybox.fr/">anybox buildbot</a> which is powered by
+<a class="reference external" href="http://pypi.python.org/pypi/anybox.buildbot.openerp">anybox.buildbot.openerp</a>.</p>
+<p>See also <a class="reference internal" href="contributing.html#continuous-integration"><span class="std std-ref">Continuous integration</span></a> for more details about these
+tested examples.</p>
+</section>
+<section id="other-sample-buildouts">
+<h2>Other sample buildouts<a class="headerlink" href="#other-sample-buildouts" title="Permalink to this headline">¶</a></h2>
+<p>Here are a few ready-to-use buildouts:</p>
+<p>(Be sure to install system <a class="reference internal" href="#dependencies">dependencies</a> first)</p>
+<p>OpenERP with the development branches of the Magento connector addons:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ hg clone https://bitbucket.org/anybox/openerp_connect_magento_buildout
+$ cd openerp_connect_magento_buildout
+$ python bootstrap.py
+$ bin/buildout
+$ bin/start_openerp
+</pre></div>
+</div>
+<p>OpenERP with the development branches of the Prestashop connector addons:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ hg clone https://bitbucket.org/anybox/openerp_connect_prestashop_buildout
+$ cd openerp_connect_prestashop_buildout
+$ python bootstrap.py
+$ bin/buildout
+$ bin/start_openerp
+</pre></div>
+</div>
+</section>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2011-2021, &lt;a href=&#34;http://anybox.fr/&#34;&gt;Anybox SAS&lt;/a&gt;; 2021 &lt;a href=&#34;https://odoo-community.org/&#34;&gt;Odoo Community Association&lt;/a&gt; and contributors.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,707 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>oca.recipe.odoo.vcs.git &#8212; Odoo buildout recipe 1.9.3.dev0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/bootstrap-sphinx.css" />
+    <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+    <script src="../../../../../_static/jquery.js"></script>
+    <script src="../../../../../_static/underscore.js"></script>
+    <script src="../../../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../../../../_static/js/jquery-1.12.4.min.js "></script>
+<script type="text/javascript" src="../../../../../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../../../../../_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../../../../../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../../../index.html"><span><img src="../../../../../_static/logo.png"></span>
+          Odoo buildout recipe</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.9</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../../../../../index.html">Home</a></li>
+                <li><a href="https://odoo-community.org">OCA</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../first_steps.html">First steps</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../first_steps.html#how-to-create-and-bootstrap-a-buildout">How to create and bootstrap a buildout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../first_steps.html#example-openerp-7-0-buildouts">Example OpenERP 7.0 buildouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../first_steps.html#example-openerp-6-1-buildout-with-a-custom-addon">Example OpenERP 6.1 buildout with a custom addon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../first_steps.html#example-openerp-6-0-buildout-server-and-clients">Example OpenERP 6.0 buildout (server and clients)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../first_steps.html#continuously-tested-examples">Continuously tested examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../first_steps.html#other-sample-buildouts">Other sample buildouts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../configuration.html">Configuration reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../configuration.html#the-buildout-configuration-file-and-parts">The buildout configuration file and parts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../configuration.html#odoo-recipes">Odoo recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../configuration.html#options-for-assembly-and-source-management">Options for assembly and source management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../configuration.html#options-for-buildout-relocation">Options for buildout relocation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../configuration.html#odoo-options">Odoo options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../configuration.html#options-for-executables-generation-and-serving">Options for executables generation and serving</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../configuration.html#options-for-development-qa-and-introspection">Options for development, QA and introspection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../configuration.html#options-for-download-and-caching-strategies">Options for download and caching strategies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../configuration.html#options-for-release-and-packaging">Options for release and packaging</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../scripts.html">Odoo Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../scripts.html#use-cases">Use cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../scripts.html#declaring-odoo-scripts">Declaring Odoo Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../scripts.html#interactive-consoles">Interactive Consoles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../scripts.html#writing-odoo-scripts">Writing Odoo Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../scripts.html#upgrade-scripts">Upgrade scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../scripts.html#startup-scripts">Startup scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../scripts.html#list-of-internal-entry-points">List of internal entry points</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../dev_prod_workflow.html">Full development to production example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../dev_prod_workflow.html#common-setup">Common setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../dev_prod_workflow.html#developer-s-setup">Developer’s setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../dev_prod_workflow.html#release-and-packaging">Release and packaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../dev_prod_workflow.html#deployment-with-a-server-local-configuration-file">Deployment with a server-local configuration file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../contributing.html">For contributors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../contributing.html#source-and-tracking">Source and tracking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../contributing.html#using-a-development-version">Using a development version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../contributing.html#development-setup">Development setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../contributing.html#building-documentation">Building documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../contributing.html#coding-style">Coding style</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../contributing.html#launching-static-analysis-and-unit-tests">Launching static analysis and unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../contributing.html#integration-tests">Integration tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../contributing.html#continuous-integration">Continuous integration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../devnotes/index.html">Development notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../devnotes/git-sparse-shallow.html">Git shallow clones and selective branch fetching</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.html">oca.recipe.odoo Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.html#id1"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oca.recipe.odoo</span></code> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.base"><code class="xref py py-mod docutils literal notranslate"><span class="pre">base</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.devtools"><code class="xref py py-mod docutils literal notranslate"><span class="pre">devtools</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.server"><code class="xref py py-mod docutils literal notranslate"><span class="pre">server</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.testing"><code class="xref py py-mod docutils literal notranslate"><span class="pre">testing</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.utils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">utils</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.runtime.html">runtime Subpackage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime"><code class="xref py py-mod docutils literal notranslate"><span class="pre">runtime</span></code> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime.session"><code class="xref py py-mod docutils literal notranslate"><span class="pre">session</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime.upgrade"><code class="xref py py-mod docutils literal notranslate"><span class="pre">upgrade</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime.start_odoo"><code class="xref py py-mod docutils literal notranslate"><span class="pre">start_openerp</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime.test_odoo"><code class="xref py py-mod docutils literal notranslate"><span class="pre">test_openerp</span></code> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.vcs.html">vcs Subpackage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs"><code class="xref py py-mod docutils literal notranslate"><span class="pre">vcs</span></code> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.base"><code class="xref py py-mod docutils literal notranslate"><span class="pre">base</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.bzr"><code class="xref py py-mod docutils literal notranslate"><span class="pre">bzr</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.git"><code class="xref py py-mod docutils literal notranslate"><span class="pre">git</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.hg"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hg</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.svn"><code class="xref py py-mod docutils literal notranslate"><span class="pre">svn</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.testing"><code class="xref py py-mod docutils literal notranslate"><span class="pre">testing</span></code> Module</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <h1>Source code for oca.recipe.odoo.vcs.git</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">tempfile</span>
+
+<span class="kn">from</span> <span class="nn">zc.buildout</span> <span class="kn">import</span> <span class="n">UserError</span>
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">utils</span>
+<span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="n">working_directory_keeper</span>
+<span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="n">check_output</span>
+<span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">BaseRepo</span>
+<span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">SUBPROCESS_ENV</span>
+<span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">update_check_call</span>
+<span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">update_check_output</span>
+<span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">UpdateError</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">BUILDOUT_ORIGIN</span> <span class="o">=</span> <span class="s1">&#39;origin&#39;</span>
+
+
+<div class="viewcode-block" id="ishex"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.git.ishex">[docs]</a><span class="k">def</span> <span class="nf">ishex</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;True iff given string is a valid hexadecimal number.</span>
+
+<span class="sd">    &gt;&gt;&gt; ishex(&#39;deadbeef&#39;)</span>
+<span class="sd">    True</span>
+<span class="sd">    &gt;&gt;&gt; ishex(&#39;01bn78&#39;)</span>
+<span class="sd">    False</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">return</span> <span class="kc">True</span></div>
+
+
+<div class="viewcode-block" id="GitRepo"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.git.GitRepo">[docs]</a><span class="k">class</span> <span class="nc">GitRepo</span><span class="p">(</span><span class="n">BaseRepo</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Represent a Git clone tied to a reference branch/commit/tag.&quot;&quot;&quot;</span>
+
+    <span class="n">vcs_control_dir</span> <span class="o">=</span> <span class="s1">&#39;.git&#39;</span>
+
+    <span class="n">vcs_official_name</span> <span class="o">=</span> <span class="s1">&#39;Git&#39;</span>
+
+    <span class="n">_git_version</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">GitRepo</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">depth</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;depth&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">depth</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">depth</span> <span class="o">!=</span> <span class="s1">&#39;None&#39;</span><span class="p">:</span>
+            <span class="c1"># &#39;None&#39; as a str can be used as an explicit per-repo override</span>
+            <span class="c1"># of a global setting</span>
+            <span class="n">invalid</span> <span class="o">=</span> <span class="n">UserError</span><span class="p">(</span><span class="s2">&quot;Invalid depth value </span><span class="si">%r</span><span class="s2"> for Git repository &quot;</span>
+                                <span class="s2">&quot;at </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">depth</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">))</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">depth</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">depth</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">invalid</span>
+            <span class="k">if</span> <span class="n">depth</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">invalid</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s1">&#39;depth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">depth</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">git_version</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">cls</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span>
+        <span class="n">version</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_git_version</span>
+        <span class="k">if</span> <span class="n">version</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">version</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">init_git_version</span><span class="p">(</span><span class="n">utils</span><span class="o">.</span><span class="n">check_output</span><span class="p">(</span>
+            <span class="p">[</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;--version&#39;</span><span class="p">]))</span>
+
+<div class="viewcode-block" id="GitRepo.init_git_version"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.git.GitRepo.init_git_version">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">init_git_version</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">v_str</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Parse git version string and store the resulting tuple on self.</span>
+
+<span class="sd">        :returns: the parsed version tuple</span>
+
+<span class="sd">        Only the first 3 digits are kept. This is good enough for the few</span>
+<span class="sd">        version dependent cases we need, and coarse enough to avoid</span>
+<span class="sd">        more complicated parsing.</span>
+
+<span class="sd">        Some real-life examples::</span>
+
+<span class="sd">          &gt;&gt;&gt; GitRepo.init_git_version(&#39;git version 1.8.5.3&#39;)</span>
+<span class="sd">          (1, 8, 5)</span>
+<span class="sd">          &gt;&gt;&gt; GitRepo.init_git_version(&#39;git version 1.7.2.5&#39;)</span>
+<span class="sd">          (1, 7, 2)</span>
+
+<span class="sd">        Seen on MacOSX (not on MacPorts)::</span>
+
+<span class="sd">          &gt;&gt;&gt; GitRepo.init_git_version(&#39;git version 1.8.5.2 (Apple Git-48)&#39;)</span>
+<span class="sd">          (1, 8, 5)</span>
+
+<span class="sd">        Seen on Windows (Tortoise Git)::</span>
+
+<span class="sd">          &gt;&gt;&gt; GitRepo.init_git_version(&#39;git version 1.8.4.msysgit.0&#39;)</span>
+<span class="sd">          (1, 8, 4)</span>
+
+<span class="sd">        A compiled version::</span>
+
+<span class="sd">          &gt;&gt;&gt; GitRepo.init_git_version(&#39;git version 2.0.3.2.g996b0fd&#39;)</span>
+<span class="sd">          (2, 0, 3)</span>
+
+<span class="sd">        Rewrapped by `hub &lt;https://hub.github.com/&gt;`_, it has two lines:</span>
+
+<span class="sd">          &gt;&gt;&gt; GitRepo.init_git_version(&#39;git version 1.7.9\nhub version 1.11.0&#39;)</span>
+<span class="sd">          (1, 7, 9)</span>
+
+<span class="sd">        This one does not exist, allowing us to prove that this method</span>
+<span class="sd">        actually governs the :attr:`git_version` property</span>
+
+<span class="sd">          &gt;&gt;&gt; GitRepo.init_git_version(&#39;git version 0.0.666&#39;)</span>
+<span class="sd">          (0, 0, 666)</span>
+<span class="sd">          &gt;&gt;&gt; GitRepo(&#39;&#39;, &#39;&#39;).git_version</span>
+<span class="sd">          (0, 0, 666)</span>
+
+<span class="sd">        Expected exceptions::</span>
+
+<span class="sd">          &gt;&gt;&gt; try: GitRepo.init_git_version(&#39;invalid&#39;)</span>
+<span class="sd">          ... except ValueError: pass</span>
+
+<span class="sd">        After playing with it, we must reset it so that tests can run with</span>
+<span class="sd">        the proper detected one, if needed::</span>
+
+<span class="sd">          &gt;&gt;&gt; GitRepo.init_git_version(None)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">v_str</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">_git_version</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">return</span>
+
+        <span class="n">v_str</span> <span class="o">=</span> <span class="n">v_str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">version</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_git_version</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span>
+                <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">v_str</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[:</span><span class="mi">3</span><span class="p">])</span>
+        <span class="k">except</span><span class="p">:</span>  <span class="c1"># noqa: E722 do not use bare &#39;except&#39;</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Could not parse git version output </span><span class="si">%r</span><span class="s2">. Please &quot;</span>
+                             <span class="s2">&quot;report this&quot;</span> <span class="o">%</span> <span class="n">v_str</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">version</span></div>
+
+<div class="viewcode-block" id="GitRepo.log_call"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.git.GitRepo.log_call">[docs]</a>    <span class="k">def</span> <span class="nf">log_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">,</span> <span class="n">callwith</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">check_call</span><span class="p">,</span>
+                 <span class="n">log_level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Wrap a subprocess call with logging</span>
+
+<span class="sd">        :param meth: the calling method to use.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">log_level</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">&gt; call </span><span class="si">%r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">,</span> <span class="n">cmd</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">callwith</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GitRepo.clean"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.git.GitRepo.clean">[docs]</a>    <span class="k">def</span> <span class="nf">clean</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">):</span>
+            <span class="k">return</span>
+        <span class="k">with</span> <span class="n">working_directory_keeper</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">)</span>
+            <span class="n">subprocess</span><span class="o">.</span><span class="n">check_call</span><span class="p">([</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;clean&#39;</span><span class="p">,</span> <span class="s1">&#39;-fdqx&#39;</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="GitRepo.parents"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.git.GitRepo.parents">[docs]</a>    <span class="k">def</span> <span class="nf">parents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pip_compatible</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return full hash of parent nodes.</span>
+
+<span class="sd">        :param pip_compatible: ignored, all Git revspecs are pip compatible</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="n">working_directory_keeper</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">)</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;rev-parse&#39;</span><span class="p">,</span> <span class="s1">&#39;--verify&#39;</span><span class="p">,</span> <span class="s1">&#39;HEAD&#39;</span><span class="p">],</span>
+                                 <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">SUBPROCESS_ENV</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">p</span><span class="o">.</span><span class="n">communicate</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="GitRepo.uncommitted_changes"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.git.GitRepo.uncommitted_changes">[docs]</a>    <span class="k">def</span> <span class="nf">uncommitted_changes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;True if we have uncommitted changes.&quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="n">working_directory_keeper</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">)</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="s1">&#39;--short&#39;</span><span class="p">],</span>
+                                 <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">SUBPROCESS_ENV</span><span class="p">)</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">communicate</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="GitRepo.get_current_remote_fetch"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.git.GitRepo.get_current_remote_fetch">[docs]</a>    <span class="k">def</span> <span class="nf">get_current_remote_fetch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">working_directory_keeper</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_call</span><span class="p">([</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;remote&#39;</span><span class="p">,</span> <span class="s1">&#39;-v&#39;</span><span class="p">],</span>
+                                      <span class="n">callwith</span><span class="o">=</span><span class="n">check_output</span><span class="p">)</span><span class="o">.</span><span class="n">splitlines</span><span class="p">():</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;(fetch)&#39;</span><span class="p">)</span> <span class="ow">and</span>
+                        <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">BUILDOUT_ORIGIN</span><span class="p">)):</span>
+                    <span class="k">return</span> <span class="n">line</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">BUILDOUT_ORIGIN</span><span class="p">):</span><span class="o">-</span><span class="mi">7</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="GitRepo.offline_update"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.git.GitRepo.offline_update">[docs]</a>    <span class="k">def</span> <span class="nf">offline_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">revision</span><span class="p">):</span>
+        <span class="n">target_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span>
+
+        <span class="c1"># TODO what if remote repo is actually local fs ?</span>
+        <span class="c1"># GR, redux: git has a two notions of local repos, which</span>
+        <span class="c1"># differ at least for shallow clones : path or file://</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">target_dir</span><span class="p">):</span>
+            <span class="c1"># TODO case of local url ?</span>
+            <span class="k">raise</span> <span class="n">UserError</span><span class="p">(</span><span class="s2">&quot;git repository </span><span class="si">%s</span><span class="s2"> does not exist; cannot clone &quot;</span>
+                            <span class="s2">&quot;it from </span><span class="si">%s</span><span class="s2"> (offline mode)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">target_dir</span><span class="p">,</span>
+                                                           <span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">))</span>
+
+        <span class="n">current_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_current_remote_fetch</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">current_url</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">UserError</span><span class="p">(</span><span class="s2">&quot;Existing Git repository at </span><span class="si">%r</span><span class="s2"> fetches from </span><span class="si">%r</span><span class="s2"> &quot;</span>
+                            <span class="s2">&quot;which is different from the specified </span><span class="si">%r</span><span class="s2">. &quot;</span>
+                            <span class="s2">&quot;Cannot update adresses in offline mode.&quot;</span> <span class="o">%</span> <span class="p">(</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">,</span> <span class="n">current_url</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log_call</span><span class="p">([</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;checkout&#39;</span><span class="p">,</span> <span class="n">revision</span><span class="p">],</span>
+                      <span class="n">callwith</span><span class="o">=</span><span class="n">update_check_call</span><span class="p">,</span>
+                      <span class="n">cwd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GitRepo.is_local_fixed_revision"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.git.GitRepo.is_local_fixed_revision">[docs]</a>    <span class="k">def</span> <span class="nf">is_local_fixed_revision</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">refspec</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;In Git, tags only are reproductible refspec.&quot;&quot;&quot;</span>
+        <span class="n">tags</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_call</span><span class="p">([</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;tag&#39;</span><span class="p">],</span>
+                                       <span class="n">callwith</span><span class="o">=</span><span class="n">check_output</span><span class="p">,</span>
+                                       <span class="n">cwd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">)</span><span class="o">.</span><span class="n">splitlines</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">refspec</span> <span class="ow">in</span> <span class="n">tags</span></div>
+
+<div class="viewcode-block" id="GitRepo.has_commit"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.git.GitRepo.has_commit">[docs]</a>    <span class="k">def</span> <span class="nf">has_commit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sha</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return true if repo has specified commit&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">objtype</span> <span class="o">=</span> <span class="n">check_output</span><span class="p">([</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;cat-file&#39;</span><span class="p">,</span> <span class="s1">&#39;-t&#39;</span><span class="p">,</span> <span class="n">sha</span><span class="p">],</span>
+                                   <span class="n">cwd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">,</span>
+                                   <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">CalledProcessError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="k">return</span> <span class="n">objtype</span> <span class="o">==</span> <span class="s1">&#39;commit&#39;</span></div>
+
+<div class="viewcode-block" id="GitRepo.fetch_remote_sha"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.git.GitRepo.fetch_remote_sha">[docs]</a>    <span class="k">def</span> <span class="nf">fetch_remote_sha</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sha</span><span class="p">,</span> <span class="n">checkout</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Fetch a precise SHA from remote if necessary.</span>
+
+<span class="sd">        SHA pinning is suboptimal, can&#39;t be guaranteed to work (see the</span>
+<span class="sd">        warnings emitted in code for explanations). Still, many users</span>
+<span class="sd">        people depend on it, for not having enough privileges to add tags.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;git-warn-sha-pins&#39;</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="s1">&#39;false&#39;</span><span class="p">]:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: pointing to a remote commit directly by its SHA &quot;</span>
+                        <span class="s2">&quot;is unsafe because it can become unreachable &quot;</span>
+                        <span class="s2">&quot;due to history rewrites (squash, rebase) in the &quot;</span>
+                        <span class="s2">&quot;remote branch. </span><span class="se">\n</span><span class="s2">&quot;</span>
+                        <span class="s2">&quot;Please consider using tags if you can.</span><span class="se">\n</span><span class="s2">&quot;</span>
+                        <span class="s2">&quot;To get rid of this message, add </span><span class="se">\n</span><span class="s2">&quot;</span>
+                        <span class="s2">&quot;git-warn-sha-pins = False</span><span class="se">\n</span><span class="s2">&quot;</span>
+                        <span class="s2">&quot;to your buildout configuration&quot;</span><span class="p">,</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">)</span>
+        <span class="n">branch</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;branch&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_commit</span><span class="p">(</span><span class="n">sha</span><span class="p">):</span>
+            <span class="n">remote</span> <span class="o">=</span> <span class="n">BUILDOUT_ORIGIN</span> <span class="k">if</span> <span class="n">checkout</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span>
+            <span class="n">fetch_cmd</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;fetch&#39;</span><span class="p">,</span> <span class="n">remote</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">branch</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: SHA pinning without remote &quot;</span>
+                            <span class="s2">&quot;branch indication. &quot;</span>
+                            <span class="s2">&quot;Now performing a fetch with no argument, hoping &quot;</span>
+                            <span class="s2">&quot;it&#39;ll retrieve the commit </span><span class="si">%r</span><span class="s2">. Please consider &quot;</span>
+                            <span class="s2">&quot;adding a branch indication for more efficiency &quot;</span>
+                            <span class="s2">&quot;and possibly reliability.&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">,</span> <span class="n">sha</span><span class="p">)</span>
+                <span class="c1"># Bare fetch first</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log_call</span><span class="p">(</span><span class="n">fetch_cmd</span><span class="p">,</span> <span class="n">callwith</span><span class="o">=</span><span class="n">update_check_call</span><span class="p">)</span>
+                <span class="c1"># Second fetch with sha</span>
+                <span class="n">fetch_cmd</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sha</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">fetch_cmd</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">branch</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log_call</span><span class="p">(</span><span class="n">fetch_cmd</span><span class="p">,</span> <span class="n">callwith</span><span class="o">=</span><span class="n">update_check_call</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">checkout</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log_call</span><span class="p">([</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;checkout&#39;</span><span class="p">,</span> <span class="n">sha</span><span class="p">],</span> <span class="n">callwith</span><span class="o">=</span><span class="n">update_check_call</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GitRepo.get_local_hash_for_ref"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.git.GitRepo.get_local_hash_for_ref">[docs]</a>    <span class="k">def</span> <span class="nf">get_local_hash_for_ref</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ref</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Query the local git database for sha of a given ref.</span>
+
+<span class="sd">        :return: ``sha`` the hash of a given ref if known to the local git repo</span>
+<span class="sd">                ``None`` if the ref is unkown</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_commit</span><span class="p">(</span><span class="n">ref</span><span class="p">):</span>
+            <span class="n">ref_hash</span> <span class="o">=</span> <span class="n">check_output</span><span class="p">(</span>
+                <span class="p">[</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;show&#39;</span><span class="p">,</span> <span class="s1">&#39;--pretty=format:%H&#39;</span><span class="p">,</span> <span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="n">ref</span><span class="p">],</span>
+                <span class="n">cwd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">,</span>
+                <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">ref_hash</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="GitRepo.query_remote_ref"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.git.GitRepo.query_remote_ref">[docs]</a>    <span class="k">def</span> <span class="nf">query_remote_ref</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">remote</span><span class="p">,</span> <span class="n">ref</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Query remote repo about given ref.</span>
+
+<span class="sd">        :return: ``(&#39;tag&#39;, sha)`` if ref is a tag in remote</span>
+<span class="sd">                 ``(&#39;branch&#39;, sha)`` if ref is branch (aka &quot;head&quot;) in remote</span>
+<span class="sd">                 ``(None, ref)`` if ref does not exist in remote. This happens</span>
+<span class="sd">                 notably if ref if a commit sha (they can&#39;t be queried)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_local_hash_for_ref</span><span class="p">(</span><span class="n">ref</span><span class="p">)</span> <span class="o">==</span> <span class="n">ref</span><span class="p">:</span>
+            <span class="c1"># shortcut for commit hashes: if ref is a commit hash and git</span>
+            <span class="c1"># already knows it as a commit, we can skip the remote querying</span>
+            <span class="k">return</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">ref</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_call</span><span class="p">([</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;ls-remote&#39;</span><span class="p">,</span> <span class="n">remote</span><span class="p">,</span> <span class="n">ref</span><span class="p">],</span>
+                            <span class="n">cwd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">,</span>
+                            <span class="n">callwith</span><span class="o">=</span><span class="n">check_output</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">sha</span><span class="p">,</span> <span class="n">fullref</span> <span class="ow">in</span> <span class="p">(</span><span class="n">li</span><span class="o">.</span><span class="n">split</span><span class="p">()</span> <span class="k">for</span> <span class="n">li</span> <span class="ow">in</span> <span class="n">out</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()):</span>
+            <span class="k">if</span> <span class="n">fullref</span> <span class="o">==</span> <span class="s1">&#39;refs/heads/&#39;</span> <span class="o">+</span> <span class="n">ref</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s1">&#39;branch&#39;</span><span class="p">,</span> <span class="n">sha</span>
+            <span class="k">elif</span> <span class="n">fullref</span> <span class="o">==</span> <span class="s1">&#39;refs/tags/&#39;</span> <span class="o">+</span> <span class="n">ref</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s1">&#39;tag&#39;</span><span class="p">,</span> <span class="n">sha</span>
+            <span class="k">elif</span> <span class="n">fullref</span> <span class="o">==</span> <span class="n">ref</span> <span class="ow">and</span> <span class="n">ref</span> <span class="o">==</span> <span class="s1">&#39;HEAD&#39;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s1">&#39;HEAD&#39;</span><span class="p">,</span> <span class="n">sha</span>
+        <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="n">ref</span></div>
+
+    <span class="n">dangerous_revisions</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;FETCH_HEAD&#39;</span><span class="p">,</span> <span class="s1">&#39;ORIG_HEAD&#39;</span><span class="p">,</span> <span class="s1">&#39;MERGE_HEAD&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;CHERRY_PICK_HEAD&#39;</span><span class="p">,</span> <span class="s1">&#39;REVERT_HEAD&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="GitRepo.get_update"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.git.GitRepo.get_update">[docs]</a>    <span class="k">def</span> <span class="nf">get_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">revision</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Make it so that the target directory is at the prescribed revision.</span>
+
+<span class="sd">        Special case: if the &#39;merge&#39; option is True,</span>
+<span class="sd">        merge revision into current branch.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">revision</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dangerous_revisions</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">&gt; use of </span><span class="si">%r</span><span class="s2"> as revision in the recipe may &quot;</span>
+                        <span class="s2">&quot;interfere with the Git subcommands issued &quot;</span>
+                        <span class="s2">&quot;by the recipe in unspecified ways. It is in &quot;</span>
+                        <span class="s2">&quot;particular not guaranteed to provide &quot;</span>
+                        <span class="s2">&quot;consistent results on subsequent runs, new versions &quot;</span>
+                        <span class="s2">&quot;of the recipe etc. &quot;</span>
+                        <span class="s2">&quot;You should use them for exceptional and &quot;</span>
+                        <span class="s2">&quot;timebound operations only, backed &quot;</span>
+                        <span class="s2">&quot;with good knowledge of the recipe internals. &quot;</span>
+                        <span class="s2">&quot;If you get a related error below, that won&#39;t be &quot;</span>
+                        <span class="s2">&quot;a recipe bug.&quot;</span><span class="p">,</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">,</span> <span class="n">revision</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">offline</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;merge&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">offline_merge</span><span class="p">(</span><span class="n">revision</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;merge&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">revision</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">offline</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">offline_update</span><span class="p">(</span><span class="n">revision</span><span class="p">)</span>
+
+        <span class="n">target_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span>
+
+        <span class="k">with</span> <span class="n">working_directory_keeper</span><span class="p">:</span>
+            <span class="n">is_new</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">target_dir</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">is_new</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log_call</span><span class="p">([</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;init&#39;</span><span class="p">,</span> <span class="n">target_dir</span><span class="p">])</span>
+
+            <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">target_dir</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log_call</span><span class="p">([</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;remote&#39;</span><span class="p">,</span> <span class="s1">&#39;add&#39;</span> <span class="k">if</span> <span class="n">is_new</span> <span class="k">else</span> <span class="s1">&#39;set-url&#39;</span><span class="p">,</span>
+                           <span class="n">BUILDOUT_ORIGIN</span><span class="p">,</span> <span class="n">url</span><span class="p">],</span>
+                          <span class="n">log_level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+
+            <span class="c1"># if pinned, try to find on local first</span>
+            <span class="k">if</span> <span class="n">ishex</span><span class="p">(</span><span class="n">revision</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_commit</span><span class="p">(</span><span class="n">revision</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log_call</span><span class="p">([</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;checkout&#39;</span><span class="p">,</span> <span class="n">revision</span><span class="p">],</span>
+                              <span class="n">callwith</span><span class="o">=</span><span class="n">update_check_call</span><span class="p">)</span>
+                <span class="k">return</span>
+            <span class="n">rtype</span><span class="p">,</span> <span class="n">sha</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">query_remote_ref</span><span class="p">(</span><span class="n">BUILDOUT_ORIGIN</span><span class="p">,</span> <span class="n">revision</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">rtype</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">ishex</span><span class="p">(</span><span class="n">revision</span><span class="p">):</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fetch_remote_sha</span><span class="p">(</span><span class="n">revision</span><span class="p">)</span>
+
+            <span class="n">fetch_cmd</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;fetch&#39;</span><span class="p">]</span>
+            <span class="n">depth</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;depth&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">depth</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">fetch_cmd</span><span class="o">.</span><span class="n">extend</span><span class="p">((</span><span class="s1">&#39;--depth&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">depth</span><span class="p">)))</span>
+            <span class="k">if</span> <span class="n">rtype</span> <span class="o">==</span> <span class="s1">&#39;tag&#39;</span><span class="p">:</span>
+                <span class="n">fetch_refspec</span> <span class="o">=</span> <span class="s1">&#39;+refs/tags/</span><span class="si">%s</span><span class="s1">:refs/tags/</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">revision</span><span class="p">,</span>
+                                                                <span class="n">revision</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">fetch_refspec</span> <span class="o">=</span> <span class="n">revision</span>
+            <span class="n">fetch_cmd</span><span class="o">.</span><span class="n">extend</span><span class="p">((</span><span class="n">BUILDOUT_ORIGIN</span><span class="p">,</span> <span class="n">fetch_refspec</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log_call</span><span class="p">(</span><span class="n">fetch_cmd</span><span class="p">,</span> <span class="n">callwith</span><span class="o">=</span><span class="n">update_check_call</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">rtype</span> <span class="o">==</span> <span class="s1">&#39;tag&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log_call</span><span class="p">([</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;checkout&#39;</span><span class="p">,</span> <span class="n">revision</span><span class="p">],</span>
+                              <span class="n">callwith</span><span class="o">=</span><span class="n">update_check_call</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">rtype</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;branch&#39;</span><span class="p">,</span> <span class="s1">&#39;HEAD&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">update_fetched_branch</span><span class="p">(</span><span class="n">revision</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+                    <span class="s2">&quot;Unknown remote reference type </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">rtype</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GitRepo.update_fetched_branch"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.git.GitRepo.update_fetched_branch">[docs]</a>    <span class="k">def</span> <span class="nf">update_fetched_branch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">branch</span><span class="p">):</span>
+        <span class="c1"># TODO: check what happens when there are local changes</span>
+        <span class="c1"># TODO: what about the &#39;clean&#39; option</span>
+        <span class="c1"># setup remote tracking branch, in all cases</span>
+        <span class="c1"># it&#39;s necessary with Git 1.7.10, not with 1.9.3 and shoud not</span>
+        <span class="c1"># harm</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log_call</span><span class="p">([</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;update-ref&#39;</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span>
+            <span class="s1">&#39;refs&#39;</span><span class="p">,</span> <span class="s1">&#39;remotes&#39;</span><span class="p">,</span> <span class="n">BUILDOUT_ORIGIN</span><span class="p">,</span> <span class="n">branch</span><span class="p">)),</span> <span class="s1">&#39;FETCH_HEAD&#39;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;depth&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">branch</span> <span class="o">==</span> <span class="s1">&#39;HEAD&#39;</span><span class="p">:</span>
+            <span class="c1"># doing it the other way does not work, at least</span>
+            <span class="c1"># not on Git 1.7</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log_call</span><span class="p">([</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;checkout&#39;</span><span class="p">,</span> <span class="s1">&#39;FETCH_HEAD&#39;</span><span class="p">],</span>
+                          <span class="n">callwith</span><span class="o">=</span><span class="n">update_check_call</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">branch</span> <span class="o">!=</span> <span class="s1">&#39;HEAD&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log_call</span><span class="p">([</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;branch&#39;</span><span class="p">,</span> <span class="s1">&#39;-f&#39;</span><span class="p">,</span> <span class="n">branch</span><span class="p">],</span>
+                              <span class="n">callwith</span><span class="o">=</span><span class="n">update_check_call</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_a_branch</span><span class="p">(</span><span class="n">branch</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log_call</span><span class="p">([</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;checkout&#39;</span><span class="p">,</span> <span class="s1">&#39;-b&#39;</span><span class="p">,</span> <span class="n">branch</span><span class="p">,</span> <span class="s1">&#39;FETCH_HEAD&#39;</span><span class="p">],</span>
+                          <span class="n">callwith</span><span class="o">=</span><span class="n">update_check_call</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># switch, then fast-forward</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log_call</span><span class="p">([</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;checkout&#39;</span><span class="p">,</span> <span class="n">branch</span><span class="p">],</span>
+                          <span class="n">callwith</span><span class="o">=</span><span class="n">update_check_call</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log_call</span><span class="p">([</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;merge&#39;</span><span class="p">,</span> <span class="s1">&#39;--ff-only&#39;</span><span class="p">,</span> <span class="s1">&#39;FETCH_HEAD&#39;</span><span class="p">],</span>
+                              <span class="n">callwith</span><span class="o">=</span><span class="n">update_check_call</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">UpdateError</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">clear_retry</span><span class="p">:</span>
+                    <span class="k">raise</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># users are willing to wipe the entire repo</span>
+                    <span class="c1"># to get this update done ! Let&#39;s try something less</span>
+                    <span class="c1"># harsh first that works if previous latest commit</span>
+                    <span class="c1"># is not an ancestor of remote latest</span>
+                    <span class="c1"># note: fetch has already been done</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Fast-forward merge failed for &quot;</span>
+                                <span class="s2">&quot;repo </span><span class="si">%s</span><span class="s2">, &quot;</span>
+                                <span class="s2">&quot;but clear-retry option is active: &quot;</span>
+                                <span class="s2">&quot;trying a reset in case that&#39;s a &quot;</span>
+                                <span class="s2">&quot;simple fast-forward issue.&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">log_call</span><span class="p">([</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;reset&#39;</span><span class="p">,</span> <span class="s1">&#39;--hard&#39;</span><span class="p">,</span> <span class="s1">&#39;FETCH_HEAD&#39;</span><span class="p">],</span>
+                                  <span class="n">callwith</span><span class="o">=</span><span class="n">update_check_call</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_no_edit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">git_version</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+            <span class="c1"># --edit and --no-edit appear with Git 1.7.10</span>
+            <span class="c1"># see Documentation/RelNotes/1.7.10.txt of Git</span>
+            <span class="c1"># (https://git.kernel.org/cgit/git/git.git/tree)</span>
+            <span class="n">cmd</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;--no-edit&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cmd</span>
+
+<div class="viewcode-block" id="GitRepo.offline_merge"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.git.GitRepo.offline_merge">[docs]</a>    <span class="k">def</span> <span class="nf">offline_merge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">revision</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Merge revision into current branch&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">ishex</span><span class="p">(</span><span class="n">revision</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_commit</span><span class="p">(</span><span class="n">revision</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="n">UserError</span><span class="p">(</span><span class="s2">&quot;Commit </span><span class="si">%s</span><span class="s2"> not found in git repository &quot;</span>
+                                <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> (offline mode)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">revision</span><span class="p">,</span> <span class="bp">self</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_a_branch</span><span class="p">(</span><span class="n">revision</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">UserError</span><span class="p">(</span><span class="s2">&quot;Branch </span><span class="si">%s</span><span class="s2"> not found in git repository &quot;</span>
+                            <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> (offline mode)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">revision</span><span class="p">,</span> <span class="bp">self</span><span class="p">))</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_no_edit</span><span class="p">([</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;merge&#39;</span><span class="p">,</span> <span class="n">revision</span><span class="p">])</span>
+        <span class="k">with</span> <span class="n">working_directory_keeper</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log_call</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GitRepo.merge"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.git.GitRepo.merge">[docs]</a>    <span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">revision</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Merge revision into current branch&quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="n">working_directory_keeper</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_versioned</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Cannot merge into non existent &quot;</span>
+                                   <span class="s2">&quot;or non git local directory </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
+                                   <span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">)</span>
+            <span class="n">rtype</span><span class="p">,</span> <span class="n">sha</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">query_remote_ref</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">revision</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">rtype</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">ishex</span><span class="p">(</span><span class="n">revision</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">fetch_remote_sha</span><span class="p">(</span><span class="n">revision</span><span class="p">,</span> <span class="n">checkout</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                <span class="n">cmd</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;merge&#39;</span><span class="p">,</span> <span class="n">revision</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">cmd</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;pull&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">revision</span><span class="p">]</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">git_version</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+                <span class="c1"># --edit and --no-edit appear with Git 1.7.10</span>
+                <span class="c1"># see Documentation/RelNotes/1.7.10.txt of Git</span>
+                <span class="c1"># (https://git.kernel.org/cgit/git/git.git/tree)</span>
+                <span class="n">cmd</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;--no-edit&#39;</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">log_call</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_no_edit</span><span class="p">(</span><span class="n">cmd</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="GitRepo.archive"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.git.GitRepo.archive">[docs]</a>    <span class="k">def</span> <span class="nf">archive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_path</span><span class="p">):</span>
+        <span class="c1"># TODO: does this work with merge-ins?</span>
+        <span class="n">revision</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parents</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">target_path</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">target_path</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">working_directory_keeper</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">)</span>
+            <span class="n">target_tar</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">NamedTemporaryFile</span><span class="p">(</span>
+                <span class="n">prefix</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;.tar&#39;</span><span class="p">)</span>
+            <span class="n">target_tar</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="n">subprocess</span><span class="o">.</span><span class="n">check_call</span><span class="p">([</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;archive&#39;</span><span class="p">,</span> <span class="n">revision</span><span class="p">,</span>
+                                   <span class="s1">&#39;-o&#39;</span><span class="p">,</span> <span class="n">target_tar</span><span class="o">.</span><span class="n">name</span><span class="p">])</span>
+            <span class="n">subprocess</span><span class="o">.</span><span class="n">check_call</span><span class="p">([</span><span class="s1">&#39;tar&#39;</span><span class="p">,</span> <span class="s1">&#39;-x&#39;</span><span class="p">,</span> <span class="s1">&#39;-f&#39;</span><span class="p">,</span> <span class="n">target_tar</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                                   <span class="s1">&#39;-C&#39;</span><span class="p">,</span> <span class="n">target_path</span><span class="p">])</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span class="n">target_tar</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GitRepo.revert"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.git.GitRepo.revert">[docs]</a>    <span class="k">def</span> <span class="nf">revert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">revision</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">working_directory_keeper</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">)</span>
+            <span class="n">subprocess</span><span class="o">.</span><span class="n">check_call</span><span class="p">([</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;checkout&#39;</span><span class="p">,</span> <span class="n">revision</span><span class="p">])</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_a_branch</span><span class="p">(</span><span class="n">revision</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log_call</span><span class="p">([</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;reset&#39;</span><span class="p">,</span> <span class="s1">&#39;--hard&#39;</span><span class="p">,</span>
+                              <span class="n">BUILDOUT_ORIGIN</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">revision</span><span class="p">],</span>
+                              <span class="n">callwith</span><span class="o">=</span><span class="n">update_check_call</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log_call</span><span class="p">([</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;reset&#39;</span><span class="p">,</span> <span class="s1">&#39;--hard&#39;</span><span class="p">,</span> <span class="n">revision</span><span class="p">])</span></div>
+
+    <span class="k">def</span> <span class="nf">_is_a_branch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">revision</span><span class="p">):</span>
+        <span class="c1"># if this fails, we have a seriously corrupted repo</span>
+        <span class="n">branches</span> <span class="o">=</span> <span class="n">update_check_output</span><span class="p">([</span><span class="s2">&quot;git&quot;</span><span class="p">,</span> <span class="s2">&quot;branch&quot;</span><span class="p">])</span>
+        <span class="n">branches</span> <span class="o">=</span> <span class="n">branches</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">revision</span> <span class="ow">in</span> <span class="n">branches</span></div>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2011-2021, &lt;a href=&#34;http://anybox.fr/&#34;&gt;Anybox SAS&lt;/a&gt;; 2021 &lt;a href=&#34;https://odoo-community.org/&#34;&gt;Odoo Community Association&lt;/a&gt; and contributors.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,374 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>oca.recipe.odoo.runtime.upgrade &#8212; Odoo buildout recipe 1.9.3.dev0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/bootstrap-sphinx.css" />
+    <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+    <script src="../../../../../_static/jquery.js"></script>
+    <script src="../../../../../_static/underscore.js"></script>
+    <script src="../../../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../../../../_static/js/jquery-1.12.4.min.js "></script>
+<script type="text/javascript" src="../../../../../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../../../../../_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../../../../../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../../../index.html"><span><img src="../../../../../_static/logo.png"></span>
+          Odoo buildout recipe</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.9</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../../../../../index.html">Home</a></li>
+                <li><a href="https://odoo-community.org">OCA</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../first_steps.html">First steps</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../first_steps.html#how-to-create-and-bootstrap-a-buildout">How to create and bootstrap a buildout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../first_steps.html#example-openerp-7-0-buildouts">Example OpenERP 7.0 buildouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../first_steps.html#example-openerp-6-1-buildout-with-a-custom-addon">Example OpenERP 6.1 buildout with a custom addon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../first_steps.html#example-openerp-6-0-buildout-server-and-clients">Example OpenERP 6.0 buildout (server and clients)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../first_steps.html#continuously-tested-examples">Continuously tested examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../first_steps.html#other-sample-buildouts">Other sample buildouts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../configuration.html">Configuration reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../configuration.html#the-buildout-configuration-file-and-parts">The buildout configuration file and parts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../configuration.html#odoo-recipes">Odoo recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../configuration.html#options-for-assembly-and-source-management">Options for assembly and source management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../configuration.html#options-for-buildout-relocation">Options for buildout relocation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../configuration.html#odoo-options">Odoo options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../configuration.html#options-for-executables-generation-and-serving">Options for executables generation and serving</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../configuration.html#options-for-development-qa-and-introspection">Options for development, QA and introspection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../configuration.html#options-for-download-and-caching-strategies">Options for download and caching strategies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../configuration.html#options-for-release-and-packaging">Options for release and packaging</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../scripts.html">Odoo Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../scripts.html#use-cases">Use cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../scripts.html#declaring-odoo-scripts">Declaring Odoo Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../scripts.html#interactive-consoles">Interactive Consoles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../scripts.html#writing-odoo-scripts">Writing Odoo Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../scripts.html#upgrade-scripts">Upgrade scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../scripts.html#startup-scripts">Startup scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../scripts.html#list-of-internal-entry-points">List of internal entry points</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../dev_prod_workflow.html">Full development to production example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../dev_prod_workflow.html#common-setup">Common setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../dev_prod_workflow.html#developer-s-setup">Developer’s setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../dev_prod_workflow.html#release-and-packaging">Release and packaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../dev_prod_workflow.html#deployment-with-a-server-local-configuration-file">Deployment with a server-local configuration file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../contributing.html">For contributors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../contributing.html#source-and-tracking">Source and tracking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../contributing.html#using-a-development-version">Using a development version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../contributing.html#development-setup">Development setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../contributing.html#building-documentation">Building documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../contributing.html#coding-style">Coding style</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../contributing.html#launching-static-analysis-and-unit-tests">Launching static analysis and unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../contributing.html#integration-tests">Integration tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../contributing.html#continuous-integration">Continuous integration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../devnotes/index.html">Development notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../devnotes/git-sparse-shallow.html">Git shallow clones and selective branch fetching</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.html">oca.recipe.odoo Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.html#id1"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oca.recipe.odoo</span></code> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.base"><code class="xref py py-mod docutils literal notranslate"><span class="pre">base</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.devtools"><code class="xref py py-mod docutils literal notranslate"><span class="pre">devtools</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.server"><code class="xref py py-mod docutils literal notranslate"><span class="pre">server</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.testing"><code class="xref py py-mod docutils literal notranslate"><span class="pre">testing</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.utils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">utils</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.runtime.html">runtime Subpackage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime"><code class="xref py py-mod docutils literal notranslate"><span class="pre">runtime</span></code> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime.session"><code class="xref py py-mod docutils literal notranslate"><span class="pre">session</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime.upgrade"><code class="xref py py-mod docutils literal notranslate"><span class="pre">upgrade</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime.start_odoo"><code class="xref py py-mod docutils literal notranslate"><span class="pre">start_openerp</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime.test_odoo"><code class="xref py py-mod docutils literal notranslate"><span class="pre">test_openerp</span></code> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.vcs.html">vcs Subpackage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs"><code class="xref py py-mod docutils literal notranslate"><span class="pre">vcs</span></code> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.base"><code class="xref py py-mod docutils literal notranslate"><span class="pre">base</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.bzr"><code class="xref py py-mod docutils literal notranslate"><span class="pre">bzr</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.git"><code class="xref py py-mod docutils literal notranslate"><span class="pre">git</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.hg"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hg</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.svn"><code class="xref py py-mod docutils literal notranslate"><span class="pre">svn</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.testing"><code class="xref py py-mod docutils literal notranslate"><span class="pre">testing</span></code> Module</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <h1>Source code for oca.recipe.odoo.runtime.upgrade</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Uniform encapsulation of buildout-local upgrade script.</span>
+
+<span class="sd">The idea is to provide a common set of options, so that upgrade scripts all</span>
+<span class="sd">have the same interface, and project maintainers can focus on the decision</span>
+<span class="sd">taking logic.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">imp</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">argparse</span> <span class="kn">import</span> <span class="n">ArgumentParser</span>
+<span class="kn">from</span> <span class="nn">argparse</span> <span class="kn">import</span> <span class="n">ArgumentDefaultsHelpFormatter</span>
+<span class="kn">from</span> <span class="nn">argparse</span> <span class="kn">import</span> <span class="n">SUPPRESS</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">ceil</span>
+
+<span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="n">total_seconds</span>
+<span class="kn">from</span> <span class="nn">.session</span> <span class="kn">import</span> <span class="n">Session</span>
+
+<span class="n">DEFAULT_LOG_FILE</span> <span class="o">=</span> <span class="s1">&#39;upgrade.log&#39;</span>
+
+
+<div class="viewcode-block" id="upgrade"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#oca.recipe.odoo.runtime.upgrade.upgrade">[docs]</a><span class="k">def</span> <span class="nf">upgrade</span><span class="p">(</span><span class="n">upgrade_script</span><span class="p">,</span> <span class="n">upgrade_callable</span><span class="p">,</span> <span class="n">conf</span><span class="p">,</span> <span class="n">buildout_dir</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Run the upgrade from a source file.</span>
+
+<span class="sd">    All arguments are set in the standalone script produced by buildout through</span>
+<span class="sd">    entry point options.</span>
+
+<span class="sd">    * ``upgrade_script``: absolute path to the upgrade script python source.</span>
+<span class="sd">    * ``upgrade_callable``: name of the callable in source file actually</span>
+<span class="sd">      running the script.</span>
+
+<span class="sd">      It must accept the two following positional arguments, in that order:</span>
+
+<span class="sd">        - a :class:`.Session` instance (as in standard &quot;Odoo scripts&quot;)</span>
+<span class="sd">        - a logger (standard object from the :mod:`logging` module)</span>
+
+<span class="sd">      and may return a non zero status code to indicate an error.</span>
+<span class="sd">      Both ``None`` and 0 are interpreted as success.</span>
+
+<span class="sd">    * ``conf``: path to the Odoo configuration file (managed by the recipe)</span>
+<span class="sd">    * ``buildout_dir``: directory of the buildout</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">ArgumentParser</span><span class="p">(</span><span class="n">formatter_class</span><span class="o">=</span><span class="n">ArgumentDefaultsHelpFormatter</span><span class="p">,</span>
+                            <span class="n">epilog</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--log-file&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">DEFAULT_LOG_FILE</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;File to log sub-operations to, relative to the &quot;</span>
+                        <span class="s2">&quot;current working directory, supports homedir &quot;</span>
+                        <span class="s2">&quot;expansion (&#39;~&#39; on POSIX systems).&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--log-level&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;info&#39;</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Main Odoo logging level. Does not affect the &quot;</span>
+                        <span class="s2">&quot;logging from the main upgrade script itself.&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--console-log-level&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;info&#39;</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Level for the upgrade process console &quot;</span>
+                        <span class="s2">&quot;logging. This is for the main upgrade script itself &quot;</span>
+                        <span class="s2">&quot;meaning that usually only major steps should be &quot;</span>
+                        <span class="s2">&quot;logged &quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-q&#39;</span><span class="p">,</span> <span class="s1">&#39;--quiet&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Suppress console output from the main upgrade &quot;</span>
+                             <span class="s2">&quot;script (lower level stages can still write)&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-d&#39;</span><span class="p">,</span> <span class="s1">&#39;--db-name&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">SUPPRESS</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Database name. If ommitted, the general default &quot;</span>
+                        <span class="s2">&quot;values from Odoo config file or libpq will apply.&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--init-load-demo-data&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Demo data will be loaded with module &quot;</span>
+                        <span class="s2">&quot;installations if and only if &quot;</span>
+                        <span class="s2">&quot;this modifier is specified&quot;</span><span class="p">)</span>
+
+    <span class="n">arguments</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>  <span class="c1"># &#39;args&#39; would shadow the one of pdb</span>
+    <span class="n">log_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="n">arguments</span><span class="o">.</span><span class="n">log_file</span><span class="p">))</span>
+    <span class="n">log_level</span> <span class="o">=</span> <span class="n">arguments</span><span class="o">.</span><span class="n">log_level</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+    <span class="n">console_level</span> <span class="o">=</span> <span class="n">arguments</span><span class="o">.</span><span class="n">console_log_level</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+    <span class="n">quiet</span> <span class="o">=</span> <span class="n">arguments</span><span class="o">.</span><span class="n">quiet</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">log_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">log_path</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Cannot open </span><span class="si">%r</span><span class="s2"> for write&quot;</span> <span class="o">%</span> <span class="n">log_path</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">linesep</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">(</span><span class="n">conf</span><span class="p">,</span> <span class="n">buildout_dir</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">odoo.tools</span> <span class="kn">import</span> <span class="n">config</span>
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">openerp.tools</span> <span class="kn">import</span> <span class="n">config</span>
+
+    <span class="n">config</span><span class="p">[</span><span class="s1">&#39;logfile&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">log_path</span>
+    <span class="n">config</span><span class="p">[</span><span class="s1">&#39;log-level&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">log_level</span>
+
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">quiet</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Starting upgrade, logging details to </span><span class="si">%s</span><span class="s2"> at level </span><span class="si">%s</span><span class="s2">, &quot;</span>
+              <span class="s2">&quot;and major steps to console at level </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span>
+                  <span class="n">log_path</span><span class="p">,</span> <span class="n">log_level</span><span class="p">,</span> <span class="n">console_level</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+    <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;odoo.upgrade&#39;</span><span class="p">)</span>
+    <span class="n">console_handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
+
+    <span class="n">console_handler</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">logging</span><span class="p">,</span> <span class="n">console_level</span><span class="p">))</span>
+    <span class="n">console_handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span>
+        <span class="s2">&quot;</span><span class="si">%(asctime)s</span><span class="s2"> </span><span class="si">%(levelname)s</span><span class="s2">  </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">))</span>
+
+    <span class="n">log_file_handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">FileHandler</span><span class="p">(</span><span class="n">log_path</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span>
+    <span class="n">log_file_handler</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">logging</span><span class="p">,</span> <span class="n">log_level</span><span class="p">))</span>
+    <span class="n">log_file_handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span>
+        <span class="s2">&quot;</span><span class="si">%(asctime)s</span><span class="s2"> </span><span class="si">%(levelname)s</span><span class="s2">  </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">))</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">log_file_handler</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">arguments</span><span class="o">.</span><span class="n">quiet</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">console_handler</span><span class="p">)</span>
+
+    <span class="n">db_name</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">arguments</span><span class="p">,</span> <span class="s1">&#39;db_name&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Opening database </span><span class="si">%r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">db_name</span><span class="p">)</span>
+    <span class="n">session</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">db</span><span class="o">=</span><span class="n">db_name</span><span class="p">,</span> <span class="n">with_demo</span><span class="o">=</span><span class="nb">bool</span><span class="p">(</span><span class="n">arguments</span><span class="o">.</span><span class="n">init_load_demo_data</span><span class="p">))</span>
+    <span class="c1"># actual value after all defaultings have been done</span>
+    <span class="n">db_name</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">dbname</span>
+
+    <span class="k">if</span> <span class="n">session</span><span class="o">.</span><span class="n">is_initialization</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Database </span><span class="si">%r</span><span class="s2"> base initialization done. Proceeding further&quot;</span><span class="p">,</span>
+                    <span class="n">db_name</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Database </span><span class="si">%r</span><span class="s2"> loaded. Actual upgrade begins.&quot;</span><span class="p">,</span> <span class="n">db_name</span><span class="p">)</span>
+
+    <span class="n">pkg_version</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">package_version</span>
+    <span class="k">if</span> <span class="n">pkg_version</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Expected package version file </span><span class="si">%r</span><span class="s2"> does not exist. &quot;</span>
+                    <span class="s2">&quot;version won&#39;t be set in database at the end of upgrade. &quot;</span>
+                    <span class="s2">&quot;Consider including such a version file in your project &quot;</span>
+                    <span class="s2">&quot;*before* version dependent logic is actually needed.&quot;</span><span class="p">,</span>
+                    <span class="n">session</span><span class="o">.</span><span class="n">version_file_path</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Read package version: </span><span class="si">%s</span><span class="s2"> from </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">pkg_version</span><span class="p">,</span>
+                    <span class="n">session</span><span class="o">.</span><span class="n">version_file_path</span><span class="p">)</span>
+
+    <span class="n">db_version</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">db_version</span>
+    <span class="k">if</span> <span class="n">db_version</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">session</span><span class="o">.</span><span class="n">is_initialization</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;No version currently set in database (the present &quot;</span>
+                        <span class="s2">&quot;upgrade script has never been run). Consider setting &quot;</span>
+                        <span class="s2">&quot;database version even for fresh instances, to &quot;</span>
+                        <span class="s2">&quot;eliminate any guesswork in the upgrade scripts.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Database latest upgrade version : </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">db_version</span><span class="p">)</span>
+
+    <span class="n">upgrade_module</span> <span class="o">=</span> <span class="n">imp</span><span class="o">.</span><span class="n">load_source</span><span class="p">(</span><span class="s1">&#39;oca.recipe.odoo.upgrade_odoo&#39;</span><span class="p">,</span>
+                                     <span class="n">upgrade_script</span><span class="p">)</span>
+    <span class="n">statuscode</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">upgrade_module</span><span class="p">,</span> <span class="n">upgrade_callable</span><span class="p">)(</span><span class="n">session</span><span class="p">,</span> <span class="n">logger</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">statuscode</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">statuscode</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">pkg_version</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;setting version </span><span class="si">%s</span><span class="s2"> in database&quot;</span> <span class="o">%</span> <span class="n">pkg_version</span><span class="p">)</span>
+            <span class="n">session</span><span class="o">.</span><span class="n">db_version</span> <span class="o">=</span> <span class="n">pkg_version</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> successful. Total time: </span><span class="si">%d</span><span class="s2"> seconds.&quot;</span> <span class="o">%</span> <span class="p">(</span>
+            <span class="s2">&quot;Initialization&quot;</span> <span class="k">if</span> <span class="n">session</span><span class="o">.</span><span class="n">is_initialization</span> <span class="k">else</span> <span class="s2">&quot;Upgrade&quot;</span><span class="p">,</span>
+            <span class="n">ceil</span><span class="p">(</span><span class="n">total_seconds</span><span class="p">((</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)))</span>
+        <span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Please check logs at </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">log_path</span><span class="p">)</span>
+
+    <span class="n">log_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">statuscode</span><span class="p">)</span></div>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2011-2021, &lt;a href=&#34;http://anybox.fr/&#34;&gt;Anybox SAS&lt;/a&gt;; 2021 &lt;a href=&#34;https://odoo-community.org/&#34;&gt;Odoo Community Association&lt;/a&gt; and contributors.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

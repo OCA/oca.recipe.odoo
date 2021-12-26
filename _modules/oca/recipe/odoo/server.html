@@ -1,0 +1,793 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>oca.recipe.odoo.server &#8212; Odoo buildout recipe 1.9.3.dev0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/bootstrap-sphinx.css" />
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../../../_static/js/jquery-1.12.4.min.js "></script>
+<script type="text/javascript" src="../../../../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../../../../_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../../../../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../../index.html"><span><img src="../../../../_static/logo.png"></span>
+          Odoo buildout recipe</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.9</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../../../../index.html">Home</a></li>
+                <li><a href="https://odoo-community.org">OCA</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../first_steps.html">First steps</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../first_steps.html#how-to-create-and-bootstrap-a-buildout">How to create and bootstrap a buildout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../first_steps.html#example-openerp-7-0-buildouts">Example OpenERP 7.0 buildouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../first_steps.html#example-openerp-6-1-buildout-with-a-custom-addon">Example OpenERP 6.1 buildout with a custom addon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../first_steps.html#example-openerp-6-0-buildout-server-and-clients">Example OpenERP 6.0 buildout (server and clients)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../first_steps.html#continuously-tested-examples">Continuously tested examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../first_steps.html#other-sample-buildouts">Other sample buildouts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../configuration.html">Configuration reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration.html#the-buildout-configuration-file-and-parts">The buildout configuration file and parts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration.html#odoo-recipes">Odoo recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration.html#options-for-assembly-and-source-management">Options for assembly and source management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration.html#options-for-buildout-relocation">Options for buildout relocation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration.html#odoo-options">Odoo options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration.html#options-for-executables-generation-and-serving">Options for executables generation and serving</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration.html#options-for-development-qa-and-introspection">Options for development, QA and introspection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration.html#options-for-download-and-caching-strategies">Options for download and caching strategies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration.html#options-for-release-and-packaging">Options for release and packaging</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../scripts.html">Odoo Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../scripts.html#use-cases">Use cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../scripts.html#declaring-odoo-scripts">Declaring Odoo Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../scripts.html#interactive-consoles">Interactive Consoles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../scripts.html#writing-odoo-scripts">Writing Odoo Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../scripts.html#upgrade-scripts">Upgrade scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../scripts.html#startup-scripts">Startup scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../scripts.html#list-of-internal-entry-points">List of internal entry points</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dev_prod_workflow.html">Full development to production example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../dev_prod_workflow.html#common-setup">Common setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../dev_prod_workflow.html#developer-s-setup">Developer’s setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../dev_prod_workflow.html#release-and-packaging">Release and packaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../dev_prod_workflow.html#deployment-with-a-server-local-configuration-file">Deployment with a server-local configuration file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">For contributors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../contributing.html#source-and-tracking">Source and tracking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../contributing.html#using-a-development-version">Using a development version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../contributing.html#development-setup">Development setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../contributing.html#building-documentation">Building documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../contributing.html#coding-style">Coding style</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../contributing.html#launching-static-analysis-and-unit-tests">Launching static analysis and unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../contributing.html#integration-tests">Integration tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../contributing.html#continuous-integration">Continuous integration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../devnotes/index.html">Development notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../devnotes/git-sparse-shallow.html">Git shallow clones and selective branch fetching</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.html">oca.recipe.odoo Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.html#id1"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oca.recipe.odoo</span></code> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.base"><code class="xref py py-mod docutils literal notranslate"><span class="pre">base</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.devtools"><code class="xref py py-mod docutils literal notranslate"><span class="pre">devtools</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.server"><code class="xref py py-mod docutils literal notranslate"><span class="pre">server</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.testing"><code class="xref py py-mod docutils literal notranslate"><span class="pre">testing</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.utils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">utils</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.runtime.html">runtime Subpackage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime"><code class="xref py py-mod docutils literal notranslate"><span class="pre">runtime</span></code> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime.session"><code class="xref py py-mod docutils literal notranslate"><span class="pre">session</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime.upgrade"><code class="xref py py-mod docutils literal notranslate"><span class="pre">upgrade</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime.start_odoo"><code class="xref py py-mod docutils literal notranslate"><span class="pre">start_openerp</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime.test_odoo"><code class="xref py py-mod docutils literal notranslate"><span class="pre">test_openerp</span></code> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.vcs.html">vcs Subpackage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs"><code class="xref py py-mod docutils literal notranslate"><span class="pre">vcs</span></code> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.base"><code class="xref py py-mod docutils literal notranslate"><span class="pre">base</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.bzr"><code class="xref py py-mod docutils literal notranslate"><span class="pre">bzr</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.git"><code class="xref py py-mod docutils literal notranslate"><span class="pre">git</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.hg"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hg</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.svn"><code class="xref py py-mod docutils literal notranslate"><span class="pre">svn</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.testing"><code class="xref py py-mod docutils literal notranslate"><span class="pre">testing</span></code> Module</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <h1>Source code for oca.recipe.odoo.server</h1><div class="highlight"><pre>
+<span></span><span class="c1"># coding: utf-8</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">zc.buildout</span>
+<span class="kn">from</span> <span class="nn">zc.buildout</span> <span class="kn">import</span> <span class="n">UserError</span>
+<span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">BaseRecipe</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">devtools</span>
+<span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">option_splitlines</span><span class="p">,</span> <span class="n">option_strip</span><span class="p">,</span> <span class="n">major_version</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">SERVER_COMMA_LIST_OPTIONS</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;log_handler&#39;</span><span class="p">,</span> <span class="p">)</span>
+
+
+<div class="viewcode-block" id="ServerRecipe"><a class="viewcode-back" href="../../../../apidoc/oca.recipe.odoo.html#oca.recipe.odoo.server.ServerRecipe">[docs]</a><span class="k">class</span> <span class="nc">ServerRecipe</span><span class="p">(</span><span class="n">BaseRecipe</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Recipe for server install and config</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">release_filenames</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="c1"># no release since OpenERP 6.1, only nightlies</span>
+    <span class="p">}</span>
+
+    <span class="n">nightly_filenames</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;10.0&#39;</span><span class="p">:</span> <span class="s1">&#39;odoo_10.0.</span><span class="si">%s</span><span class="s1">.tar.gz&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;trunk&#39;</span><span class="p">:</span> <span class="s1">&#39;odoo_10.0alpha1.</span><span class="si">%s</span><span class="s1">.tar.gz&#39;</span>
+    <span class="p">}</span>
+    <span class="sd">&quot;&quot;&quot;Name of expected nightly tarballs in base URL, by major version.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">recipe_requirements</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;babel&#39;</span><span class="p">,)</span>
+    <span class="n">requirements</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;oca.recipe.odoo&#39;</span><span class="p">,)</span>
+    <span class="n">soft_requirements</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;odoo-command&#39;</span><span class="p">,)</span>
+    <span class="n">with_gunicorn</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">with_upgrade</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">ws</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">template_upgrade_script</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span>
+                                           <span class="s1">&#39;upgrade.py.tmpl&#39;</span><span class="p">)</span>
+    <span class="n">server_wide_modules</span> <span class="o">=</span> <span class="p">()</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ServerRecipe</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+        <span class="n">opt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">with_devtools</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">opt</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;with_devtools&#39;</span><span class="p">,</span> <span class="s1">&#39;false&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;true&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">with_upgrade</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;upgrade_script&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span>
+        <span class="c1"># discarding, because we have a special behaviour with custom</span>
+        <span class="c1"># interpreters</span>
+        <span class="n">opt</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;interpreter&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">odoo_scripts</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">sw_modules</span> <span class="o">=</span> <span class="n">option_splitlines</span><span class="p">(</span><span class="n">opt</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;server_wide_modules&#39;</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">sw_modules</span> <span class="ow">and</span> <span class="s1">&#39;web&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sw_modules</span><span class="p">:</span>
+            <span class="n">sw_modules</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;web&#39;</span><span class="p">,</span> <span class="p">)</span> <span class="o">+</span> <span class="n">sw_modules</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">server_wide_modules</span> <span class="o">=</span> <span class="n">sw_modules</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">python_scripts_executable</span><span class="p">:</span>
+            <span class="c1"># Monkeypatch the script headers to replace the python</span>
+            <span class="c1"># executable by the one configured by the user</span>
+            <span class="n">new_header</span> <span class="o">=</span> <span class="s1">&#39;#!</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">python_scripts_executable</span>
+            <span class="n">zc</span><span class="o">.</span><span class="n">buildout</span><span class="o">.</span><span class="n">easy_install</span><span class="o">.</span><span class="n">script_template</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">zc</span><span class="o">.</span><span class="n">buildout</span><span class="o">.</span><span class="n">easy_install</span><span class="o">.</span><span class="n">script_template</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
+                    <span class="n">zc</span><span class="o">.</span><span class="n">buildout</span><span class="o">.</span><span class="n">easy_install</span><span class="o">.</span><span class="n">script_header</span><span class="p">,</span> <span class="n">new_header</span><span class="p">))</span>
+            <span class="n">zc</span><span class="o">.</span><span class="n">buildout</span><span class="o">.</span><span class="n">easy_install</span><span class="o">.</span><span class="n">py_script_template</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">zc</span><span class="o">.</span><span class="n">buildout</span><span class="o">.</span><span class="n">easy_install</span><span class="o">.</span><span class="n">py_script_template</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
+                    <span class="n">zc</span><span class="o">.</span><span class="n">buildout</span><span class="o">.</span><span class="n">easy_install</span><span class="o">.</span><span class="n">script_header</span><span class="p">,</span> <span class="n">new_header</span><span class="p">))</span>
+
+<div class="viewcode-block" id="ServerRecipe.apply_version_dependent_decisions"><a class="viewcode-back" href="../../../../apidoc/oca.recipe.odoo.html#oca.recipe.odoo.server.ServerRecipe.apply_version_dependent_decisions">[docs]</a>    <span class="k">def</span> <span class="nf">apply_version_dependent_decisions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Store some booleans depending on detected version.</span>
+
+<span class="sd">        Also does some options normalization accordingly.</span>
+<span class="sd">        Currently, there is only one Odoo version, this method</span>
+<span class="sd">        will be really useful again in a while.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">gunicorn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;gunicorn&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">with_gunicorn</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">gunicorn</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">gunicorn</span> <span class="o">==</span> <span class="s1">&#39;proxied&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s1">&#39;options.proxy_mode&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;True&#39;</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;&#39;gunicorn = proxied&#39; now superseded since &quot;</span>
+                        <span class="s2">&quot;OpenERP 7 by the &#39;proxy_mode&#39; Odoo server option &quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ServerRecipe.merge_requirements"><a class="viewcode-back" href="../../../../apidoc/oca.recipe.odoo.html#oca.recipe.odoo.server.ServerRecipe.merge_requirements">[docs]</a>    <span class="k">def</span> <span class="nf">merge_requirements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reqs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Prepare for installation by zc.recipe.egg</span>
+
+<span class="sd">         - develop the odoo distribution and require it</span>
+<span class="sd">         - gunicorn&#39;s related dependencies if needed</span>
+
+<span class="sd">        Once &#39;odoo&#39; is required, zc.recipe.egg will take it into account</span>
+<span class="sd">        and put it in needed scripts, interpreters etc.</span>
+
+<span class="sd">        Historically, in ``anybox.recipe.openerp`` this used to take care</span>
+<span class="sd">        of adding Pillow, which is now in Odoo&#39;s ``setup.py``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">odoo_dir</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;odoo_dir&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">odoo_project_name</span> <span class="o">=</span> <span class="s1">&#39;odoo&#39;</span>
+        <span class="k">if</span> <span class="n">odoo_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># happens in unit tests</span>
+            <span class="n">odoo_project_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">develop</span><span class="p">(</span><span class="n">odoo_dir</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">requirements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">odoo_project_name</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">with_gunicorn</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">requirements</span><span class="o">.</span><span class="n">extend</span><span class="p">((</span><span class="s1">&#39;psutil&#39;</span><span class="p">,</span> <span class="s1">&#39;gunicorn&#39;</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">with_devtools</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">requirements</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">devtools</span><span class="o">.</span><span class="n">requirements</span><span class="p">)</span>
+
+        <span class="n">BaseRecipe</span><span class="o">.</span><span class="n">merge_requirements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reqs</span><span class="o">=</span><span class="n">reqs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">odoo_project_name</span></div>
+
+    <span class="k">def</span> <span class="nf">_create_default_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Have Odoo generate its default config file.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;options.admin_passwd&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">odoo_dir</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">egg</span><span class="o">.</span><span class="n">location</span> <span class="k">for</span> <span class="n">egg</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ws</span><span class="p">])</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">from</span> <span class="nn">odoo.tools.config</span> <span class="kn">import</span> <span class="n">configmanager</span>
+        <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+            <span class="kn">from</span> <span class="nn">openerp.tools.config</span> <span class="kn">import</span> <span class="n">configmanager</span>
+
+        <span class="n">configmanager</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config_path</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_create_gunicorn_conf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qualified_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Put a gunicorn_PART.conf.py script in /etc.</span>
+
+<span class="sd">        Derived from the standard gunicorn.conf.py shipping with Odoo.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">gunicorn_options</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="n">workers</span><span class="o">=</span><span class="s1">&#39;4&#39;</span><span class="p">,</span>
+            <span class="n">timeout</span><span class="o">=</span><span class="s1">&#39;240&#39;</span><span class="p">,</span>
+            <span class="n">max_requests</span><span class="o">=</span><span class="s1">&#39;2000&#39;</span><span class="p">,</span>
+            <span class="n">qualified_name</span><span class="o">=</span><span class="n">qualified_name</span><span class="p">,</span>
+            <span class="n">bind</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">:</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;options.xmlrpc_interface&#39;</span><span class="p">,</span> <span class="s1">&#39;0.0.0.0&#39;</span><span class="p">),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;options.xmlrpc_port&#39;</span><span class="p">,</span> <span class="s1">&#39;8069&#39;</span><span class="p">)</span>
+            <span class="p">))</span>
+
+        <span class="n">gunicorn_prefix</span> <span class="o">=</span> <span class="s1">&#39;gunicorn.&#39;</span>
+        <span class="n">gunicorn_options</span><span class="o">.</span><span class="n">update</span><span class="p">((</span><span class="n">k</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">gunicorn_prefix</span><span class="p">):],</span> <span class="n">v</span><span class="p">)</span>
+                                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                                <span class="k">if</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">gunicorn_prefix</span><span class="p">))</span>
+
+        <span class="n">gunicorn_options</span><span class="p">[</span><span class="s1">&#39;server_wide_modules&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">server_wide_modules</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">server_wide_modules</span> <span class="k">else</span> <span class="p">[</span><span class="s1">&#39;web&#39;</span><span class="p">]</span>
+
+        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">etc</span><span class="p">,</span> <span class="n">qualified_name</span> <span class="o">+</span> <span class="s1">&#39;.conf.py&#39;</span><span class="p">),</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+        <span class="n">conf</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;&#39;&#39;&#39;Gunicorn configuration script.</span>
+<span class="s2">Generated by buildout. Do NOT edit.&#39;&#39;&#39;</span>
+<span class="s2">try:</span>
+<span class="s2">  import openerp as odoo</span>
+<span class="s2">except ImportError:</span>
+<span class="s2">  import odoo</span>
+<span class="s2">bind = </span><span class="si">%(bind)r</span><span class="s2"></span>
+<span class="s2">pidfile = </span><span class="si">%(qualified_name)r</span><span class="s2"> + &#39;.pid&#39;</span>
+<span class="s2">workers = </span><span class="si">%(workers)s</span><span class="s2"></span>
+
+<span class="s2">timeout = </span><span class="si">%(timeout)s</span><span class="s2"></span>
+<span class="s2">max_requests = </span><span class="si">%(max_requests)s</span><span class="s2"></span>
+
+<span class="s2">odoo.multi_process = True  # needed even with only one worker</span>
+<span class="s2">odoo.conf.server_wide_modules = </span><span class="si">%(server_wide_modules)r</span><span class="s2"></span>
+<span class="s2">conf = odoo.tools.config</span>
+<span class="s2">&quot;&quot;&quot;</span> <span class="o">%</span> <span class="n">gunicorn_options</span>
+
+        <span class="c1"># forwarding specified options</span>
+        <span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;options.&#39;</span>
+        <span class="k">for</span> <span class="n">opt</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">opt</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">prefix</span><span class="p">):</span>
+                <span class="k">continue</span>
+            <span class="n">opt</span> <span class="o">=</span> <span class="n">opt</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">prefix</span><span class="p">):]</span>
+            <span class="k">if</span> <span class="n">opt</span> <span class="o">==</span> <span class="s1">&#39;log_level&#39;</span><span class="p">:</span>
+                <span class="c1"># blindly following the sample script</span>
+                <span class="n">val</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">DEBUG</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">DEBUG_RPC</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">DEBUG_RPC_ANSWER</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
+                           <span class="n">DEBUG_SQL</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">INFO</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">WARNING</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">ERROR</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
+                           <span class="n">CRITICAL</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">val</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="mi">30</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">opt</span> <span class="ow">in</span> <span class="n">SERVER_COMMA_LIST_OPTIONS</span><span class="p">:</span>
+                <span class="n">val</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">val</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)]</span>
+
+            <span class="n">conf</span> <span class="o">+=</span> <span class="s1">&#39;conf[</span><span class="si">%r</span><span class="s1">] = </span><span class="si">%r</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">opt</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">linesep</span>
+
+        <span class="n">preload_dbs</span> <span class="o">=</span> <span class="n">option_splitlines</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="s1">&#39;gunicorn.preload_databases&#39;</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">preload_dbs</span><span class="p">:</span>
+            <span class="n">conf</span> <span class="o">+=</span> <span class="n">os</span><span class="o">.</span><span class="n">linesep</span><span class="o">.</span><span class="n">join</span><span class="p">((</span>
+                <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;def post_fork(server, worker):&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;    &#39;&#39;&#39;Preload databases specified in buildout conf.&#39;&#39;&#39;&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;    from odoo.modules.registry import RegistryManager&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;    preload_dbs = </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">preload_dbs</span><span class="p">,),</span>
+                <span class="s2">&quot;    for db_name in preload_dbs:&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;        server.log.info(&#39;Worker loading database </span><span class="si">%r</span><span class="s2">&#39;,&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;                        db_name)&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;        RegistryManager.get(db_name)&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;    server.log.info(&#39;Odoo databases </span><span class="si">%r</span><span class="s2"> loaded, &#39;&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;                    &#39;worker ready &#39;&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;                    &#39;to serve requests&#39;, preload_dbs)&quot;</span><span class="p">,</span>
+            <span class="p">))</span>
+
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">conf</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_get_server_command</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a full path to the main Odoo server command.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">major_version</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">version_detected</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">:</span>
+            <span class="n">base_name</span> <span class="o">=</span> <span class="s1">&#39;odoo-bin&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">base_name</span> <span class="o">=</span> <span class="s1">&#39;openerp-server&#39;</span>
+        <span class="k">return</span> <span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">odoo_dir</span><span class="p">,</span> <span class="n">base_name</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_parse_odoo_scripts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Parse required scripts from conf.&quot;&quot;&quot;</span>
+
+        <span class="n">scripts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">odoo_scripts</span>
+        <span class="k">if</span> <span class="s1">&#39;odoo_scripts&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">option_splitlines</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;odoo_scripts&#39;</span><span class="p">)):</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+            <span class="n">naming</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">naming</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">naming</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">UserError</span><span class="p">(</span><span class="s2">&quot;Invalid script specification </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">naming</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;_&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="n">naming</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">name</span> <span class="o">=</span> <span class="n">naming</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">cl_options</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">desc</span> <span class="o">=</span> <span class="n">scripts</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">entry</span><span class="o">=</span><span class="n">naming</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                        <span class="n">command_line_options</span><span class="o">=</span><span class="n">cl_options</span><span class="p">)</span>
+
+            <span class="n">opt_prefix</span> <span class="o">=</span> <span class="s1">&#39;command-line-options=&#39;</span>
+            <span class="n">arg_prefix</span> <span class="o">=</span> <span class="s1">&#39;arguments=&#39;</span>
+            <span class="n">log_prefix</span> <span class="o">=</span> <span class="s1">&#39;odoo-log-level=&#39;</span>
+            <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+                <span class="k">if</span> <span class="n">token</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">opt_prefix</span><span class="p">):</span>
+                    <span class="n">cl_options</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">token</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">opt_prefix</span><span class="p">):]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">))</span>
+                <span class="k">elif</span> <span class="n">token</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">arg_prefix</span><span class="p">):</span>
+                    <span class="n">desc</span><span class="p">[</span><span class="s1">&#39;arguments&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">token</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">arg_prefix</span><span class="p">):]</span>
+                <span class="k">elif</span> <span class="n">token</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">log_prefix</span><span class="p">):</span>
+                    <span class="n">level</span> <span class="o">=</span> <span class="n">token</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">log_prefix</span><span class="p">):]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="n">level</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">logging</span><span class="p">):</span>
+                        <span class="k">raise</span> <span class="n">UserError</span><span class="p">(</span><span class="s2">&quot;In script </span><span class="si">%r</span><span class="s2">, improper logging &quot;</span>
+                                        <span class="s2">&quot;level </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">level</span><span class="p">))</span>
+                    <span class="n">desc</span><span class="p">[</span><span class="s1">&#39;odoo_log_level&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">level</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">UserError</span><span class="p">(</span>
+                        <span class="s2">&quot;Invalid token for script </span><span class="si">%r</span><span class="s2">: </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">token</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">_get_or_create_script</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entry</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Retrieve or create a registered script by its entry point.</span>
+
+<span class="sd">        If create_name is not given, no creation will occur, will return</span>
+<span class="sd">        None if not found.</span>
+<span class="sd">        In all other cases, return return (script_name, desc).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">script_name</span><span class="p">,</span> <span class="n">desc</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">odoo_scripts</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">desc</span><span class="p">[</span><span class="s1">&#39;entry&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">entry</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">script_name</span><span class="p">,</span> <span class="n">desc</span>
+
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">desc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">odoo_scripts</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">entry</span><span class="o">=</span><span class="n">entry</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">name</span><span class="p">,</span> <span class="n">desc</span>
+
+    <span class="k">def</span> <span class="nf">_relativitize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_relative_paths</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;join(base, </span><span class="si">%r</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span>
+                <span class="n">path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_relative_paths</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">path</span>
+
+    <span class="k">def</span> <span class="nf">_register_main_startup_script</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qualified_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Register main startup script, usually ``start_odoo`` for install.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">desc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_or_create_script</span><span class="p">(</span><span class="s1">&#39;odoo_starter&#39;</span><span class="p">,</span>
+                                          <span class="n">name</span><span class="o">=</span><span class="n">qualified_name</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="n">arguments</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">, </span><span class="si">%s</span><span class="s1">, version=</span><span class="si">%r</span><span class="s1">, gevent_script_path=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_relativitize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_server_command</span><span class="p">()),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_relativitize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config_path</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">major_version</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_relativitize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gevent_script_path</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">server_wide_modules</span><span class="p">:</span>
+            <span class="n">arguments</span> <span class="o">+=</span> <span class="s1">&#39;, server_wide_modules=</span><span class="si">%r</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">server_wide_modules</span><span class="p">,)</span>
+
+        <span class="n">desc</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">arguments</span><span class="o">=</span><span class="n">arguments</span><span class="p">)</span>
+
+        <span class="n">startup_delay</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;startup_delay&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+        <span class="n">initialization</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">with_devtools</span><span class="p">:</span>
+            <span class="n">initialization</span><span class="o">.</span><span class="n">extend</span><span class="p">((</span>
+                <span class="s1">&#39;from oca.recipe.odoo import devtools&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;devtools.load(for_tests=False)&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;&#39;</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">startup_delay</span><span class="p">:</span>
+            <span class="n">initialization</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
+                <span class="p">(</span><span class="s1">&#39;print(&quot;sleeping </span><span class="si">%s</span><span class="s1"> seconds...&quot;)&#39;</span> <span class="o">%</span> <span class="n">startup_delay</span><span class="p">,</span>
+                 <span class="s1">&#39;import time&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;time.sleep(</span><span class="si">%f</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="n">startup_delay</span><span class="p">))</span>
+
+        <span class="n">desc</span><span class="p">[</span><span class="s1">&#39;initialization&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">linesep</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="n">initialization</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">_register_test_script</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qualified_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Register the main test script for installation.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">desc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_or_create_script</span><span class="p">(</span><span class="s1">&#39;odoo_tester&#39;</span><span class="p">,</span>
+                                          <span class="n">name</span><span class="o">=</span><span class="n">qualified_name</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">arguments</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">, </span><span class="si">%s</span><span class="s1">, version=</span><span class="si">%r</span><span class="s1">, just_test=True&#39;</span> <span class="o">%</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_relativitize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_server_command</span><span class="p">()),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_relativitize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config_path</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">major_version</span><span class="p">)</span>
+        <span class="n">arguments</span> <span class="o">+=</span> <span class="s1">&#39;, gevent_script_path=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">_relativitize</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">gevent_script_path</span><span class="p">)</span>
+
+        <span class="n">desc</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+            <span class="n">entry</span><span class="o">=</span><span class="s1">&#39;odoo_starter&#39;</span><span class="p">,</span>
+            <span class="n">initialization</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">linesep</span><span class="o">.</span><span class="n">join</span><span class="p">((</span>
+                <span class="s2">&quot;from oca.recipe.odoo import devtools&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;devtools.load(for_tests=True)&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;&quot;</span><span class="p">)),</span>
+            <span class="n">arguments</span><span class="o">=</span><span class="n">arguments</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_register_upgrade_script</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qualified_name</span><span class="p">):</span>
+        <span class="n">desc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_or_create_script</span><span class="p">(</span><span class="s1">&#39;odoo_upgrader&#39;</span><span class="p">,</span>
+                                          <span class="n">name</span><span class="o">=</span><span class="n">qualified_name</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">script_opt</span> <span class="o">=</span> <span class="n">option_strip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;upgrade_script&#39;</span><span class="p">,</span>
+                                                   <span class="s1">&#39;upgrade.py run&#39;</span><span class="p">))</span>
+        <span class="n">script</span> <span class="o">=</span> <span class="n">script_opt</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">script</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="c1"># TODO add console script entry point support</span>
+            <span class="k">raise</span> <span class="n">zc</span><span class="o">.</span><span class="n">buildout</span><span class="o">.</span><span class="n">UserError</span><span class="p">(</span>
+                <span class="p">(</span><span class="s2">&quot;upgrade_script option must take the form &quot;</span>
+                 <span class="s2">&quot;SOURCE_FILE CALLABLE (got &#39;</span><span class="si">%r</span><span class="s2">&#39;)&quot;</span> <span class="o">%</span> <span class="n">script</span><span class="p">))</span>
+        <span class="n">script_source_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_absolute</span><span class="p">(</span><span class="n">script</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">desc</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+            <span class="n">entry</span><span class="o">=</span><span class="s1">&#39;odoo_upgrader&#39;</span><span class="p">,</span>
+            <span class="n">arguments</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">, </span><span class="si">%r</span><span class="s1">, </span><span class="si">%s</span><span class="s1">, </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_relativitize</span><span class="p">(</span><span class="n">script_source_path</span><span class="p">),</span> <span class="n">script</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_relativitize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config_path</span><span class="p">),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_relativitize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">buildout_dir</span><span class="p">)),</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">script_source_path</span><span class="p">):</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Ugrade script source </span><span class="si">%s</span><span class="s2"> does not exist.&quot;</span>
+                           <span class="s2">&quot;Initializing it for you&quot;</span><span class="p">,</span> <span class="n">script_source_path</span><span class="p">)</span>
+            <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">template_upgrade_script</span><span class="p">,</span> <span class="n">script_source_path</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_register_gunicorn_startup_script</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qualified_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Register a gunicorn foreground start script for installation.</span>
+
+<span class="sd">        The produced script is suitable for external process management, such</span>
+<span class="sd">        as provided by supervisor.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">desc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_or_create_script</span><span class="p">(</span><span class="s1">&#39;gunicorn&#39;</span><span class="p">,</span>
+                                          <span class="n">name</span><span class="o">=</span><span class="n">qualified_name</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="n">gunicorn_options</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">gunicorn_prefix</span> <span class="o">=</span> <span class="s1">&#39;gunicorn.&#39;</span>
+        <span class="n">gunicorn_options</span><span class="o">.</span><span class="n">update</span><span class="p">((</span><span class="n">k</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">gunicorn_prefix</span><span class="p">):],</span> <span class="n">v</span><span class="p">)</span>
+                                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                                <span class="k">if</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">gunicorn_prefix</span><span class="p">))</span>
+
+        <span class="n">gunicorn_entry_point</span> <span class="o">=</span> <span class="n">gunicorn_options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;entry_point&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">gunicorn_entry_point</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">gunicorn_entry_point</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;odoo:&#39;</span>
+                                    <span class="s1">&#39;service.wsgi_server.application&#39;</span><span class="p">)</span>
+
+        <span class="c1"># gunicorn&#39;s main() does not take arguments, that&#39;s why we have</span>
+        <span class="c1"># to resort on hacking sys.argv</span>
+        <span class="n">desc</span><span class="p">[</span><span class="s1">&#39;initialization&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">&quot;from sys import argv; argv[1:] = [&#39;</span><span class="si">%s</span><span class="s2">&#39;, &#39;-c&#39;, &#39;</span><span class="si">%s</span><span class="s2">.conf.py&#39;]&quot;</span> <span class="o">%</span> <span class="p">(</span>
+                <span class="n">gunicorn_entry_point</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_relativitize</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">etc</span><span class="p">,</span> <span class="n">qualified_name</span><span class="p">))))</span>
+
+    <span class="k">def</span> <span class="nf">_register_gevent_script</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qualified_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Register the gevent startup script</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">desc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_or_create_script</span><span class="p">(</span><span class="s1">&#39;odoo-gevent&#39;</span><span class="p">,</span>
+                                          <span class="n">name</span><span class="o">=</span><span class="n">qualified_name</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="n">initialization</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s2">&quot;import gevent.monkey&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;gevent.monkey.patch_all()&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;import psycogreen.gevent&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;psycogreen.gevent.patch_psycopg()&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;&quot;</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">with_devtools</span><span class="p">:</span>
+            <span class="n">initialization</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span>
+                <span class="s1">&#39;from oca.recipe.odoo import devtools&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;devtools.load(for_tests=False)&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;&#39;</span><span class="p">])</span>
+
+        <span class="n">desc</span><span class="p">[</span><span class="s1">&#39;initialization&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">linesep</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">initialization</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_register_cron_worker_startup_script</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qualified_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Register the cron worker script for installation.</span>
+
+<span class="sd">        This worker script has been introduced in openobject-server, rev 4184</span>
+<span class="sd">        together with changes in the main code that it requires.</span>
+<span class="sd">        These changes appeared in nightly build 6.1-20120530-233414.</span>
+<span class="sd">        The worker script itself does not appear in nightly builds.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">script_src</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">odoo_dir</span><span class="p">,</span> <span class="s1">&#39;odoo-cron-worker&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">script_src</span><span class="p">):</span>
+            <span class="n">version</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">version_detected</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">version_wanted</span> <span class="o">==</span> <span class="s1">&#39;6.1-1&#39;</span> <span class="ow">or</span> <span class="p">(</span>
+                    <span class="n">version</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;6.1-2012&#39;</span><span class="p">)</span> <span class="ow">and</span>
+                    <span class="n">version</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">12</span><span class="p">]</span> <span class="o">&lt;</span> <span class="s1">&#39;20120530&#39;</span><span class="p">):</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                    <span class="s2">&quot;Can&#39;t use odoo-cron-worker with version </span><span class="si">%s</span><span class="s2"> &quot;</span>
+                    <span class="s2">&quot;You have to run a separate regular Odoo process &quot;</span>
+                    <span class="s2">&quot;for cron jobs to be launched.&quot;</span><span class="p">,</span> <span class="n">version</span><span class="p">)</span>
+                <span class="k">return</span>
+
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Cron launcher odoo-cron-worker not found in &quot;</span>
+                        <span class="s2">&quot;odoo source tree (version </span><span class="si">%s</span><span class="s2">). &quot;</span>
+                        <span class="s2">&quot;This is expected with some nightly builds. &quot;</span>
+                        <span class="s2">&quot;Using the launcher script distributed &quot;</span>
+                        <span class="s2">&quot;with the recipe.&quot;</span><span class="p">,</span> <span class="n">version</span><span class="p">)</span>
+            <span class="n">script_src</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
+                              <span class="s1">&#39;odoo-cron-worker&#39;</span><span class="p">)</span>
+
+        <span class="n">desc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_or_create_script</span><span class="p">(</span><span class="s1">&#39;odoo_cron_worker&#39;</span><span class="p">,</span>
+                                          <span class="n">name</span><span class="o">=</span><span class="n">qualified_name</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">desc</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">entry</span><span class="o">=</span><span class="s1">&#39;odoo_cron_worker&#39;</span><span class="p">,</span>
+                    <span class="n">arguments</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">, </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_relativitize</span><span class="p">(</span><span class="n">script_src</span><span class="p">),</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_relativitize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config_path</span><span class="p">)),</span>
+                    <span class="n">initialization</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+                    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_install_interpreter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Install a python interpreter with a ready-made session object.&quot;&quot;&quot;</span>
+        <span class="n">int_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;interpreter_name&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">int_name</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>  <span class="c1"># conf requires not to build an interpreter</span>
+            <span class="k">return</span>
+        <span class="k">elif</span> <span class="n">int_name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">int_name</span> <span class="o">=</span> <span class="s1">&#39;python_&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+
+        <span class="n">initialization</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">linesep</span><span class="o">.</span><span class="n">join</span><span class="p">((</span>
+            <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;from oca.recipe.odoo.runtime.session import Session&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;session = Session(</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_relativitize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config_path</span><span class="p">),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_relativitize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">buildout_dir</span><span class="p">),</span>
+            <span class="p">),</span>
+            <span class="s2">&quot;if len(sys.argv) &lt;= 1:&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;    print(&#39;To start the Odoo working session, just do:&#39;)&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;    print(&#39;    session.open(db=DATABASE_NAME)&#39;)&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;    print(&#39;or, to use the database from the buildout &quot;</span>
+            <span class="s2">&quot;part config:&#39;)&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;    print(&#39;    session.open()&#39;)&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;    print(&#39;All other options from buildout part config &quot;</span>
+            <span class="s2">&quot;do apply.&#39;)&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;&quot;</span>
+            <span class="s2">&quot;    print(&#39;Then you can issue commands such as:&#39;)&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;    print(</span><span class="se">\&quot;</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;    session.registry(&#39;res.users&#39;).browse(session.cr, 1, 1)</span><span class="se">\&quot;</span><span class="s2">)&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;    try:&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;        from openerp import release&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;    except ImportError:&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;        from odoo import release&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;    from oca.recipe.odoo.utils import major_version&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;    if major_version(release.version)[0] &gt;= 8:&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;        print(&#39;Or using new api:&#39;)&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;        print(</span><span class="se">\&quot;</span><span class="s2">    session.env[&#39;res.users&#39;].browse(1)</span><span class="se">\&quot;</span><span class="s2">)&quot;</span>
+            <span class="s2">&quot;&quot;</span><span class="p">))</span>
+
+        <span class="n">reqs</span><span class="p">,</span> <span class="n">ws</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eggs_reqs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">eggs_ws</span>
+        <span class="k">return</span> <span class="n">zc</span><span class="o">.</span><span class="n">buildout</span><span class="o">.</span><span class="n">easy_install</span><span class="o">.</span><span class="n">scripts</span><span class="p">(</span>
+            <span class="n">reqs</span><span class="p">,</span> <span class="n">ws</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">executable</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s1">&#39;bin-directory&#39;</span><span class="p">],</span>
+            <span class="n">scripts</span><span class="o">=</span><span class="p">{},</span>
+            <span class="n">interpreter</span><span class="o">=</span><span class="n">int_name</span><span class="p">,</span>
+            <span class="n">initialization</span><span class="o">=</span><span class="n">initialization</span><span class="p">,</span>
+            <span class="n">arguments</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;arguments&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+            <span class="n">extra_paths</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">extra_paths</span><span class="p">,</span>
+            <span class="n">relative_paths</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_relative_paths</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_install_odoo_scripts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Install scripts registered in self.odoo_scripts.</span>
+
+<span class="sd">        If initialization string is not passed, one will be cooked for</span>
+<span class="sd">          - session initialization</span>
+<span class="sd">          - treatment of Odoo options specific to this script, as required</span>
+<span class="sd">            in the &#39;options&#39; key of the scripts descrition (typically to</span>
+<span class="sd">            add a database opening option to the provided script).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">reqs</span><span class="p">,</span> <span class="n">ws</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eggs_reqs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">eggs_ws</span>
+
+        <span class="n">common_init</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">linesep</span><span class="o">.</span><span class="n">join</span><span class="p">((</span>
+            <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;from oca.recipe.odoo.runtime.session import Session&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;session = Session(</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_relativitize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config_path</span><span class="p">),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_relativitize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">buildout_dir</span><span class="p">)),</span>
+        <span class="p">))</span>
+
+        <span class="k">for</span> <span class="n">script_name</span><span class="p">,</span> <span class="n">desc</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">odoo_scripts</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">initialization</span> <span class="o">=</span> <span class="n">desc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;initialization&#39;</span><span class="p">,</span> <span class="n">common_init</span><span class="p">)</span>
+            <span class="n">log_level</span> <span class="o">=</span> <span class="n">desc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;odoo_log_level&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">log_level</span><span class="p">:</span>
+                <span class="n">initialization</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">linesep</span><span class="o">.</span><span class="n">join</span><span class="p">((</span>
+                    <span class="n">initialization</span><span class="p">,</span>
+                    <span class="s2">&quot;import logging&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;logging.getLogger(&#39;odoo&#39;).setLevel&quot;</span>
+                    <span class="s2">&quot;(logging.</span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="n">log_level</span><span class="p">))</span>
+            <span class="n">options</span> <span class="o">=</span> <span class="n">desc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;command_line_options&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">options</span><span class="p">:</span>
+                <span class="n">initialization</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">linesep</span><span class="o">.</span><span class="n">join</span><span class="p">((</span>
+                    <span class="n">initialization</span><span class="p">,</span>
+                    <span class="s2">&quot;session.handle_command_line_options(</span><span class="si">%r</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="n">options</span><span class="p">))</span>
+
+            <span class="n">zc</span><span class="o">.</span><span class="n">buildout</span><span class="o">.</span><span class="n">easy_install</span><span class="o">.</span><span class="n">scripts</span><span class="p">(</span>
+                <span class="n">reqs</span><span class="p">,</span> <span class="n">ws</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">executable</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bin_dir</span><span class="p">,</span>
+                <span class="n">scripts</span><span class="o">=</span><span class="p">{</span><span class="n">desc</span><span class="p">[</span><span class="s1">&#39;entry&#39;</span><span class="p">]:</span> <span class="n">script_name</span><span class="p">},</span>
+                <span class="n">interpreter</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+                <span class="n">initialization</span><span class="o">=</span><span class="n">initialization</span><span class="p">,</span>
+                <span class="n">arguments</span><span class="o">=</span><span class="n">desc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;arguments&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+                <span class="n">extra_paths</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">extra_paths</span><span class="p">,</span>
+                <span class="n">relative_paths</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_relative_paths</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">odoo_installed</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bin_dir</span><span class="p">,</span> <span class="n">script_name</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">_install_startup_scripts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;install startup and control scripts.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_parse_odoo_scripts</span><span class="p">()</span>
+
+        <span class="c1"># provide additional needed entry points for main start/test scripts</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">eggs_reqs</span><span class="o">.</span><span class="n">extend</span><span class="p">((</span>
+            <span class="p">(</span><span class="s1">&#39;odoo_starter&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;oca.recipe.odoo.runtime.start_odoo&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;main&#39;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s1">&#39;odoo_cron_worker&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;oca.recipe.odoo.runtime.start_odooo&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;main&#39;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s1">&#39;odoo_upgrader&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;oca.recipe.odoo.runtime.upgrade&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;upgrade&#39;</span><span class="p">),</span>
+        <span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">major_version</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">version_detected</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">eggs_reqs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="p">(</span><span class="s1">&#39;odoo-gevent&#39;</span><span class="p">,</span> <span class="s1">&#39;odoo.cli&#39;</span><span class="p">,</span> <span class="s1">&#39;main&#39;</span><span class="p">),</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">eggs_reqs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="p">(</span><span class="s1">&#39;odoo-gevent&#39;</span><span class="p">,</span> <span class="s1">&#39;openerp.cli&#39;</span><span class="p">,</span> <span class="s1">&#39;main&#39;</span><span class="p">),</span>
+            <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_install_interpreter</span><span class="p">()</span>
+
+        <span class="n">main_script</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;script_name&#39;</span><span class="p">,</span> <span class="s1">&#39;start_&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">gevent_script_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;gevent_script_name&#39;</span><span class="p">,</span>
+                                              <span class="s1">&#39;gevent_</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_register_gevent_script</span><span class="p">(</span><span class="n">gevent_script_name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gevent_script_path</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bin_dir</span><span class="p">,</span> <span class="n">gevent_script_name</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_register_main_startup_script</span><span class="p">(</span><span class="n">main_script</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">script_path</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bin_dir</span><span class="p">,</span> <span class="n">main_script</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">with_devtools</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_register_test_script</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;test_script_name&#39;</span><span class="p">,</span> <span class="s1">&#39;test_&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">with_gunicorn</span><span class="p">:</span>
+            <span class="n">qualified_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;gunicorn_script_name&#39;</span><span class="p">,</span>
+                                              <span class="s1">&#39;gunicorn_</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_create_gunicorn_conf</span><span class="p">(</span><span class="n">qualified_name</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_register_gunicorn_startup_script</span><span class="p">(</span><span class="n">qualified_name</span><span class="p">)</span>
+
+            <span class="n">qualified_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;cron_worker_script_name&#39;</span><span class="p">,</span>
+                                              <span class="s1">&#39;cron_worker_</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_register_cron_worker_startup_script</span><span class="p">(</span><span class="n">qualified_name</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">with_upgrade</span><span class="p">:</span>
+            <span class="n">qualified_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;upgrade_script_name&#39;</span><span class="p">,</span>
+                                              <span class="s1">&#39;upgrade_</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_register_upgrade_script</span><span class="p">(</span><span class="n">qualified_name</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_install_odoo_scripts</span><span class="p">()</span></div>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2011-2021, &lt;a href=&#34;http://anybox.fr/&#34;&gt;Anybox SAS&lt;/a&gt;; 2021 &lt;a href=&#34;https://odoo-community.org/&#34;&gt;Odoo Community Association&lt;/a&gt; and contributors.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

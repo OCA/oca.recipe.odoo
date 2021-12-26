@@ -1,0 +1,483 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>oca.recipe.odoo.utils &#8212; Odoo buildout recipe 1.9.3.dev0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/bootstrap-sphinx.css" />
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../../../_static/js/jquery-1.12.4.min.js "></script>
+<script type="text/javascript" src="../../../../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../../../../_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../../../../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../../index.html"><span><img src="../../../../_static/logo.png"></span>
+          Odoo buildout recipe</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.9</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../../../../index.html">Home</a></li>
+                <li><a href="https://odoo-community.org">OCA</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../first_steps.html">First steps</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../first_steps.html#how-to-create-and-bootstrap-a-buildout">How to create and bootstrap a buildout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../first_steps.html#example-openerp-7-0-buildouts">Example OpenERP 7.0 buildouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../first_steps.html#example-openerp-6-1-buildout-with-a-custom-addon">Example OpenERP 6.1 buildout with a custom addon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../first_steps.html#example-openerp-6-0-buildout-server-and-clients">Example OpenERP 6.0 buildout (server and clients)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../first_steps.html#continuously-tested-examples">Continuously tested examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../first_steps.html#other-sample-buildouts">Other sample buildouts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../configuration.html">Configuration reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration.html#the-buildout-configuration-file-and-parts">The buildout configuration file and parts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration.html#odoo-recipes">Odoo recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration.html#options-for-assembly-and-source-management">Options for assembly and source management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration.html#options-for-buildout-relocation">Options for buildout relocation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration.html#odoo-options">Odoo options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration.html#options-for-executables-generation-and-serving">Options for executables generation and serving</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration.html#options-for-development-qa-and-introspection">Options for development, QA and introspection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration.html#options-for-download-and-caching-strategies">Options for download and caching strategies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration.html#options-for-release-and-packaging">Options for release and packaging</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../scripts.html">Odoo Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../scripts.html#use-cases">Use cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../scripts.html#declaring-odoo-scripts">Declaring Odoo Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../scripts.html#interactive-consoles">Interactive Consoles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../scripts.html#writing-odoo-scripts">Writing Odoo Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../scripts.html#upgrade-scripts">Upgrade scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../scripts.html#startup-scripts">Startup scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../scripts.html#list-of-internal-entry-points">List of internal entry points</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dev_prod_workflow.html">Full development to production example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../dev_prod_workflow.html#common-setup">Common setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../dev_prod_workflow.html#developer-s-setup">Developer’s setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../dev_prod_workflow.html#release-and-packaging">Release and packaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../dev_prod_workflow.html#deployment-with-a-server-local-configuration-file">Deployment with a server-local configuration file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">For contributors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../contributing.html#source-and-tracking">Source and tracking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../contributing.html#using-a-development-version">Using a development version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../contributing.html#development-setup">Development setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../contributing.html#building-documentation">Building documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../contributing.html#coding-style">Coding style</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../contributing.html#launching-static-analysis-and-unit-tests">Launching static analysis and unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../contributing.html#integration-tests">Integration tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../contributing.html#continuous-integration">Continuous integration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../devnotes/index.html">Development notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../devnotes/git-sparse-shallow.html">Git shallow clones and selective branch fetching</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.html">oca.recipe.odoo Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.html#id1"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oca.recipe.odoo</span></code> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.base"><code class="xref py py-mod docutils literal notranslate"><span class="pre">base</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.devtools"><code class="xref py py-mod docutils literal notranslate"><span class="pre">devtools</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.server"><code class="xref py py-mod docutils literal notranslate"><span class="pre">server</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.testing"><code class="xref py py-mod docutils literal notranslate"><span class="pre">testing</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.utils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">utils</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.runtime.html">runtime Subpackage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime"><code class="xref py py-mod docutils literal notranslate"><span class="pre">runtime</span></code> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime.session"><code class="xref py py-mod docutils literal notranslate"><span class="pre">session</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime.upgrade"><code class="xref py py-mod docutils literal notranslate"><span class="pre">upgrade</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime.start_odoo"><code class="xref py py-mod docutils literal notranslate"><span class="pre">start_openerp</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime.test_odoo"><code class="xref py py-mod docutils literal notranslate"><span class="pre">test_openerp</span></code> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.vcs.html">vcs Subpackage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs"><code class="xref py py-mod docutils literal notranslate"><span class="pre">vcs</span></code> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.base"><code class="xref py py-mod docutils literal notranslate"><span class="pre">base</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.bzr"><code class="xref py py-mod docutils literal notranslate"><span class="pre">bzr</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.git"><code class="xref py py-mod docutils literal notranslate"><span class="pre">git</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.hg"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hg</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.svn"><code class="xref py py-mod docutils literal notranslate"><span class="pre">svn</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.testing"><code class="xref py py-mod docutils literal notranslate"><span class="pre">testing</span></code> Module</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <h1>Source code for oca.recipe.odoo.utils</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">contextmanager</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">ConfigParser</span> <span class="kn">import</span> <span class="n">DuplicateSectionError</span>  <span class="c1"># Python 2</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">configparser</span> <span class="kn">import</span> <span class="n">DuplicateSectionError</span>  <span class="c1"># Python 3</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="n">MAJOR_VERSION_RE</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(\d+)[.](saas~|)(\d*)(\w*)&#39;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="WorkingDirectoryKeeper"><a class="viewcode-back" href="../../../../apidoc/oca.recipe.odoo.html#oca.recipe.odoo.utils.WorkingDirectoryKeeper">[docs]</a><span class="k">class</span> <span class="nc">WorkingDirectoryKeeper</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A context manager to get back the working directory as it was before.</span>
+
+<span class="sd">    If you want to stack working directory keepers, you need a new instance</span>
+<span class="sd">    for each stage.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">active</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">active</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Already in a working directory keeper !&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wd</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">active</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">exc_args</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wd</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">active</span> <span class="o">=</span> <span class="kc">False</span></div>
+
+
+<span class="n">working_directory_keeper</span> <span class="o">=</span> <span class="n">WorkingDirectoryKeeper</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="use_or_open"><a class="viewcode-back" href="../../../../apidoc/oca.recipe.odoo.html#oca.recipe.odoo.utils.use_or_open">[docs]</a><span class="nd">@contextmanager</span>
+<span class="k">def</span> <span class="nf">use_or_open</span><span class="p">(</span><span class="n">provided</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="o">*</span><span class="n">open_args</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A context manager to use an open file if not None or open one.</span>
+
+<span class="sd">    Useful for code that should be unit-testable, but work on a default file if</span>
+<span class="sd">    None is passed.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">provided</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">provided</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="o">*</span><span class="n">open_args</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">f</span></div>
+
+
+<div class="viewcode-block" id="major_version"><a class="viewcode-back" href="../../../../apidoc/oca.recipe.odoo.html#oca.recipe.odoo.utils.major_version">[docs]</a><span class="k">def</span> <span class="nf">major_version</span><span class="p">(</span><span class="n">version_string</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;The least common denominator of Odoo versions : two numbers.</span>
+
+<span class="sd">    Odoo version numbers are a bit hard to compare if we consider nightly</span>
+<span class="sd">    releases, bzr versions etc. It&#39;s almost impossible to compare them without</span>
+<span class="sd">    an a priori knowledge of release dates and revisions.</span>
+
+<span class="sd">    Here are some examples::</span>
+
+<span class="sd">       &gt;&gt;&gt; major_version(&#39;1.2.3-foo.bar&#39;)</span>
+<span class="sd">       (1, 2)</span>
+<span class="sd">       &gt;&gt;&gt; major_version(&#39;6.1-20121003-233130&#39;)</span>
+<span class="sd">       (6, 1)</span>
+<span class="sd">       &gt;&gt;&gt; major_version(&#39;7.0alpha&#39;)</span>
+<span class="sd">       (7, 0)</span>
+
+<span class="sd">    Beware, the packaging script does funny things, such as labeling current</span>
+<span class="sd">    nightlies as 6.2-date-time whereas version_info is (7, 0, 0, ALPHA)</span>
+<span class="sd">    We can in recipe code check for &gt;= (6, 2), that&#39;s not a big issue.</span>
+
+<span class="sd">    Regarding Odoo saas releases (e.g. 7.saas~1) that are short-lived stable</span>
+<span class="sd">    versions between two &quot;X.0&quot; LTS releases, the &#39;saas~&#39; argument before the</span>
+<span class="sd">    minor version number is stripped. For instance::</span>
+
+<span class="sd">       &gt;&gt;&gt; major_version(&#39;7.saas~3&#39;)</span>
+<span class="sd">       (7, 3)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">m</span> <span class="o">=</span> <span class="n">MAJOR_VERSION_RE</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">version_string</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">m</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Unparseable version string: </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">version_string</span><span class="p">)</span>
+
+    <span class="n">major</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">minor</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">major</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">minor</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;Unrecognized second version segment in </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">version_string</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="is_object_file"><a class="viewcode-back" href="../../../../apidoc/oca.recipe.odoo.html#oca.recipe.odoo.utils.is_object_file">[docs]</a><span class="k">def</span> <span class="nf">is_object_file</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;True if given filename is a python object file.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">filename</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.pyc&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">filename</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.pyo&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="clean_object_files"><a class="viewcode-back" href="../../../../apidoc/oca.recipe.odoo.html#oca.recipe.odoo.utils.clean_object_files">[docs]</a><span class="k">def</span> <span class="nf">clean_object_files</span><span class="p">(</span><span class="n">directory</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Recursively remove object files in given directory.</span>
+
+<span class="sd">    Also remove resulting empty directories.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dirs_to_remove</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">dirpath</span><span class="p">,</span> <span class="n">dirnames</span><span class="p">,</span> <span class="n">filenames</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">topdown</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">to_delete</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dirpath</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+                     <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">filenames</span> <span class="k">if</span> <span class="n">is_object_file</span><span class="p">(</span><span class="n">f</span><span class="p">)]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">dirnames</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">to_delete</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">filenames</span><span class="p">):</span>
+            <span class="n">dirs_to_remove</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dirpath</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">to_delete</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+            <span class="k">except</span><span class="p">:</span>  <span class="c1"># noqa: E722</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Error attempting to unlink </span><span class="si">%r</span><span class="s2">. &quot;</span>
+                                 <span class="s2">&quot;Proceeding anyway.&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">dirs_to_remove</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">rmdir</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>  <span class="c1"># noqa: E722</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Error attempting to rmdir </span><span class="si">%r</span><span class="s2">&quot;</span><span class="p">,</span>
+                             <span class="s2">&quot;Proceeding anyway.&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="check_output"><a class="viewcode-back" href="../../../../apidoc/oca.recipe.odoo.html#oca.recipe.odoo.utils.check_output">[docs]</a><span class="k">def</span> <span class="nf">check_output</span><span class="p">(</span><span class="o">*</span><span class="n">popenargs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Backport of subprocess.check_output from python 2.7.</span>
+
+<span class="sd">    Example (this doctest would be more readable with ELLIPSIS, but</span>
+<span class="sd">    that&#39;s good enough for today):</span>
+
+<span class="sd">    &gt;&gt;&gt; out = check_output([&quot;ls&quot;, &quot;-l&quot;, &quot;/dev/null&quot;])</span>
+<span class="sd">    &gt;&gt;&gt; out.startswith(&#39;crw-rw-rw&#39;)</span>
+<span class="sd">    True</span>
+
+<span class="sd">    The stdout argument is not allowed as it is used internally.</span>
+<span class="sd">    To capture standard error in the result, use stderr=STDOUT.</span>
+
+<span class="sd">    &gt;&gt;&gt; os.environ[&#39;LC_ALL&#39;] = &#39;C&#39;  # for uniformity of error msg</span>
+<span class="sd">    &gt;&gt;&gt; err = check_output([&quot;/bin/sh&quot;, &quot;-c&quot;,</span>
+<span class="sd">    ...               &quot;ls -l non_existent_file ; exit 0&quot;],</span>
+<span class="sd">    ...              stderr=subprocess.STDOUT)</span>
+<span class="sd">    &gt;&gt;&gt; err.strip().endswith(&quot;No such file or directory&quot;)</span>
+<span class="sd">    True</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">(</span><span class="o">*</span><span class="n">popenargs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s1">&#39;stdout&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;stdout argument not allowed, it will be overridden.&#39;</span><span class="p">)</span>
+
+    <span class="n">process</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="o">*</span><span class="n">popenargs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">output</span><span class="p">,</span> <span class="n">unused_err</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">communicate</span><span class="p">()</span>
+    <span class="n">retcode</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">poll</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">retcode</span><span class="p">:</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;args&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">cmd</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">cmd</span> <span class="o">=</span> <span class="n">popenargs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="c1"># in python 2.6, CalledProcessError.__init__ does not have output kwarg</span>
+        <span class="n">exc</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">CalledProcessError</span><span class="p">(</span><span class="n">retcode</span><span class="p">,</span> <span class="n">cmd</span><span class="p">)</span>
+        <span class="n">exc</span><span class="o">.</span><span class="n">output</span> <span class="o">=</span> <span class="n">output</span>
+        <span class="k">raise</span> <span class="n">exc</span>
+    <span class="k">return</span> <span class="n">output</span></div>
+
+
+<span class="n">INLINE_COMMENT_REGEXP</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\s;|^;&#39;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="option_splitlines"><a class="viewcode-back" href="../../../../apidoc/oca.recipe.odoo.html#oca.recipe.odoo.utils.option_splitlines">[docs]</a><span class="k">def</span> <span class="nf">option_splitlines</span><span class="p">(</span><span class="n">opt_val</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Split a multiline option value.</span>
+
+<span class="sd">    This function performs stripping of whitespaces and allows comments as</span>
+<span class="sd">    `ConfigParser &lt;http://docs.python.org/2/library/configparser.html&gt;`_ would</span>
+<span class="sd">    do. Namely:</span>
+
+<span class="sd">    * a line starting with a hash is a comment. This is already taken care of</span>
+<span class="sd">      by ``zc.buildout`` parsing of the configuration file.</span>
+
+<span class="sd">      :mod:`ConfigParser` does not apply this rule to the case where the hash</span>
+<span class="sd">      is after some leading whitespace (e.g, line-continuation</span>
+<span class="sd">      indentation) as in this example::</span>
+
+<span class="sd">          [foo]</span>
+<span class="sd">          bar = line1</span>
+<span class="sd">            line2</span>
+<span class="sd">          # this is a comment</span>
+<span class="sd">            # this is not a comment, and will appear in &#39;bar&#39; value</span>
+
+<span class="sd">      Therefore this function does not have to perform anything with respect to</span>
+<span class="sd">      hash-comments.</span>
+
+<span class="sd">    * everything after a semicolon following a whitespace is a comment::</span>
+
+<span class="sd">          [foo]</span>
+<span class="sd">          bar = line1</span>
+<span class="sd">                line2 ;this is a comment</span>
+
+<span class="sd">    :param basestring opt_val: the raw option value</span>
+<span class="sd">    :returns: tuple of strings</span>
+
+<span class="sd">    doctests (less readable than examples above, but more authoritative)::</span>
+
+<span class="sd">        &gt;&gt;&gt; option_splitlines(&#39;line1\n  line2 ;this is a comment\n  line3&#39;)</span>
+<span class="sd">        (&#39;line1&#39;, &#39;line2&#39;, &#39;line3&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; option_splitlines(&#39;l1\n; inline comment from beginning\n  line3&#39;)</span>
+<span class="sd">        (&#39;l1&#39;, &#39;line3&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; option_splitlines(&#39;l1\n; inline comment from beginning\n  line3&#39;)</span>
+<span class="sd">        (&#39;l1&#39;, &#39;line3&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; option_splitlines(&#39;l1\n  ; disappears after stripping \n  line3&#39;)</span>
+<span class="sd">        (&#39;l1&#39;, &#39;line3&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; option_splitlines(&#39;line1\n\n&#39;)</span>
+<span class="sd">        (&#39;line1&#39;,)</span>
+<span class="sd">        &gt;&gt;&gt; option_splitlines(&#39;&#39;)</span>
+<span class="sd">        ()</span>
+
+<span class="sd">    The return value is guaranteed not to be a single string::</span>
+
+<span class="sd">        &gt;&gt;&gt; option_splitlines(&#39;single&#39;)</span>
+<span class="sd">        (&#39;single&#39;,)</span>
+
+<span class="sd">    For convenience, ``None`` is accepted::</span>
+
+<span class="sd">        &gt;&gt;&gt; option_splitlines(None)</span>
+<span class="sd">        ()</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">opt_val</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">()</span>
+
+    <span class="n">lines</span> <span class="o">=</span> <span class="n">opt_val</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">li</span> <span class="k">for</span> <span class="n">li</span> <span class="ow">in</span> <span class="p">(</span><span class="n">option_strip</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">)</span>
+                 <span class="k">if</span> <span class="n">li</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="option_strip"><a class="viewcode-back" href="../../../../apidoc/oca.recipe.odoo.html#oca.recipe.odoo.utils.option_strip">[docs]</a><span class="k">def</span> <span class="nf">option_strip</span><span class="p">(</span><span class="n">opt_val</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Same as :func:`option_splitlines` for a single line.</span>
+
+<span class="sd">    &gt;&gt;&gt; option_strip(&quot;   hey, we have ; a comment&quot;)</span>
+<span class="sd">    &#39;hey, we have&#39;</span>
+<span class="sd">    &gt;&gt;&gt; option_strip(None) is None</span>
+<span class="sd">    True</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">opt_val</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">INLINE_COMMENT_REGEXP</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">opt_val</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="total_seconds"><a class="viewcode-back" href="../../../../apidoc/oca.recipe.odoo.html#oca.recipe.odoo.utils.total_seconds">[docs]</a><span class="k">def</span> <span class="nf">total_seconds</span><span class="p">(</span><span class="n">td</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Uniformity backport of :meth:`datetime.timedelta.total_seconds``</span>
+
+<span class="sd">    :param td: a :class:`datetime.timedelta` instance</span>
+<span class="sd">    :returns: the number of seconds in ``tdelta``</span>
+
+<span class="sd">    The implementation for Python &lt; 2.7 is taken from the</span>
+<span class="sd">    `standard library documentation</span>
+<span class="sd">    &lt;https://docs.python.org/2.7/library/datetime.html&gt;`_</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">td</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="p">((</span><span class="n">td</span><span class="o">.</span><span class="n">microseconds</span> <span class="o">+</span>
+             <span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">seconds</span> <span class="o">+</span> <span class="n">td</span><span class="o">.</span><span class="n">days</span> <span class="o">*</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">3600</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1e6</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="conf_ensure_section"><a class="viewcode-back" href="../../../../apidoc/oca.recipe.odoo.html#oca.recipe.odoo.utils.conf_ensure_section">[docs]</a><span class="k">def</span> <span class="nf">conf_ensure_section</span><span class="p">(</span><span class="n">conf</span><span class="p">,</span> <span class="n">section</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">conf</span><span class="o">.</span><span class="n">add_section</span><span class="p">(</span><span class="n">section</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">DuplicateSectionError</span><span class="p">:</span>
+        <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="next"><a class="viewcode-back" href="../../../../apidoc/oca.recipe.odoo.html#oca.recipe.odoo.utils.next">[docs]</a><span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="n">iterator</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Python2 compatibility of iterators &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">iterator</span><span class="o">.</span><span class="n">next</span><span class="p">()</span></div>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2011-2021, &lt;a href=&#34;http://anybox.fr/&#34;&gt;Anybox SAS&lt;/a&gt;; 2021 &lt;a href=&#34;https://odoo-community.org/&#34;&gt;Odoo Community Association&lt;/a&gt; and contributors.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

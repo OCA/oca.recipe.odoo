@@ -1,0 +1,634 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>oca.recipe.odoo.vcs.bzr &#8212; Odoo buildout recipe 1.9.3.dev0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/bootstrap-sphinx.css" />
+    <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+    <script src="../../../../../_static/jquery.js"></script>
+    <script src="../../../../../_static/underscore.js"></script>
+    <script src="../../../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../../../../_static/js/jquery-1.12.4.min.js "></script>
+<script type="text/javascript" src="../../../../../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../../../../../_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../../../../../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../../../index.html"><span><img src="../../../../../_static/logo.png"></span>
+          Odoo buildout recipe</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.9</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../../../../../index.html">Home</a></li>
+                <li><a href="https://odoo-community.org">OCA</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../first_steps.html">First steps</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../first_steps.html#how-to-create-and-bootstrap-a-buildout">How to create and bootstrap a buildout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../first_steps.html#example-openerp-7-0-buildouts">Example OpenERP 7.0 buildouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../first_steps.html#example-openerp-6-1-buildout-with-a-custom-addon">Example OpenERP 6.1 buildout with a custom addon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../first_steps.html#example-openerp-6-0-buildout-server-and-clients">Example OpenERP 6.0 buildout (server and clients)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../first_steps.html#continuously-tested-examples">Continuously tested examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../first_steps.html#other-sample-buildouts">Other sample buildouts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../configuration.html">Configuration reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../configuration.html#the-buildout-configuration-file-and-parts">The buildout configuration file and parts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../configuration.html#odoo-recipes">Odoo recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../configuration.html#options-for-assembly-and-source-management">Options for assembly and source management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../configuration.html#options-for-buildout-relocation">Options for buildout relocation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../configuration.html#odoo-options">Odoo options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../configuration.html#options-for-executables-generation-and-serving">Options for executables generation and serving</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../configuration.html#options-for-development-qa-and-introspection">Options for development, QA and introspection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../configuration.html#options-for-download-and-caching-strategies">Options for download and caching strategies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../configuration.html#options-for-release-and-packaging">Options for release and packaging</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../scripts.html">Odoo Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../scripts.html#use-cases">Use cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../scripts.html#declaring-odoo-scripts">Declaring Odoo Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../scripts.html#interactive-consoles">Interactive Consoles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../scripts.html#writing-odoo-scripts">Writing Odoo Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../scripts.html#upgrade-scripts">Upgrade scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../scripts.html#startup-scripts">Startup scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../scripts.html#list-of-internal-entry-points">List of internal entry points</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../dev_prod_workflow.html">Full development to production example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../dev_prod_workflow.html#common-setup">Common setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../dev_prod_workflow.html#developer-s-setup">Developer’s setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../dev_prod_workflow.html#release-and-packaging">Release and packaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../dev_prod_workflow.html#deployment-with-a-server-local-configuration-file">Deployment with a server-local configuration file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../contributing.html">For contributors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../contributing.html#source-and-tracking">Source and tracking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../contributing.html#using-a-development-version">Using a development version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../contributing.html#development-setup">Development setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../contributing.html#building-documentation">Building documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../contributing.html#coding-style">Coding style</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../contributing.html#launching-static-analysis-and-unit-tests">Launching static analysis and unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../contributing.html#integration-tests">Integration tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../contributing.html#continuous-integration">Continuous integration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../devnotes/index.html">Development notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../devnotes/git-sparse-shallow.html">Git shallow clones and selective branch fetching</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.html">oca.recipe.odoo Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.html#id1"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oca.recipe.odoo</span></code> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.base"><code class="xref py py-mod docutils literal notranslate"><span class="pre">base</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.devtools"><code class="xref py py-mod docutils literal notranslate"><span class="pre">devtools</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.server"><code class="xref py py-mod docutils literal notranslate"><span class="pre">server</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.testing"><code class="xref py py-mod docutils literal notranslate"><span class="pre">testing</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.utils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">utils</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.runtime.html">runtime Subpackage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime"><code class="xref py py-mod docutils literal notranslate"><span class="pre">runtime</span></code> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime.session"><code class="xref py py-mod docutils literal notranslate"><span class="pre">session</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime.upgrade"><code class="xref py py-mod docutils literal notranslate"><span class="pre">upgrade</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime.start_odoo"><code class="xref py py-mod docutils literal notranslate"><span class="pre">start_openerp</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime.test_odoo"><code class="xref py py-mod docutils literal notranslate"><span class="pre">test_openerp</span></code> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.vcs.html">vcs Subpackage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs"><code class="xref py py-mod docutils literal notranslate"><span class="pre">vcs</span></code> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.base"><code class="xref py py-mod docutils literal notranslate"><span class="pre">base</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.bzr"><code class="xref py py-mod docutils literal notranslate"><span class="pre">bzr</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.git"><code class="xref py py-mod docutils literal notranslate"><span class="pre">git</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.hg"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hg</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.svn"><code class="xref py py-mod docutils literal notranslate"><span class="pre">svn</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.testing"><code class="xref py py-mod docutils literal notranslate"><span class="pre">testing</span></code> Module</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <h1>Source code for oca.recipe.odoo.vcs.bzr</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">urlparse</span>  <span class="c1"># Python 2</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urlparse</span>  <span class="c1"># Python 3</span>
+<span class="kn">import</span> <span class="nn">urllib</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">StringIO</span> <span class="kn">import</span> <span class="n">StringIO</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+
+<span class="kn">from</span> <span class="nn">zc.buildout</span> <span class="kn">import</span> <span class="n">UserError</span>
+<span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="n">use_or_open</span>
+<span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="n">working_directory_keeper</span>
+<span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="n">check_output</span>
+<span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">SUBPROCESS_ENV</span>
+<span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">BaseRepo</span>
+<span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">update_check_call</span>
+<span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">clone_check_call</span>
+<span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">UpdateError</span>
+<span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">CloneError</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">bzrlib.plugins.launchpad.lp_directory</span> <span class="kn">import</span> <span class="n">LaunchpadDirectory</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="n">LPDIR</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">LPDIR</span> <span class="o">=</span> <span class="n">LaunchpadDirectory</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="BzrBranch"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.bzr.BzrBranch">[docs]</a><span class="k">class</span> <span class="nc">BzrBranch</span><span class="p">(</span><span class="n">BaseRepo</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Represent a Bazaar branch tied to a reference branch.&quot;&quot;&quot;</span>
+
+    <span class="n">vcs_control_dir</span> <span class="o">=</span> <span class="s1">&#39;.bzr&#39;</span>
+
+    <span class="n">vcs_official_name</span> <span class="o">=</span> <span class="s1">&#39;Bazaar&#39;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">BzrBranch</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;bzr-init&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;ligthweight-checkout&quot;</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;The &#39;ligthweight-checkout&#39; *misspelling* is &quot;</span>
+                        <span class="s2">&quot;deprecated as of version 1.7.1 of this buildout &quot;</span>
+                        <span class="s2">&quot;recipe. &quot;</span>
+                        <span class="s2">&quot;Please fix it as &#39;lightweight-checkout&#39;, as it will &quot;</span>
+                        <span class="s2">&quot;probably disappear in version 1.8.&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s1">&#39;bzr-init&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;lightweight-checkout&#39;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;lp:&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">offline</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">LPDIR</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                    <span class="s2">&quot;To use launchpad locations (lp:), bzrlib must be &quot;</span>
+                    <span class="s2">&quot;importable. Please also take care that it&#39;s the same &quot;</span>
+                    <span class="s2">&quot;or working exactly as the one behind the bzr executable&quot;</span><span class="p">)</span>
+
+            <span class="c1"># first arg (name) of look_up is acturally ignored</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="n">LPDIR</span><span class="o">.</span><span class="n">look_up</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+            <span class="n">parsed</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">urlparse</span><span class="o">.</span><span class="n">urlparse</span><span class="p">(</span><span class="n">url</span><span class="p">))</span>
+            <span class="n">parsed</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">quote</span><span class="p">(</span><span class="n">parsed</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">urlparse</span><span class="o">.</span><span class="n">urlunparse</span><span class="p">(</span><span class="n">parsed</span><span class="p">)</span>
+
+<div class="viewcode-block" id="BzrBranch.conf_file_path"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.bzr.BzrBranch.conf_file_path">[docs]</a>    <span class="k">def</span> <span class="nf">conf_file_path</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">,</span> <span class="s1">&#39;.bzr&#39;</span><span class="p">,</span> <span class="s1">&#39;branch&#39;</span><span class="p">,</span> <span class="s1">&#39;branch.conf&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BzrBranch.parse_conf"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.bzr.BzrBranch.parse_conf">[docs]</a>    <span class="k">def</span> <span class="nf">parse_conf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">from_file</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a dict of paths from standard conf (or the given file-like)</span>
+
+<span class="sd">        Reference: http://doc.bazaar.canonical.com/bzr.0.18/configuration.htm</span>
+
+<span class="sd">        &gt;&gt;&gt; from pprint import pprint</span>
+<span class="sd">        &gt;&gt;&gt; branch = BzrBranch(&#39;&#39;, &#39;&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; pprint(branch.parse_conf(StringIO(os.linesep.join([</span>
+<span class="sd">        ...        &quot;parent_location = /some/path&quot;,</span>
+<span class="sd">        ...        &quot;submit_location = /other/path&quot;]))))</span>
+<span class="sd">        {&#39;parent_location&#39;: &#39;/some/path&#39;, &#39;submit_location&#39;: &#39;/other/path&#39;}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="n">use_or_open</span><span class="p">(</span><span class="n">from_file</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">conf_file_path</span><span class="p">())</span> <span class="k">as</span> <span class="n">conffile</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">dict</span><span class="p">((</span><span class="n">name</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span> <span class="n">url</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+                        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">url</span> <span class="ow">in</span> <span class="p">(</span>
+                            <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">conffile</span>
+                            <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="s1">&#39;=&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">))</span>
+        <span class="k">with</span> <span class="n">working_directory_keeper</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BzrBranch.write_conf"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.bzr.BzrBranch.write_conf">[docs]</a>    <span class="k">def</span> <span class="nf">write_conf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">conf</span><span class="p">,</span> <span class="n">to_file</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Write counterpart to :meth:`read_conf`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">linesep</span>
+                 <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">conf</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+        <span class="k">with</span> <span class="n">use_or_open</span><span class="p">(</span><span class="n">to_file</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">conf_file_path</span><span class="p">(),</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">conffile</span><span class="p">:</span>
+            <span class="n">conffile</span><span class="o">.</span><span class="n">writelines</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BzrBranch.update_conf"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.bzr.BzrBranch.update_conf">[docs]</a>    <span class="k">def</span> <span class="nf">update_conf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Update branch.conf.</span>
+
+<span class="sd">        :return bool: ``True`` if parent URL has changed (see lp:1320198)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">conf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_conf</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Cannot read branch.conf of Bazaar branch at </span><span class="si">%s</span><span class="s2"> &quot;</span>
+                         <span class="s2">&quot;Proceeding anyway, remote URLs shall not be &quot;</span>
+                         <span class="s2">&quot;updated if needed. Please check that the branch &quot;</span>
+                         <span class="s2">&quot;is in good shape.&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="n">old_parent</span> <span class="o">=</span> <span class="n">conf</span><span class="p">[</span><span class="s1">&#39;parent_location&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">old_parent</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;lp:&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">previous_conf</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">conf</span><span class="p">)</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">save</span> <span class="o">=</span> <span class="s1">&#39;buildout_save_parent_location_</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">count</span>
+            <span class="k">if</span> <span class="n">save</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">conf</span><span class="p">:</span>
+                <span class="n">conf</span><span class="p">[</span><span class="n">save</span><span class="p">]</span> <span class="o">=</span> <span class="n">old_parent</span>
+                <span class="k">break</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">conf</span><span class="p">[</span><span class="s1">&#39;parent_location&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write_conf</span><span class="p">(</span><span class="n">conf</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="BzrBranch.rollback_conf"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.bzr.BzrBranch.rollback_conf">[docs]</a>    <span class="k">def</span> <span class="nf">rollback_conf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Reset branch.conf to state before latest update_conf changes.</span>
+
+<span class="sd">        Only changes done through the same instance are taken into account.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">previous_conf</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;previous_conf&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">previous_conf</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Rollbacking branch.conf for target </span><span class="si">%r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write_conf</span><span class="p">(</span><span class="n">previous_conf</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BzrBranch.uncommitted_changes"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.bzr.BzrBranch.uncommitted_changes">[docs]</a>    <span class="k">def</span> <span class="nf">uncommitted_changes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;True if we have uncommitted changes.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">check_output</span><span class="p">([</span><span class="s1">&#39;bzr&#39;</span><span class="p">,</span> <span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">],</span>
+                                 <span class="n">env</span><span class="o">=</span><span class="n">SUBPROCESS_ENV</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="BzrBranch.revision_id"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.bzr.BzrBranch.revision_id">[docs]</a>    <span class="k">def</span> <span class="nf">revision_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">revspec</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Convert revision number (revno) to globally unique revision id.</span>
+
+<span class="sd">        :param str revspec: any revision specification</span>
+<span class="sd">        :returns str: revision id specification (directly usable as -r</span>
+<span class="sd">                      argument)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">testament</span> <span class="o">=</span> <span class="n">check_output</span><span class="p">([</span><span class="s1">&#39;bzr&#39;</span><span class="p">,</span> <span class="s1">&#39;testament&#39;</span><span class="p">,</span> <span class="s1">&#39;--strict&#39;</span><span class="p">,</span>
+                                  <span class="s1">&#39;-r&#39;</span><span class="p">,</span> <span class="n">revspec</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">])</span>
+        <span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;revision-id:&#39;</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">testament</span><span class="o">.</span><span class="n">splitlines</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">prefix</span><span class="p">):</span>
+                <span class="k">return</span> <span class="s1">&#39;revid:&#39;</span> <span class="o">+</span> <span class="n">line</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">prefix</span><span class="p">):]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="BzrBranch.parents"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.bzr.BzrBranch.parents">[docs]</a>    <span class="k">def</span> <span class="nf">parents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_revno</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">pip_compatible</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return current revision.</span>
+
+<span class="sd">        :param as_revno: if ``True``, the revno will be returned. By default,</span>
+<span class="sd">                         a full revision id is issued (see :meth:`revision_id`)</span>
+<span class="sd">        :param pip_compatible: currently, setting this to ``True`` forces</span>
+<span class="sd">                               ``as_revno`` to ``True`` (pip URL syntax for bzr</span>
+<span class="sd">                               does not allow revids, because of the ``@`` in</span>
+<span class="sd">                               bzr revids)</span>
+
+<span class="sd">        This method will not detect pending merges, but</span>
+<span class="sd">        :meth:`uncommitted_changes` will, and that is enough for freeze/extract</span>
+<span class="sd">        features.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">revno</span> <span class="o">=</span> <span class="n">check_output</span><span class="p">([</span><span class="s1">&#39;bzr&#39;</span><span class="p">,</span> <span class="s1">&#39;revno&#39;</span><span class="p">,</span> <span class="s1">&#39;--tree&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">],</span>
+                             <span class="n">env</span><span class="o">=</span><span class="n">SUBPROCESS_ENV</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">pip_compatible</span><span class="p">:</span>
+            <span class="n">as_revno</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="n">as_revno</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">revno</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">revision_id</span><span class="p">(</span><span class="n">revno</span><span class="p">)]</span></div>
+
+<div class="viewcode-block" id="BzrBranch.clean"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.bzr.BzrBranch.clean">[docs]</a>    <span class="k">def</span> <span class="nf">clean</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">):</span>
+            <span class="c1"># not branched yet, there&#39;s nothing to clean</span>
+            <span class="k">return</span>
+            <span class="n">subprocess</span><span class="o">.</span><span class="n">check_call</span><span class="p">([</span><span class="s1">&#39;bzr&#39;</span><span class="p">,</span> <span class="s1">&#39;clean-tree&#39;</span><span class="p">,</span>
+                                   <span class="s1">&#39;--ignored&#39;</span><span class="p">,</span> <span class="s1">&#39;--force&#39;</span><span class="p">])</span>
+        <span class="k">with</span> <span class="n">working_directory_keeper</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">)</span>
+            <span class="n">subprocess</span><span class="o">.</span><span class="n">check_call</span><span class="p">([</span><span class="s1">&#39;bzr&#39;</span><span class="p">,</span> <span class="s1">&#39;clean-tree&#39;</span><span class="p">,</span>
+                                   <span class="s1">&#39;--ignored&#39;</span><span class="p">,</span> <span class="s1">&#39;--force&#39;</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="BzrBranch.revert"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.bzr.BzrBranch.revert">[docs]</a>    <span class="k">def</span> <span class="nf">revert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">revision</span><span class="p">):</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Reverting bzr repo at </span><span class="si">%s</span><span class="s2"> to revision </span><span class="si">%r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">,</span>
+                    <span class="n">revision</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">working_directory_keeper</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">)</span>
+            <span class="n">subprocess</span><span class="o">.</span><span class="n">check_call</span><span class="p">([</span><span class="s1">&#39;bzr&#39;</span><span class="p">,</span> <span class="s1">&#39;revert&#39;</span><span class="p">,</span> <span class="s1">&#39;-r&#39;</span><span class="p">,</span> <span class="n">revision</span><span class="p">])</span></div>
+
+    <span class="k">def</span> <span class="nf">_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">revision</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Update existing branch at target dir to given revision.</span>
+
+<span class="sd">        raise UpdateError in case of problems.&quot;&quot;&quot;</span>
+
+        <span class="n">update_check_call</span><span class="p">([</span><span class="s1">&#39;bzr&#39;</span><span class="p">,</span> <span class="s1">&#39;up&#39;</span><span class="p">,</span> <span class="s1">&#39;-r&#39;</span><span class="p">,</span> <span class="n">revision</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">],</span>
+                          <span class="n">env</span><span class="o">=</span><span class="n">SUBPROCESS_ENV</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Updated </span><span class="si">%r</span><span class="s2"> to revision </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">,</span> <span class="n">revision</span><span class="p">)</span>
+
+<div class="viewcode-block" id="BzrBranch.get_revid"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.bzr.BzrBranch.get_revid">[docs]</a>    <span class="k">def</span> <span class="nf">get_revid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">revision</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Convert a locally available revision to a revid.</span>
+
+<span class="sd">        :param str revision: any valid revision string.</span>
+<span class="sd">        :raises: :class:`LookupError` if not actually available.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="n">working_directory_keeper</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">log</span> <span class="o">=</span> <span class="n">check_output</span><span class="p">(</span>
+                    <span class="p">[</span><span class="s1">&#39;bzr&#39;</span><span class="p">,</span> <span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="s1">&#39;--show-ids&#39;</span><span class="p">,</span> <span class="s1">&#39;-r&#39;</span><span class="p">,</span> <span class="n">revision</span><span class="p">],</span>
+                    <span class="n">env</span><span class="o">=</span><span class="n">SUBPROCESS_ENV</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">CalledProcessError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">exc</span><span class="o">.</span><span class="n">returncode</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
+                    <span class="k">raise</span>
+                <span class="k">raise</span> <span class="ne">LookupError</span><span class="p">(</span>
+                    <span class="s2">&quot;could not find revision id for </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">revision</span><span class="p">)</span>
+
+            <span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;revision-id:&#39;</span>
+            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">log</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">linesep</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">prefix</span><span class="p">):</span>
+                    <span class="k">return</span> <span class="n">line</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">prefix</span><span class="p">):]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="k">raise</span> <span class="ne">LookupError</span><span class="p">(</span><span class="s2">&quot;could not find revision id for </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">revision</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BzrBranch.is_revno"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.bzr.BzrBranch.is_revno">[docs]</a>    <span class="k">def</span> <span class="nf">is_revno</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">revspec</span><span class="p">,</span> <span class="n">fixed</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;True iff revspec is a fixed revision number.</span>
+
+<span class="sd">        Valid revision numbers are integers separated by dots.</span>
+
+<span class="sd">        :param fixed: if ``True``, it is further checked that integers</span>
+<span class="sd">                      are positive.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">revno_prefix</span> <span class="o">=</span> <span class="s1">&#39;revno:&#39;</span>
+        <span class="k">if</span> <span class="n">revspec</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">revno_prefix</span><span class="p">):</span>
+            <span class="c1"># GR I checked on Debian&#39;s 2.6.0~bzr6526-1, revno:-1</span>
+            <span class="c1"># is in practice accepted by bzr, so we have to check</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_revno</span><span class="p">(</span><span class="n">revspec</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">revno_prefix</span><span class="p">):])</span>
+
+        <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">revspec</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">part</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">part</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">fixed</span> <span class="ow">and</span> <span class="n">part</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="BzrBranch.is_fixed_revision"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.bzr.BzrBranch.is_fixed_revision">[docs]</a>    <span class="k">def</span> <span class="nf">is_fixed_revision</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">revstr</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;True iff the given revision string is for a fixed revision.&quot;&quot;&quot;</span>
+
+        <span class="n">revstr</span> <span class="o">=</span> <span class="n">revstr</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>  <span class="c1"># one never knows</span>
+        <span class="k">if</span> <span class="n">revstr</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;revid:&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">revstr</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;tag:&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">revstr</span> <span class="ow">or</span> <span class="n">revstr</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;last:&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_revno</span><span class="p">(</span><span class="n">revstr</span><span class="p">,</span> <span class="n">fixed</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="BzrBranch.is_local_fixed_revision"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.bzr.BzrBranch.is_local_fixed_revision">[docs]</a>    <span class="k">def</span> <span class="nf">is_local_fixed_revision</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">revstr</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_fixed_revision</span><span class="p">(</span><span class="n">revstr</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_revid</span><span class="p">(</span><span class="n">revstr</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">LookupError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="BzrBranch.get_update"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.bzr.BzrBranch.get_update">[docs]</a>    <span class="k">def</span> <span class="nf">get_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">revision</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Ensure that target_dir is a branch of url at specified revision.</span>
+
+<span class="sd">        If target_dir already exists, does a simple pull.</span>
+<span class="sd">        Offline-mode: no branch nor pull, but update.</span>
+<span class="sd">        In all cases, an attempt to update is performed before any pull</span>
+
+<span class="sd">        Special case: if the &#39;merge&#39; option is True,</span>
+<span class="sd">        merge revision into current branch.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">target_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span>
+        <span class="n">offline</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">offline</span>
+        <span class="n">clear_locks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">clear_locks</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">target_dir</span><span class="p">)</span> <span class="ow">or</span> \
+                <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;bzr-init&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;merge&#39;</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_branch</span><span class="p">(</span><span class="n">revision</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">CloneError</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">revision</span><span class="p">:</span>
+                    <span class="k">raise</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;First attempt of branching to </span><span class="si">%s</span><span class="s2"> at revision &quot;</span>
+                               <span class="s2">&quot;</span><span class="si">%r</span><span class="s2"> failed. Retrying in two steps.&quot;</span><span class="p">,</span> <span class="n">target_dir</span><span class="p">,</span>
+                               <span class="n">revision</span><span class="p">)</span>
+                <span class="c1"># it really happens, see</span>
+                <span class="c1"># https://bugs.launchpad.net/anybox.recipe.openerp/+bug/1204573</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_branch</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_update</span><span class="p">(</span><span class="n">revision</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># TODO what if bzr source is actually local fs ?</span>
+            <span class="k">if</span> <span class="n">clear_locks</span><span class="p">:</span>
+                <span class="n">yes</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">()</span>
+                <span class="n">yes</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+                <span class="n">yes</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Break-lock for branch </span><span class="si">%s</span><span class="s2"> ...&quot;</span><span class="p">,</span> <span class="n">target_dir</span><span class="p">)</span>
+                <span class="c1"># GR newer versions of bzr have a --force option, but this call</span>
+                <span class="c1"># works also for older ones (fortunately we don&#39;t need a pty)</span>
+                <span class="n">p</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="s1">&#39;bzr&#39;</span><span class="p">,</span> <span class="s1">&#39;break-lock&#39;</span><span class="p">,</span> <span class="n">target_dir</span><span class="p">],</span>
+                                     <span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">)</span>
+                <span class="n">out</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">communicate</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">returncode</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">CalledProcessError</span><span class="p">(</span>
+                        <span class="n">p</span><span class="o">.</span><span class="n">returncode</span><span class="p">,</span> <span class="nb">repr</span><span class="p">([</span><span class="s1">&#39;bzr&#39;</span><span class="p">,</span> <span class="s1">&#39;break-lock&#39;</span><span class="p">,</span> <span class="n">target_dir</span><span class="p">]))</span>
+
+            <span class="n">parent_changed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">update_conf</span><span class="p">()</span>
+            <span class="n">unsafe_revno</span> <span class="o">=</span> <span class="n">parent_changed</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_revno</span><span class="p">(</span><span class="n">revision</span><span class="p">)</span>
+            <span class="n">fixed_rev</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_fixed_revision</span><span class="p">(</span><span class="n">revision</span><span class="p">)</span>
+
+            <span class="n">init_opt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;bzr-init&#39;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">fixed_rev</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">unsafe_revno</span><span class="p">:</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">offline</span> <span class="ow">and</span> <span class="n">init_opt</span> <span class="o">==</span> <span class="s1">&#39;lightweight-checkout&#39;</span><span class="p">):</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Offline mode, no update for lightweight &quot;</span>
+                                   <span class="s2">&quot;checkout at </span><span class="si">%s</span><span class="s2"> on revision </span><span class="si">%r</span><span class="s2">&quot;</span><span class="p">,</span>
+                                   <span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">,</span> <span class="n">revision</span><span class="p">)</span>
+                    <span class="k">return</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_update</span><span class="p">(</span><span class="n">revision</span><span class="p">)</span>
+                    <span class="k">return</span>
+                <span class="k">except</span> <span class="n">UpdateError</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">offline</span><span class="p">:</span>
+                        <span class="k">raise</span>
+
+            <span class="k">if</span> <span class="n">offline</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">parent_changed</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unsafe_revno</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">fixed_rev</span><span class="p">):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">rollback_conf</span><span class="p">()</span>
+                    <span class="k">raise</span> <span class="n">UserError</span><span class="p">(</span>
+                        <span class="s2">&quot;Change of parent URL with live or revno revision &quot;</span>
+                        <span class="s2">&quot;specification: </span><span class="si">%r</span><span class="s2"> is forbidden in offline mode. &quot;</span>
+                        <span class="s2">&quot;If that revno is common to old and new remote &quot;</span>
+                        <span class="s2">&quot;branch, consider using revision IDs &quot;</span>
+                        <span class="s2">&quot;instead.&quot;</span> <span class="o">%</span> <span class="n">revision</span><span class="p">)</span>
+
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Offline mode, no pull for revision </span><span class="si">%r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">revision</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_pull</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">offline</span> <span class="ow">and</span> <span class="n">init_opt</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;stacked-branch&#39;</span><span class="p">,</span>
+                                             <span class="s1">&#39;lightweight-checkout&#39;</span><span class="p">)):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_update</span><span class="p">(</span><span class="n">revision</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_branch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">revision</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Branch or checkout remote repository</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">target_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span>
+        <span class="n">offline</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">offline</span>
+        <span class="c1"># TODO case of local url ?</span>
+        <span class="k">if</span> <span class="n">offline</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span>
+                <span class="s2">&quot;bzr branch </span><span class="si">%s</span><span class="s2"> does not exist; cannot branch it from &quot;</span>
+                <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> (offline mode)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">target_dir</span><span class="p">,</span> <span class="n">url</span><span class="p">))</span>
+
+        <span class="n">options</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span>
+        <span class="k">if</span> <span class="s2">&quot;bzr-init&quot;</span> <span class="ow">in</span> <span class="n">options</span> <span class="ow">and</span> <span class="s2">&quot;bzr-stacked-branches&quot;</span> <span class="ow">in</span> <span class="n">options</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+                <span class="s2">&quot;Both options &#39;bzr-init&#39; and &quot;</span>
+                <span class="s2">&quot;&#39;bzr-stacked-branches&#39; are mutually exclusive. &quot;</span>
+                <span class="s2">&quot;Prefer &#39;bzr-init&#39;.&quot;</span><span class="p">)</span>
+        <span class="n">default</span> <span class="o">=</span> <span class="s2">&quot;branch&quot;</span>
+
+        <span class="k">if</span> <span class="s2">&quot;bzr-stacked-branches&quot;</span> <span class="ow">in</span> <span class="n">options</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;&#39;bzr-stacked-branches&#39; option is deprecated. &quot;</span>
+                           <span class="s2">&quot;Replace by bzr-init=stacked-branch&quot;</span><span class="p">)</span>
+            <span class="n">default</span> <span class="o">=</span> <span class="s2">&quot;stacked-branch&quot;</span>
+
+        <span class="n">bzr_opt</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;bzr-init&quot;</span><span class="p">,</span> <span class="n">default</span><span class="p">)</span>
+        <span class="n">branch_cmd</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bzr&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">bzr_opt</span> <span class="o">==</span> <span class="s2">&quot;branch&quot;</span><span class="p">:</span>
+            <span class="n">branch_cmd</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;branch&quot;</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Branching </span><span class="si">%s</span><span class="s2"> ...&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">bzr_opt</span> <span class="o">==</span> <span class="s2">&quot;stacked-branch&quot;</span><span class="p">:</span>
+            <span class="n">branch_cmd</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">&quot;branch&quot;</span><span class="p">,</span> <span class="s2">&quot;--stacked&quot;</span><span class="p">])</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Stacked branching </span><span class="si">%s</span><span class="s2"> ...&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">bzr_opt</span> <span class="o">==</span> <span class="s2">&quot;lightweight-checkout&quot;</span><span class="p">:</span>
+            <span class="n">branch_cmd</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">&quot;checkout&quot;</span><span class="p">,</span> <span class="s2">&quot;--lightweight&quot;</span><span class="p">])</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Lightweight checkout </span><span class="si">%s</span><span class="s2"> ...&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">bzr_opt</span> <span class="o">==</span> <span class="s2">&quot;merge&quot;</span><span class="p">:</span>
+            <span class="n">branch_cmd</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">&quot;merge&quot;</span><span class="p">,</span> <span class="s2">&quot;--force&quot;</span><span class="p">])</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Merging </span><span class="si">%s</span><span class="s2"> into </span><span class="si">%s</span><span class="s2"> ...&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Unsupported option </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">bzr_opt</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">revision</span><span class="p">:</span>
+            <span class="n">branch_cmd</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s1">&#39;-r&#39;</span><span class="p">,</span> <span class="n">revision</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">bzr_opt</span> <span class="o">==</span> <span class="s2">&quot;merge&quot;</span><span class="p">:</span>
+            <span class="n">branch_cmd</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">url</span><span class="p">,</span> <span class="s1">&#39;-d&#39;</span><span class="p">,</span> <span class="n">target_dir</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">branch_cmd</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">url</span><span class="p">,</span> <span class="n">target_dir</span><span class="p">])</span>
+
+        <span class="n">clone_check_call</span><span class="p">(</span><span class="n">branch_cmd</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">SUBPROCESS_ENV</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_pull</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;bzr-init&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;lightweight-checkout&#39;</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Update lightweight checkout at </span><span class="si">%s</span><span class="s2"> ...&quot;</span><span class="p">,</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">)</span>
+            <span class="n">update_check_call</span><span class="p">([</span><span class="s1">&#39;bzr&#39;</span><span class="p">,</span> <span class="s1">&#39;update&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">],</span>
+                              <span class="n">env</span><span class="o">=</span><span class="n">SUBPROCESS_ENV</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Pull for branch </span><span class="si">%s</span><span class="s2"> ...&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">)</span>
+            <span class="n">update_check_call</span><span class="p">([</span><span class="s1">&#39;bzr&#39;</span><span class="p">,</span> <span class="s1">&#39;pull&#39;</span><span class="p">,</span> <span class="s1">&#39;-d&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">],</span>
+                              <span class="n">env</span><span class="o">=</span><span class="n">SUBPROCESS_ENV</span><span class="p">)</span>
+
+<div class="viewcode-block" id="BzrBranch.archive"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.bzr.BzrBranch.archive">[docs]</a>    <span class="k">def</span> <span class="nf">archive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_path</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">working_directory_keeper</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">)</span>
+            <span class="n">subprocess</span><span class="o">.</span><span class="n">check_call</span><span class="p">([</span><span class="s1">&#39;bzr&#39;</span><span class="p">,</span> <span class="s1">&#39;export&#39;</span><span class="p">,</span> <span class="n">target_path</span><span class="p">])</span></div></div>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2011-2021, &lt;a href=&#34;http://anybox.fr/&#34;&gt;Anybox SAS&lt;/a&gt;; 2021 &lt;a href=&#34;https://odoo-community.org/&#34;&gt;Odoo Community Association&lt;/a&gt; and contributors.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

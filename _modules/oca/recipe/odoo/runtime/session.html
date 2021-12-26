@@ -1,0 +1,765 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>oca.recipe.odoo.runtime.session &#8212; Odoo buildout recipe 1.9.3.dev0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/bootstrap-sphinx.css" />
+    <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+    <script src="../../../../../_static/jquery.js"></script>
+    <script src="../../../../../_static/underscore.js"></script>
+    <script src="../../../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../../../../_static/js/jquery-1.12.4.min.js "></script>
+<script type="text/javascript" src="../../../../../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../../../../../_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../../../../../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../../../index.html"><span><img src="../../../../../_static/logo.png"></span>
+          Odoo buildout recipe</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.9</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../../../../../index.html">Home</a></li>
+                <li><a href="https://odoo-community.org">OCA</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../first_steps.html">First steps</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../first_steps.html#how-to-create-and-bootstrap-a-buildout">How to create and bootstrap a buildout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../first_steps.html#example-openerp-7-0-buildouts">Example OpenERP 7.0 buildouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../first_steps.html#example-openerp-6-1-buildout-with-a-custom-addon">Example OpenERP 6.1 buildout with a custom addon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../first_steps.html#example-openerp-6-0-buildout-server-and-clients">Example OpenERP 6.0 buildout (server and clients)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../first_steps.html#continuously-tested-examples">Continuously tested examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../first_steps.html#other-sample-buildouts">Other sample buildouts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../configuration.html">Configuration reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../configuration.html#the-buildout-configuration-file-and-parts">The buildout configuration file and parts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../configuration.html#odoo-recipes">Odoo recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../configuration.html#options-for-assembly-and-source-management">Options for assembly and source management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../configuration.html#options-for-buildout-relocation">Options for buildout relocation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../configuration.html#odoo-options">Odoo options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../configuration.html#options-for-executables-generation-and-serving">Options for executables generation and serving</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../configuration.html#options-for-development-qa-and-introspection">Options for development, QA and introspection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../configuration.html#options-for-download-and-caching-strategies">Options for download and caching strategies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../configuration.html#options-for-release-and-packaging">Options for release and packaging</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../scripts.html">Odoo Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../scripts.html#use-cases">Use cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../scripts.html#declaring-odoo-scripts">Declaring Odoo Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../scripts.html#interactive-consoles">Interactive Consoles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../scripts.html#writing-odoo-scripts">Writing Odoo Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../scripts.html#upgrade-scripts">Upgrade scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../scripts.html#startup-scripts">Startup scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../scripts.html#list-of-internal-entry-points">List of internal entry points</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../dev_prod_workflow.html">Full development to production example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../dev_prod_workflow.html#common-setup">Common setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../dev_prod_workflow.html#developer-s-setup">Developer’s setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../dev_prod_workflow.html#release-and-packaging">Release and packaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../dev_prod_workflow.html#deployment-with-a-server-local-configuration-file">Deployment with a server-local configuration file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../contributing.html">For contributors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../contributing.html#source-and-tracking">Source and tracking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../contributing.html#using-a-development-version">Using a development version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../contributing.html#development-setup">Development setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../contributing.html#building-documentation">Building documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../contributing.html#coding-style">Coding style</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../contributing.html#launching-static-analysis-and-unit-tests">Launching static analysis and unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../contributing.html#integration-tests">Integration tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../contributing.html#continuous-integration">Continuous integration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../devnotes/index.html">Development notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../devnotes/git-sparse-shallow.html">Git shallow clones and selective branch fetching</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.html">oca.recipe.odoo Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.html#id1"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oca.recipe.odoo</span></code> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.base"><code class="xref py py-mod docutils literal notranslate"><span class="pre">base</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.devtools"><code class="xref py py-mod docutils literal notranslate"><span class="pre">devtools</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.server"><code class="xref py py-mod docutils literal notranslate"><span class="pre">server</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.testing"><code class="xref py py-mod docutils literal notranslate"><span class="pre">testing</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.utils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">utils</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.runtime.html">runtime Subpackage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime"><code class="xref py py-mod docutils literal notranslate"><span class="pre">runtime</span></code> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime.session"><code class="xref py py-mod docutils literal notranslate"><span class="pre">session</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime.upgrade"><code class="xref py py-mod docutils literal notranslate"><span class="pre">upgrade</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime.start_odoo"><code class="xref py py-mod docutils literal notranslate"><span class="pre">start_openerp</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime.test_odoo"><code class="xref py py-mod docutils literal notranslate"><span class="pre">test_openerp</span></code> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.vcs.html">vcs Subpackage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs"><code class="xref py py-mod docutils literal notranslate"><span class="pre">vcs</span></code> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.base"><code class="xref py py-mod docutils literal notranslate"><span class="pre">base</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.bzr"><code class="xref py py-mod docutils literal notranslate"><span class="pre">bzr</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.git"><code class="xref py py-mod docutils literal notranslate"><span class="pre">git</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.hg"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hg</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.svn"><code class="xref py py-mod docutils literal notranslate"><span class="pre">svn</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.testing"><code class="xref py py-mod docutils literal notranslate"><span class="pre">testing</span></code> Module</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <h1>Source code for oca.recipe.odoo.runtime.session</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Utilities to start a server process.&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">distutils.version</span> <span class="kn">import</span> <span class="n">Version</span>
+<span class="kn">from</span> <span class="nn">optparse</span> <span class="kn">import</span> <span class="n">OptionParser</span>  <span class="c1"># we support python &gt;= 2.6</span>
+
+<span class="k">try</span><span class="p">:</span>  <span class="c1"># Allow nose to import this path</span>
+    <span class="kn">import</span> <span class="nn">odoo</span>
+    <span class="n">startup</span> <span class="o">=</span> <span class="n">odoo</span><span class="o">.</span><span class="n">cli</span><span class="o">.</span><span class="n">server</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">odoo</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">config</span>
+    <span class="n">SUPERUSER_ID</span> <span class="o">=</span> <span class="n">odoo</span><span class="o">.</span><span class="n">SUPERUSER_ID</span>
+    <span class="n">parse_version</span> <span class="o">=</span> <span class="n">odoo</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">parse_version</span>
+    <span class="n">version_info</span> <span class="o">=</span> <span class="n">odoo</span><span class="o">.</span><span class="n">release</span><span class="o">.</span><span class="n">version_info</span>
+    <span class="n">Registry</span> <span class="o">=</span> <span class="n">odoo</span><span class="o">.</span><span class="n">modules</span><span class="o">.</span><span class="n">registry</span><span class="o">.</span><span class="n">Registry</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;This must be imported with a buildout odoo recipe &quot;</span>
+                  <span class="s2">&quot;driven sys.path&quot;</span><span class="p">,</span> <span class="ne">RuntimeWarning</span><span class="p">)</span>
+
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">DEFAULT_VERSION_PARAMETER</span> <span class="o">=</span> <span class="s1">&#39;buildout.db_version&#39;</span>
+
+<span class="n">DEFAULT_VERSION_FILE</span> <span class="o">=</span> <span class="s1">&#39;VERSION.txt&#39;</span>
+
+
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&lt;</span> <span class="p">(</span><span class="mi">3</span><span class="p">,):</span>
+    <span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="nb">next</span>
+
+
+<div class="viewcode-block" id="OdooVersion"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#oca.recipe.odoo.runtime.session.OdooVersion">[docs]</a><span class="k">class</span> <span class="nc">OdooVersion</span><span class="p">(</span><span class="n">Version</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Odoo idea of version, wrapped in a class.</span>
+
+<span class="sd">    This is based on :meth:`odoo.tools.parse_version`, and</span>
+<span class="sd">    Provides straight-ahead comparison with tuples of integers, or</span>
+<span class="sd">    distutils Version classes.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="OdooVersion.parse"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#oca.recipe.odoo.runtime.session.OdooVersion.parse">[docs]</a>    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">incoming</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">incoming</span><span class="p">,</span> <span class="n">OdooVersion</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">vstring</span> <span class="o">=</span> <span class="n">incoming</span><span class="o">.</span><span class="n">vstring</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">components</span> <span class="o">=</span> <span class="n">incoming</span><span class="o">.</span><span class="n">components</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">vstring</span> <span class="o">=</span> <span class="n">incoming</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">components</span> <span class="o">=</span> <span class="n">parse_version</span><span class="p">(</span><span class="n">incoming</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vstring</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;OdooVersion(</span><span class="si">%r</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__cmp__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+            <span class="n">other</span> <span class="o">=</span> <span class="s1">&#39;.&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">other</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">):</span>
+            <span class="n">other</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>  <span class="c1"># Works with distutils&#39; Version classes</span>
+
+        <span class="n">other</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">components</span> <span class="o">&gt;</span> <span class="n">other</span><span class="o">.</span><span class="n">components</span><span class="p">)</span> <span class="o">-</span>
+                <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">components</span> <span class="o">&lt;</span> <span class="n">other</span><span class="o">.</span><span class="n">components</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="Session"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#oca.recipe.odoo.runtime.session.Session">[docs]</a><span class="k">class</span> <span class="nc">Session</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A class to give server-level access to one database.</span>
+
+<span class="sd">    There should be exactly one instance of this class per process.</span>
+<span class="sd">    It can be used for any kind of script involving Odoo API, and provides</span>
+<span class="sd">    facilities for upgrade scripts (see also</span>
+<span class="sd">    :mod:oca.recipe.odoo.runtime.upgrade)</span>
+
+<span class="sd">    Before actual use, call :meth:`open`.</span>
+<span class="sd">    Then you&#39;ll have useful attributes and methods reminiscent of the unit test</span>
+<span class="sd">    classes:</span>
+
+<span class="sd">    * :attr:`cr`: a cursor</span>
+<span class="sd">    * :attr:`uid`: user id</span>
+<span class="sd">    * :attr:`registry`: access to model objects</span>
+<span class="sd">    * :attr:`is_initialization`: True if and only if the database was not</span>
+<span class="sd">      initialized before the call to :meth:`open`</span>
+
+<span class="sd">    Example application code::</span>
+
+<span class="sd">       session.open(db_name=&quot;my_db&quot;)</span>
+<span class="sd">       admin = session.registry(&#39;res_users&#39;).browse(session.cr, session.uid, 1)</span>
+<span class="sd">       (...)</span>
+<span class="sd">       session.cr.commit()</span>
+<span class="sd">       session.close()</span>
+
+<span class="sd">    Transaction management is up to user code</span>
+
+<span class="sd">    Upgrade scripts writers should check the version handling properties:</span>
+
+<span class="sd">    * :meth:`db_version`</span>
+<span class="sd">    * :meth:`package_version`</span>
+
+<span class="sd">    Instantiation is done by passing the path to Odoo main</span>
+<span class="sd">    configuration file and the path of the buildout directory.</span>
+
+<span class="sd">    Usually, instantiation code is written by the recipe in the body of the</span>
+<span class="sd">    executable &quot;Odoo scripts&quot; it produces.</span>
+<span class="sd">    Script writers provide a callable that takes a</span>
+<span class="sd">    :class:`.Session` object argument and declare it as a console script entry</span>
+<span class="sd">    point in their distribution.</span>
+<span class="sd">    End users can reference such entry points in their buildout configurations</span>
+<span class="sd">    to have buildout produce the actual executable. See :doc:`/scripts`</span>
+<span class="sd">    for details.</span>
+
+<span class="sd">    Upgrade scripts are a special case of that process, in which the entry</span>
+<span class="sd">    point is actually provided by the recipe and rewraps a user-level</span>
+<span class="sd">    source script.</span>
+
+<span class="sd">    Later versions of the recipe may find a way to pass the whole buildout</span>
+<span class="sd">    configuration (recall that this is to be used in a separate process in</span>
+<span class="sd">    which the buildout configuration has not been parsed).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">conffile</span><span class="p">,</span> <span class="n">buildout_dir</span><span class="p">,</span> <span class="n">parse_config</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">buildout_dir</span> <span class="o">=</span> <span class="n">buildout_dir</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">openerp_config_file</span> <span class="o">=</span> <span class="n">conffile</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_registry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cr</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">parse_config</span><span class="p">:</span>
+            <span class="n">config</span><span class="o">.</span><span class="n">parse_config</span><span class="p">([</span><span class="s1">&#39;-c&#39;</span><span class="p">,</span> <span class="n">conffile</span><span class="p">])</span>
+
+<div class="viewcode-block" id="Session.ready"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#oca.recipe.odoo.runtime.session.Session.ready">[docs]</a>    <span class="k">def</span> <span class="nf">ready</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_registry</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="Session.open"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#oca.recipe.odoo.runtime.session.Session.open">[docs]</a>    <span class="k">def</span> <span class="nf">open</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">with_demo</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Load the database</span>
+
+<span class="sd">        Loading an empty database in Odoo has the side effect of installing</span>
+<span class="sd">        the ``base`` module. Whether to loading demo data or not has therefore</span>
+<span class="sd">        to be decided right away.</span>
+
+<span class="sd">        :param db: database name. If not specified, the same cascading of</span>
+<span class="sd">                   defaults as Odoo mainstream will be applied:</span>
+<span class="sd">                   configuration file, psycopg2/lipq defaults.</span>
+<span class="sd">        :param with_demo: controls the loading of demo data for all</span>
+<span class="sd">                          module installations triggered by this call to</span>
+<span class="sd">                          :meth:`open` and further uses of :meth:`load_modules`</span>
+<span class="sd">                          on this :class:`Session` instance:</span>
+
+<span class="sd">                          * if ``True``, demo data will uniformly be loaded</span>
+<span class="sd">                          * if ``False``, no demo data will be loaded</span>
+<span class="sd">                          * if ``None``, demo data will be loaded according to</span>
+<span class="sd">                            the value of ``without_demo`` in configuration</span>
+
+<span class="sd">                          In all cases, the behaviour will stay consistent</span>
+<span class="sd">                          until the next call of ``open()``, but the</span>
+<span class="sd">                          implementation does not protect against any race</span>
+<span class="sd">                          conditions in Odoo internals.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">db</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">db</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;db_name&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">db</span><span class="p">:</span>
+            <span class="n">db</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>  <span class="c1"># expected value expected by Odoo to start defaulting.</span>
+
+        <span class="n">cnx</span> <span class="o">=</span> <span class="n">odoo</span><span class="o">.</span><span class="n">sql_db</span><span class="o">.</span><span class="n">db_connect</span><span class="p">(</span><span class="n">db</span><span class="p">)</span>
+        <span class="n">cr</span> <span class="o">=</span> <span class="n">cnx</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_initialization</span> <span class="o">=</span> <span class="ow">not</span><span class="p">(</span><span class="n">odoo</span><span class="o">.</span><span class="n">modules</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">is_initialized</span><span class="p">(</span><span class="n">cr</span><span class="p">))</span>
+        <span class="n">cr</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="n">startup</span><span class="o">.</span><span class="n">check_root_user</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ENABLE_POSTGRES_USER&#39;</span><span class="p">):</span>
+            <span class="n">startup</span><span class="o">.</span><span class="n">check_postgres_user</span><span class="p">()</span>
+        <span class="n">odoo</span><span class="o">.</span><span class="n">netsvc</span><span class="o">.</span><span class="n">init_logger</span><span class="p">()</span>
+
+        <span class="n">saved_without_demo</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;without_demo&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">with_demo</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">with_demo</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;without_demo&#39;</span><span class="p">]</span>
+
+        <span class="n">config</span><span class="p">[</span><span class="s1">&#39;without_demo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">with_demo</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">with_demo</span> <span class="o">=</span> <span class="n">with_demo</span>
+
+        <span class="k">if</span> <span class="n">version_info</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_registry</span> <span class="o">=</span> <span class="n">Registry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                <span class="n">db</span><span class="p">,</span> <span class="n">update_module</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Form Odoo 11.0: no get method available</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_registry</span> <span class="o">=</span> <span class="n">Registry</span><span class="p">(</span><span class="n">db</span><span class="p">)</span>
+        <span class="n">config</span><span class="p">[</span><span class="s1">&#39;without_demo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">saved_without_demo</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_cursor</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">uid</span> <span class="o">=</span> <span class="n">SUPERUSER_ID</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_environments</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s1">&#39;res.users&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">with_context</span><span class="p">(</span>
+            <span class="n">prefetch_fields</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">context_get</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">=</span> <span class="n">odoo</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">Environment</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cr</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">uid</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Session.init_environments"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#oca.recipe.odoo.runtime.session.Session.init_environments">[docs]</a>    <span class="k">def</span> <span class="nf">init_environments</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Enter the environments context manager, but don&#39;t leave it</span>
+
+<span class="sd">        Automatically called by :meth:`open` and registry altering methods.</span>
+<span class="sd">        See :class:``openerp.api.Environment`` for explanations about</span>
+<span class="sd">        environments.</span>
+
+<span class="sd">        For OpenERP/Odoo versions prior to the new style API merge, this</span>
+<span class="sd">        is a no-op.</span>
+
+<span class="sd">        This thread-local ``environments`` is initialized and cleaned with</span>
+<span class="sd">        each request in the normal usage of the framework.</span>
+<span class="sd">        That&#39;s why is is provided as a context manager.</span>
+
+<span class="sd">        Therefore, user code probably needs in some case to clean it to avoid</span>
+<span class="sd">        side effects. This can be done by calling :meth:`clean_environments`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">gen_factory</span> <span class="o">=</span> <span class="n">odoo</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">Environment</span><span class="o">.</span><span class="n">manage</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_environments_gen_context</span> <span class="o">=</span> <span class="n">gen_factory</span><span class="p">()</span><span class="o">.</span><span class="n">gen</span>
+        <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_environments_gen_context</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">=</span> <span class="n">odoo</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">Environment</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cr</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">uid</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span>
+                <span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;context&#39;</span><span class="p">,</span> <span class="p">{}</span>
+            <span class="p">)</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Session.clean_environments"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#oca.recipe.odoo.runtime.session.Session.clean_environments">[docs]</a>    <span class="k">def</span> <span class="nf">clean_environments</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reinit</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Cleans the thread-local environment.</span>
+
+<span class="sd">        See :meth:`init_environments` for more details.</span>
+<span class="sd">        This method does nothing if the environments have not been initialized.</span>
+
+<span class="sd">        :param bool reinit: if ``True``, :meth:`init_environments` will be</span>
+<span class="sd">                            called again after cleaning</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">gen_context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_environments_gen_context</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="nb">next</span><span class="p">(</span><span class="n">gen_context</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;clean_environments: we had the context manager, but &quot;</span>
+                        <span class="s2">&quot;it had not been called. This suggest low-leve &quot;</span>
+                        <span class="s2">&quot;tampering with it that should be more cautious. &quot;</span>
+                        <span class="s2">&quot;Proceeding with cleansing.&quot;</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="nb">next</span><span class="p">(</span><span class="n">gen_context</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Called the environments context manager &quot;</span>
+                                   <span class="s2">&quot;twice and it&#39;s not finished. &quot;</span>
+                                   <span class="s2">&quot;This is really unexpected.&quot;</span><span class="p">)</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_environments_gen_context</span>
+        <span class="k">if</span> <span class="n">reinit</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">init_environments</span><span class="p">()</span></div>
+
+    <span class="c1"># A later version might read that from buildout configuration.</span>
+    <span class="n">_version_parameter_name</span> <span class="o">=</span> <span class="n">DEFAULT_VERSION_PARAMETER</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">version_file_path</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Absolute path of the flat file storing the package version.</span>
+
+<span class="sd">        For now this is not configurable, a later version might read it</span>
+<span class="sd">        from buildout configuration.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">buildout_dir</span><span class="p">,</span> <span class="n">DEFAULT_VERSION_FILE</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Session.parse_version_string"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#oca.recipe.odoo.runtime.session.Session.parse_version_string">[docs]</a>    <span class="k">def</span> <span class="nf">parse_version_string</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vstring</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Stable method for downstream code needing to instantiate a version.</span>
+
+<span class="sd">        This method returns an appropriate version instance, without</span>
+<span class="sd">        any dependency on where to import the class from. Especially useful</span>
+<span class="sd">        for applications whose life started before this set of utilities has</span>
+<span class="sd">        been used : this helps building an usable default.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">OdooVersion</span><span class="p">(</span><span class="n">vstring</span><span class="p">)</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">db_version</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Settable property for version stored in DB of the whole buildout.</span>
+
+<span class="sd">        This can be thought as the latest version to which the DB has been</span>
+<span class="sd">        upgraded to.</span>
+<span class="sd">        A simple caching system to avoid querying the DB multiple times is</span>
+<span class="sd">        implemented.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">db_version</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_db_version&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">db_version</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">db_version</span>
+        <span class="n">db_version</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s1">&#39;ir.config_parameter&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get_param</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_version_parameter_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">db_version</span><span class="p">:</span>
+            <span class="c1"># as usual Odoo thinks its simpler to use False as None</span>
+            <span class="c1"># restoring sanity ASAP</span>
+            <span class="n">db_version</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">db_version</span> <span class="o">=</span> <span class="n">OdooVersion</span><span class="p">(</span><span class="n">db_version</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_db_version</span> <span class="o">=</span> <span class="n">db_version</span>
+        <span class="k">return</span> <span class="n">db_version</span>
+
+    <span class="nd">@db_version</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">db_version</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s1">&#39;ir.config_parameter&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_param</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_version_parameter_name</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">version</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_db_version</span> <span class="o">=</span> <span class="n">OdooVersion</span><span class="p">(</span><span class="n">version</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">package_version</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Property reading the version file from buildout directory.</span>
+
+<span class="sd">        Comments introduced with a hash are accepted.</span>
+<span class="sd">        Only the first significant line is taken into account.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pkg_version</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_pkg_version&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pkg_version</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">pkg_version</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">version_file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+                    <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="p">:</span>
+                        <span class="k">continue</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_pkg_version</span> <span class="o">=</span> <span class="n">OdooVersion</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pkg_version</span>
+        <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;No version file could be read, &quot;</span>
+                        <span class="s2">&quot;package version considered to be None&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Session.update_modules_list"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#oca.recipe.odoo.runtime.session.Session.update_modules_list">[docs]</a>    <span class="k">def</span> <span class="nf">update_modules_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Update the list of available Odoo modules, like the UI allows to.</span>
+
+<span class="sd">        This is necessary prior to install of any new module.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s1">&#39;ir.module.module&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">update_list</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Session.init_cursor"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#oca.recipe.odoo.runtime.session.Session.init_cursor">[docs]</a>    <span class="k">def</span> <span class="nf">init_cursor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">db</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_registry</span><span class="p">,</span> <span class="s1">&#39;db&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">db</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># current trunk (future v8)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_registry</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># In Odoo &lt; 8, Registry.cursor() object is</span>
+            <span class="c1"># a context manager providing auto closing,</span>
+            <span class="c1"># but we don&#39;t want to control the whole lifespan</span>
+            <span class="c1"># of the cursor.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cr</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Session.registry"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#oca.recipe.odoo.runtime.session.Session.registry">[docs]</a>    <span class="k">def</span> <span class="nf">registry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Lookup model by name and return a ready-to-work instance to</span>
+<span class="sd">        use the old api. However you must use ``session.env[&#39;model&#39;]`` to</span>
+<span class="sd">        get the instance in the new api (from version 8), this expect to raise</span>
+<span class="sd">        in version 10</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_registry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">model</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Session.rollback"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#oca.recipe.odoo.runtime.session.Session.rollback">[docs]</a>    <span class="k">def</span> <span class="nf">rollback</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clean_environments</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Session.is_cursor_closed"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#oca.recipe.odoo.runtime.session.Session.is_cursor_closed">[docs]</a>    <span class="k">def</span> <span class="nf">is_cursor_closed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Compatibility wrapper.</span>
+
+<span class="sd">        On Odoo 7, the attribute is ``__closed`` but can&#39;t even be accessed</span>
+<span class="sd">        if the cursor is closed (``OperationalError`` is raised systematically</span>
+<span class="sd">        in ``sql_db``)</span>
+
+<span class="sd">        On Odoo 8, the attribute is ``_closed`` and works correctly.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+                   <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;_Cursor__closed&#39;</span><span class="p">,</span> <span class="s1">&#39;_closed&#39;</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Session.close"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#oca.recipe.odoo.runtime.session.Session.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Close the cursor and forget about the current database.</span>
+
+<span class="sd">        The session is thus ready to open another database.</span>
+<span class="sd">        This methods should be idempotent, wouldn&#39;t fail if the cursor is</span>
+<span class="sd">        already closed or the current database is not in registry (either</span>
+<span class="sd">        already deleted, or could not be opened at all)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">dbname</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">dbname</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_cursor_closed</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clean_environments</span><span class="p">()</span>
+        <span class="n">Registry</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">dbname</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Session.update_modules"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#oca.recipe.odoo.runtime.session.Session.update_modules">[docs]</a>    <span class="k">def</span> <span class="nf">update_modules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modules</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Update the prescribed modules in the database.</span>
+
+<span class="sd">        :param db: Database name. If not specified, it is assumed to have</span>
+<span class="sd">                   already been opened with :meth:`open`, e.g, for a prior</span>
+<span class="sd">                   read of :meth:`db_version`.</span>
+<span class="sd">                   If it is specified, then the session in particular opens</span>
+<span class="sd">                   that db and will use it afterwards whether another one</span>
+<span class="sd">                   was already opened or not.</span>
+<span class="sd">        :param modules: any iterable of module names.</span>
+<span class="sd">                        Not installed modules will be ignored</span>
+<span class="sd">                        The special name ``&#39;all&#39;`` triggers the update of</span>
+<span class="sd">                        all installed modules.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">db</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cr</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;update_modules needs either the session to &quot;</span>
+                                 <span class="s2">&quot;be opened or an explicit database name&quot;</span><span class="p">)</span>
+            <span class="n">db</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">dbname</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">module</span> <span class="ow">in</span> <span class="n">modules</span><span class="p">:</span>
+            <span class="n">config</span><span class="p">[</span><span class="s1">&#39;update&#39;</span><span class="p">][</span><span class="n">module</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">version_info</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_registry</span> <span class="o">=</span> <span class="n">Registry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">update_module</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Form Odoo 11.0: no get method available</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_registry</span> <span class="o">=</span> <span class="n">Registry</span><span class="p">(</span><span class="n">db</span><span class="p">)</span>
+        <span class="n">config</span><span class="p">[</span><span class="s1">&#39;update&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_cursor</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clean_environments</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Session.install_modules"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#oca.recipe.odoo.runtime.session.Session.install_modules">[docs]</a>    <span class="k">def</span> <span class="nf">install_modules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modules</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">update_modules_list</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                        <span class="n">open_with_demo</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Install the modules in the database.</span>
+
+<span class="sd">        Has the side effect of closing the current cursor, committing if and</span>
+<span class="sd">        only if the list of modules is updated.</span>
+
+<span class="sd">        Demo data loading is handled consistently with the decision taken</span>
+<span class="sd">        by :meth:`open`.</span>
+
+<span class="sd">        :param db: Database name. If not specified, it is assumed to have</span>
+<span class="sd">                   already been opened with :meth:`open`, e.g, for a prior</span>
+<span class="sd">                   read of :meth:`db_version`.</span>
+<span class="sd">                   If it is specified, then the session in particular opens</span>
+<span class="sd">                   that db and will use it afterwards whether another one</span>
+<span class="sd">                   was already opened or not.</span>
+<span class="sd">        :param modules: any iterable of module names.</span>
+<span class="sd">        :param update_modules_list: if True, will update the module lists</span>
+<span class="sd">                                    *and commit* before the install begins.</span>
+<span class="sd">        :param open_with_demo: if ``db`` is not None, will be passed to</span>
+<span class="sd">                               :meth:`open`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">already_open</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">db</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">already_open</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;install_modules needs either the session to &quot;</span>
+                                 <span class="s2">&quot;be opened or an explicit database name&quot;</span><span class="p">)</span>
+            <span class="n">db</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">dbname</span>
+        <span class="k">elif</span> <span class="n">update_modules_list</span> <span class="ow">and</span> <span class="ow">not</span> <span class="p">(</span>
+                <span class="n">already_open</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">dbname</span> <span class="o">==</span> <span class="n">db</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">db</span><span class="o">=</span><span class="n">db</span><span class="p">,</span> <span class="n">with_demo</span><span class="o">=</span><span class="n">open_with_demo</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">update_modules_list</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">update_modules_list</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">saved_without_demo</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;without_demo&#39;</span><span class="p">]</span>
+
+        <span class="c1"># with update_modules_list=False, an explicitely named DB would not</span>
+        <span class="c1"># have gone through open() yet.</span>
+        <span class="n">config</span><span class="p">[</span><span class="s1">&#39;without_demo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="ow">not</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;with_demo&#39;</span><span class="p">,</span> <span class="n">open_with_demo</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">module</span> <span class="ow">in</span> <span class="n">modules</span><span class="p">:</span>
+            <span class="n">config</span><span class="p">[</span><span class="s1">&#39;init&#39;</span><span class="p">][</span><span class="n">module</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_registry</span> <span class="o">=</span> <span class="n">Registry</span><span class="o">.</span><span class="n">new</span><span class="p">(</span>
+            <span class="n">db</span><span class="p">,</span> <span class="n">update_module</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">force_demo</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">with_demo</span><span class="p">)</span>
+        <span class="n">config</span><span class="p">[</span><span class="s1">&#39;init&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="n">config</span><span class="p">[</span><span class="s1">&#39;without_demo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">saved_without_demo</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_cursor</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clean_environments</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Session.ref"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#oca.recipe.odoo.runtime.session.Session.ref">[docs]</a>    <span class="k">def</span> <span class="nf">ref</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">external_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return ir.model.data object id from its external identifier.</span>
+
+<span class="sd">        :param external_id: External identifier of form module.name.</span>
+<span class="sd">                            e.g. base.user_root</span>
+<span class="sd">        :raise: ValueError if not found or external_id malformed</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="s1">&#39;.&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">external_id</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;ref requires a fully qualified parameter: &#39;module.identifier&#39;&quot;</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">ref</span><span class="p">(</span><span class="n">external_id</span><span class="p">)</span><span class="o">.</span><span class="n">id</span></div>
+
+<div class="viewcode-block" id="Session.browse_ref"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#oca.recipe.odoo.runtime.session.Session.browse_ref">[docs]</a>    <span class="k">def</span> <span class="nf">browse_ref</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">external_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return ir.model.data browse object from its external identifier.</span>
+
+<span class="sd">        :param external_id: External identifier of form module.name.</span>
+<span class="sd">                            e.g. base.user_root</span>
+<span class="sd">        :raise: ValueError if not found or external_id malformed</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="s1">&#39;.&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">external_id</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;browse_ref requires a fully qualified parameter: &quot;</span>
+                <span class="s2">&quot;&#39;module.identifier&#39;&quot;</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">ref</span><span class="p">(</span><span class="n">external_id</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Session.handle_command_line_options"><a class="viewcode-back" href="../../../../../apidoc/oca.recipe.odoo.runtime.html#oca.recipe.odoo.runtime.session.Session.handle_command_line_options">[docs]</a>    <span class="k">def</span> <span class="nf">handle_command_line_options</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">to_handle</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Handle prescribed command line options and eat them.</span>
+
+<span class="sd">        Anything before first occurrence of ``--`` on the command-line is taken</span>
+<span class="sd">        into account and removed from ``sys.argv``.</span>
+
+<span class="sd">        Help messages:</span>
+
+<span class="sd">        If -h or --help is specified  and -- is not, the help for the wrapper</span>
+<span class="sd">        will be printed, and the -h/--help option kept in sys.argv.</span>
+
+<span class="sd">        If -h or --help is specified before --, the help for this wrapper will</span>
+<span class="sd">        be printed and options after -- will be kept in sys.argv.</span>
+
+<span class="sd">        if -h or --help is specified after --, it will be ignored at this</span>
+<span class="sd">        stage, and kept in sys.argv (in most cases triggering help print for</span>
+<span class="sd">        the wrapped script).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">parser</span> <span class="o">=</span> <span class="n">OptionParser</span><span class="p">(</span>
+            <span class="n">usage</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(prog)s</span><span class="s2"> [Odoo options] -- other arguments&quot;</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;This is a script rewrapped by Odoo buildout &quot;</span>
+                        <span class="s2">&quot;recipe to add Odoo-related options on the command &quot;</span>
+                        <span class="s2">&quot;line prior to other arguments.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="s1">&#39;-d&#39;</span> <span class="ow">in</span> <span class="n">to_handle</span><span class="p">:</span>
+            <span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s1">&#39;-d&#39;</span><span class="p">,</span> <span class="s1">&#39;--db-name&#39;</span><span class="p">,</span>
+                              <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Name of the database to work on. &quot;</span>
+                              <span class="s2">&quot;If not specified, the database from &quot;</span>
+                              <span class="s2">&quot;configuration files will be used&quot;</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">sep</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s1">&#39;-h&#39;</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span> <span class="ow">or</span> <span class="s1">&#39;--help&#39;</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">:</span>
+                <span class="c1"># in case of call myscript -h --, only the wrapper help</span>
+                <span class="c1"># will be printed</span>
+                <span class="n">parser</span><span class="o">.</span><span class="n">epilog</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;Help message from the wrapped script, &quot;</span>
+                                 <span class="s2">&quot;if any, will follow.&quot;</span><span class="p">)</span>
+                <span class="n">parser</span><span class="o">.</span><span class="n">print_help</span><span class="p">()</span>
+                <span class="nb">print</span>
+                <span class="k">return</span>
+            <span class="n">our_argv</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">sep</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">our_argv</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">sep</span><span class="p">]</span>
+
+        <span class="n">options</span><span class="p">,</span> <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="n">our_argv</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">sep</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">del</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">sep</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="s1">&#39;-d&#39;</span> <span class="ow">in</span> <span class="n">to_handle</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">db_name</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Opening database </span><span class="si">%r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">options</span><span class="o">.</span><span class="n">db_name</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;No database specified, using the one specified &quot;</span>
+                            <span class="s2">&quot;in buildout configuration.&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">db</span><span class="o">=</span><span class="n">options</span><span class="o">.</span><span class="n">db_name</span><span class="p">)</span></div></div>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2011-2021, &lt;a href=&#34;http://anybox.fr/&#34;&gt;Anybox SAS&lt;/a&gt;; 2021 &lt;a href=&#34;https://odoo-community.org/&#34;&gt;Odoo Community Association&lt;/a&gt; and contributors.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

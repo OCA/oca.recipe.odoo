@@ -1,0 +1,668 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>runtime Subpackage &#8212; Odoo buildout recipe 1.9.3.dev0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="vcs Subpackage" href="oca.recipe.odoo.vcs.html" />
+    <link rel="prev" title="oca.recipe.odoo Package" href="oca.recipe.odoo.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../_static/js/jquery-1.12.4.min.js "></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html"><span><img src="../_static/logo.png"></span>
+          Odoo buildout recipe</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.9</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="https://odoo-community.org">OCA</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../first_steps.html">First steps</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../first_steps.html#how-to-create-and-bootstrap-a-buildout">How to create and bootstrap a buildout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../first_steps.html#example-openerp-7-0-buildouts">Example OpenERP 7.0 buildouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../first_steps.html#example-openerp-6-1-buildout-with-a-custom-addon">Example OpenERP 6.1 buildout with a custom addon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../first_steps.html#example-openerp-6-0-buildout-server-and-clients">Example OpenERP 6.0 buildout (server and clients)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../first_steps.html#continuously-tested-examples">Continuously tested examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../first_steps.html#other-sample-buildouts">Other sample buildouts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html#the-buildout-configuration-file-and-parts">The buildout configuration file and parts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html#odoo-recipes">Odoo recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html#options-for-assembly-and-source-management">Options for assembly and source management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html#options-for-buildout-relocation">Options for buildout relocation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html#odoo-options">Odoo options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html#options-for-executables-generation-and-serving">Options for executables generation and serving</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html#options-for-development-qa-and-introspection">Options for development, QA and introspection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html#options-for-download-and-caching-strategies">Options for download and caching strategies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html#options-for-release-and-packaging">Options for release and packaging</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts.html">Odoo Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../scripts.html#use-cases">Use cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts.html#declaring-odoo-scripts">Declaring Odoo Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts.html#interactive-consoles">Interactive Consoles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts.html#writing-odoo-scripts">Writing Odoo Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts.html#upgrade-scripts">Upgrade scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts.html#startup-scripts">Startup scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts.html#list-of-internal-entry-points">List of internal entry points</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_prod_workflow.html">Full development to production example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dev_prod_workflow.html#common-setup">Common setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_prod_workflow.html#developer-s-setup">Developer’s setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_prod_workflow.html#release-and-packaging">Release and packaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_prod_workflow.html#deployment-with-a-server-local-configuration-file">Deployment with a server-local configuration file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">For contributors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#source-and-tracking">Source and tracking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#using-a-development-version">Using a development version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#development-setup">Development setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#building-documentation">Building documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#coding-style">Coding style</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#launching-static-analysis-and-unit-tests">Launching static analysis and unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#integration-tests">Integration tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#continuous-integration">Continuous integration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../devnotes/index.html">Development notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../devnotes/git-sparse-shallow.html">Git shallow clones and selective branch fetching</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="oca.recipe.odoo.html">oca.recipe.odoo Package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="oca.recipe.odoo.html#id1"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oca.recipe.odoo</span></code> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oca.recipe.odoo.html#module-oca.recipe.odoo.base"><code class="xref py py-mod docutils literal notranslate"><span class="pre">base</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oca.recipe.odoo.html#module-oca.recipe.odoo.devtools"><code class="xref py py-mod docutils literal notranslate"><span class="pre">devtools</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oca.recipe.odoo.html#module-oca.recipe.odoo.server"><code class="xref py py-mod docutils literal notranslate"><span class="pre">server</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oca.recipe.odoo.html#module-oca.recipe.odoo.testing"><code class="xref py py-mod docutils literal notranslate"><span class="pre">testing</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oca.recipe.odoo.html#module-oca.recipe.odoo.utils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">utils</span></code> Module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="oca.recipe.odoo.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">runtime Subpackage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-oca.recipe.odoo.runtime"><code class="xref py py-mod docutils literal notranslate"><span class="pre">runtime</span></code> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-oca.recipe.odoo.runtime.session"><code class="xref py py-mod docutils literal notranslate"><span class="pre">session</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-oca.recipe.odoo.runtime.upgrade"><code class="xref py py-mod docutils literal notranslate"><span class="pre">upgrade</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-oca.recipe.odoo.runtime.start_odoo"><code class="xref py py-mod docutils literal notranslate"><span class="pre">start_openerp</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-oca.recipe.odoo.runtime.test_odoo"><code class="xref py py-mod docutils literal notranslate"><span class="pre">test_openerp</span></code> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="oca.recipe.odoo.vcs.html">vcs Subpackage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs"><code class="xref py py-mod docutils literal notranslate"><span class="pre">vcs</span></code> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.base"><code class="xref py py-mod docutils literal notranslate"><span class="pre">base</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.bzr"><code class="xref py py-mod docutils literal notranslate"><span class="pre">bzr</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.git"><code class="xref py py-mod docutils literal notranslate"><span class="pre">git</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.hg"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hg</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.svn"><code class="xref py py-mod docutils literal notranslate"><span class="pre">svn</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.testing"><code class="xref py py-mod docutils literal notranslate"><span class="pre">testing</span></code> Module</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">runtime Subpackage</a><ul>
+<li><a class="reference internal" href="#module-oca.recipe.odoo.runtime"><code class="xref py py-mod docutils literal notranslate"><span class="pre">runtime</span></code> Package</a><ul>
+<li><a class="reference internal" href="#runtime">Runtime</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-oca.recipe.odoo.runtime.session"><code class="xref py py-mod docutils literal notranslate"><span class="pre">session</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-oca.recipe.odoo.runtime.upgrade"><code class="xref py py-mod docutils literal notranslate"><span class="pre">upgrade</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-oca.recipe.odoo.runtime.start_odoo"><code class="xref py py-mod docutils literal notranslate"><span class="pre">start_openerp</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-oca.recipe.odoo.runtime.test_odoo"><code class="xref py py-mod docutils literal notranslate"><span class="pre">test_openerp</span></code> Module</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="oca.recipe.odoo.html" title="Previous Chapter: oca.recipe.odoo Package"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; oca.recipe.od...</span>
+    </a>
+  </li>
+  <li>
+    <a href="oca.recipe.odoo.vcs.html" title="Next Chapter: vcs Subpackage"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">vcs Subpackage &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../_sources/apidoc/oca.recipe.odoo.runtime.rst.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <section id="runtime-subpackage">
+<h1>runtime Subpackage<a class="headerlink" href="#runtime-subpackage" title="Permalink to this headline">¶</a></h1>
+<section id="module-oca.recipe.odoo.runtime">
+<span id="runtime-package"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">runtime</span></code> Package<a class="headerlink" href="#module-oca.recipe.odoo.runtime" title="Permalink to this headline">¶</a></h2>
+<section id="runtime">
+<h3>Runtime<a class="headerlink" href="#runtime" title="Permalink to this headline">¶</a></h3>
+<p>This subpackage provides encapsulations and entry points for the application
+itself:</p>
+<ul class="simple">
+<li><p>the <code class="docutils literal notranslate"><span class="pre">session</span></code> module features the supporting objects for “Odoo scripts”
+and the dedicated python interpreter.</p></li>
+<li><p>the <code class="docutils literal notranslate"><span class="pre">start_odoo</span></code> and <code class="docutils literal notranslate"><span class="pre">test_odoo</span></code> modules are the entry points for
+the main startup scripts.</p></li>
+</ul>
+<p>This architecture is meant in particular to provide stability and uniformity
+accross Odoo major versions, so that the recipe can be leveraged by
+automated deploymnent tools and continuous integration systems.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="oca.recipe.odoo.runtime.already_imported">
+<span class="sig-prename descclassname"><span class="pre">oca.recipe.odoo.runtime.</span></span><span class="sig-name descname"><span class="pre">already_imported</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/runtime.html#already_imported"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.runtime.already_imported" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience to help some Odoo modules to avoid been imported twice.</p>
+<p>Each call of this function returns a boolean indicated whether the
+specified module was already in the <code class="docutils literal notranslate"><span class="pre">imported_addons</span></code> registry and add it
+inconditionnally.</p>
+<p>Thus caller code is expected to import the module right away if the
+return value was False.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="oca.recipe.odoo.runtime.clear_import_registry">
+<span class="sig-prename descclassname"><span class="pre">oca.recipe.odoo.runtime.</span></span><span class="sig-name descname"><span class="pre">clear_import_registry</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/runtime.html#clear_import_registry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.runtime.clear_import_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+<section id="module-oca.recipe.odoo.runtime.session">
+<span id="session-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">session</span></code> Module<a class="headerlink" href="#module-oca.recipe.odoo.runtime.session" title="Permalink to this headline">¶</a></h2>
+<p>Utilities to start a server process.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="oca.recipe.odoo.runtime.session.OdooVersion">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oca.recipe.odoo.runtime.session.</span></span><span class="sig-name descname"><span class="pre">OdooVersion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vstring</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/runtime/session.html#OdooVersion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.runtime.session.OdooVersion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">distutils.version.Version</span></code></p>
+<p>Odoo idea of version, wrapped in a class.</p>
+<p>This is based on <code class="xref py py-meth docutils literal notranslate"><span class="pre">odoo.tools.parse_version()</span></code>, and
+Provides straight-ahead comparison with tuples of integers, or
+distutils Version classes.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="oca.recipe.odoo.runtime.session.OdooVersion.parse">
+<span class="sig-name descname"><span class="pre">parse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">incoming</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/runtime/session.html#OdooVersion.parse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.runtime.session.OdooVersion.parse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="oca.recipe.odoo.runtime.session.Session">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oca.recipe.odoo.runtime.session.</span></span><span class="sig-name descname"><span class="pre">Session</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conffile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buildout_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parse_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/runtime/session.html#Session"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.runtime.session.Session" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class to give server-level access to one database.</p>
+<p>There should be exactly one instance of this class per process.
+It can be used for any kind of script involving Odoo API, and provides
+facilities for upgrade scripts (see also
+:mod:oca.recipe.odoo.runtime.upgrade)</p>
+<p>Before actual use, call <a class="reference internal" href="#oca.recipe.odoo.runtime.session.Session.open" title="oca.recipe.odoo.runtime.session.Session.open"><code class="xref py py-meth docutils literal notranslate"><span class="pre">open()</span></code></a>.
+Then you’ll have useful attributes and methods reminiscent of the unit test
+classes:</p>
+<ul class="simple">
+<li><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">cr</span></code>: a cursor</p></li>
+<li><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">uid</span></code>: user id</p></li>
+<li><p><a class="reference internal" href="#oca.recipe.odoo.runtime.session.Session.registry" title="oca.recipe.odoo.runtime.session.Session.registry"><code class="xref py py-attr docutils literal notranslate"><span class="pre">registry</span></code></a>: access to model objects</p></li>
+<li><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">is_initialization</span></code>: True if and only if the database was not
+initialized before the call to <a class="reference internal" href="#oca.recipe.odoo.runtime.session.Session.open" title="oca.recipe.odoo.runtime.session.Session.open"><code class="xref py py-meth docutils literal notranslate"><span class="pre">open()</span></code></a></p></li>
+</ul>
+<p>Example application code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">session</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">db_name</span><span class="o">=</span><span class="s2">&quot;my_db&quot;</span><span class="p">)</span>
+<span class="n">admin</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">registry</span><span class="p">(</span><span class="s1">&#39;res_users&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">browse</span><span class="p">(</span><span class="n">session</span><span class="o">.</span><span class="n">cr</span><span class="p">,</span> <span class="n">session</span><span class="o">.</span><span class="n">uid</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="n">session</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+<span class="n">session</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Transaction management is up to user code</p>
+<p>Upgrade scripts writers should check the version handling properties:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#oca.recipe.odoo.runtime.session.Session.db_version" title="oca.recipe.odoo.runtime.session.Session.db_version"><code class="xref py py-meth docutils literal notranslate"><span class="pre">db_version()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#oca.recipe.odoo.runtime.session.Session.package_version" title="oca.recipe.odoo.runtime.session.Session.package_version"><code class="xref py py-meth docutils literal notranslate"><span class="pre">package_version()</span></code></a></p></li>
+</ul>
+<p>Instantiation is done by passing the path to Odoo main
+configuration file and the path of the buildout directory.</p>
+<p>Usually, instantiation code is written by the recipe in the body of the
+executable “Odoo scripts” it produces.
+Script writers provide a callable that takes a
+<a class="reference internal" href="#oca.recipe.odoo.runtime.session.Session" title="oca.recipe.odoo.runtime.session.Session"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></a> object argument and declare it as a console script entry
+point in their distribution.
+End users can reference such entry points in their buildout configurations
+to have buildout produce the actual executable. See <a class="reference internal" href="../scripts.html"><span class="doc">Odoo Scripts</span></a>
+for details.</p>
+<p>Upgrade scripts are a special case of that process, in which the entry
+point is actually provided by the recipe and rewraps a user-level
+source script.</p>
+<p>Later versions of the recipe may find a way to pass the whole buildout
+configuration (recall that this is to be used in a separate process in
+which the buildout configuration has not been parsed).</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="oca.recipe.odoo.runtime.session.Session.browse_ref">
+<span class="sig-name descname"><span class="pre">browse_ref</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">external_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/runtime/session.html#Session.browse_ref"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.runtime.session.Session.browse_ref" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return ir.model.data browse object from its external identifier.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>external_id</strong> – External identifier of form module.name.
+e.g. base.user_root</p>
+</dd>
+<dt class="field-even">Raise</dt>
+<dd class="field-even"><p>ValueError if not found or external_id malformed</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oca.recipe.odoo.runtime.session.Session.clean_environments">
+<span class="sig-name descname"><span class="pre">clean_environments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reinit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/runtime/session.html#Session.clean_environments"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.runtime.session.Session.clean_environments" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cleans the thread-local environment.</p>
+<p>See <a class="reference internal" href="#oca.recipe.odoo.runtime.session.Session.init_environments" title="oca.recipe.odoo.runtime.session.Session.init_environments"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_environments()</span></code></a> for more details.
+This method does nothing if the environments have not been initialized.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>reinit</strong> (<em>bool</em>) – if <code class="docutils literal notranslate"><span class="pre">True</span></code>, <a class="reference internal" href="#oca.recipe.odoo.runtime.session.Session.init_environments" title="oca.recipe.odoo.runtime.session.Session.init_environments"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_environments()</span></code></a> will be
+called again after cleaning</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oca.recipe.odoo.runtime.session.Session.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/runtime/session.html#Session.close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.runtime.session.Session.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close the cursor and forget about the current database.</p>
+<p>The session is thus ready to open another database.
+This methods should be idempotent, wouldn’t fail if the cursor is
+already closed or the current database is not in registry (either
+already deleted, or could not be opened at all)</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="oca.recipe.odoo.runtime.session.Session.db_version">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">db_version</span></span><a class="headerlink" href="#oca.recipe.odoo.runtime.session.Session.db_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Settable property for version stored in DB of the whole buildout.</p>
+<p>This can be thought as the latest version to which the DB has been
+upgraded to.
+A simple caching system to avoid querying the DB multiple times is
+implemented.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oca.recipe.odoo.runtime.session.Session.handle_command_line_options">
+<span class="sig-name descname"><span class="pre">handle_command_line_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">to_handle</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/runtime/session.html#Session.handle_command_line_options"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.runtime.session.Session.handle_command_line_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handle prescribed command line options and eat them.</p>
+<p>Anything before first occurrence of <code class="docutils literal notranslate"><span class="pre">--</span></code> on the command-line is taken
+into account and removed from <code class="docutils literal notranslate"><span class="pre">sys.argv</span></code>.</p>
+<p>Help messages:</p>
+<p>If -h or –help is specified  and – is not, the help for the wrapper
+will be printed, and the -h/–help option kept in sys.argv.</p>
+<p>If -h or –help is specified before –, the help for this wrapper will
+be printed and options after – will be kept in sys.argv.</p>
+<p>if -h or –help is specified after –, it will be ignored at this
+stage, and kept in sys.argv (in most cases triggering help print for
+the wrapped script).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oca.recipe.odoo.runtime.session.Session.init_cursor">
+<span class="sig-name descname"><span class="pre">init_cursor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/runtime/session.html#Session.init_cursor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.runtime.session.Session.init_cursor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oca.recipe.odoo.runtime.session.Session.init_environments">
+<span class="sig-name descname"><span class="pre">init_environments</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/runtime/session.html#Session.init_environments"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.runtime.session.Session.init_environments" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enter the environments context manager, but don’t leave it</p>
+<p>Automatically called by <a class="reference internal" href="#oca.recipe.odoo.runtime.session.Session.open" title="oca.recipe.odoo.runtime.session.Session.open"><code class="xref py py-meth docutils literal notranslate"><span class="pre">open()</span></code></a> and registry altering methods.
+See :class:<code class="docutils literal notranslate"><span class="pre">openerp.api.Environment</span></code> for explanations about
+environments.</p>
+<p>For OpenERP/Odoo versions prior to the new style API merge, this
+is a no-op.</p>
+<p>This thread-local <code class="docutils literal notranslate"><span class="pre">environments</span></code> is initialized and cleaned with
+each request in the normal usage of the framework.
+That’s why is is provided as a context manager.</p>
+<p>Therefore, user code probably needs in some case to clean it to avoid
+side effects. This can be done by calling <a class="reference internal" href="#oca.recipe.odoo.runtime.session.Session.clean_environments" title="oca.recipe.odoo.runtime.session.Session.clean_environments"><code class="xref py py-meth docutils literal notranslate"><span class="pre">clean_environments()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oca.recipe.odoo.runtime.session.Session.install_modules">
+<span class="sig-name descname"><span class="pre">install_modules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">modules</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update_modules_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">open_with_demo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/runtime/session.html#Session.install_modules"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.runtime.session.Session.install_modules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Install the modules in the database.</p>
+<p>Has the side effect of closing the current cursor, committing if and
+only if the list of modules is updated.</p>
+<p>Demo data loading is handled consistently with the decision taken
+by <a class="reference internal" href="#oca.recipe.odoo.runtime.session.Session.open" title="oca.recipe.odoo.runtime.session.Session.open"><code class="xref py py-meth docutils literal notranslate"><span class="pre">open()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>db</strong> – Database name. If not specified, it is assumed to have
+already been opened with <a class="reference internal" href="#oca.recipe.odoo.runtime.session.Session.open" title="oca.recipe.odoo.runtime.session.Session.open"><code class="xref py py-meth docutils literal notranslate"><span class="pre">open()</span></code></a>, e.g, for a prior
+read of <a class="reference internal" href="#oca.recipe.odoo.runtime.session.Session.db_version" title="oca.recipe.odoo.runtime.session.Session.db_version"><code class="xref py py-meth docutils literal notranslate"><span class="pre">db_version()</span></code></a>.
+If it is specified, then the session in particular opens
+that db and will use it afterwards whether another one
+was already opened or not.</p></li>
+<li><p><strong>modules</strong> – any iterable of module names.</p></li>
+<li><p><strong>update_modules_list</strong> – if True, will update the module lists
+<em>and commit</em> before the install begins.</p></li>
+<li><p><strong>open_with_demo</strong> – if <code class="docutils literal notranslate"><span class="pre">db</span></code> is not None, will be passed to
+<a class="reference internal" href="#oca.recipe.odoo.runtime.session.Session.open" title="oca.recipe.odoo.runtime.session.Session.open"><code class="xref py py-meth docutils literal notranslate"><span class="pre">open()</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oca.recipe.odoo.runtime.session.Session.is_cursor_closed">
+<span class="sig-name descname"><span class="pre">is_cursor_closed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/runtime/session.html#Session.is_cursor_closed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.runtime.session.Session.is_cursor_closed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compatibility wrapper.</p>
+<p>On Odoo 7, the attribute is <code class="docutils literal notranslate"><span class="pre">__closed</span></code> but can’t even be accessed
+if the cursor is closed (<code class="docutils literal notranslate"><span class="pre">OperationalError</span></code> is raised systematically
+in <code class="docutils literal notranslate"><span class="pre">sql_db</span></code>)</p>
+<p>On Odoo 8, the attribute is <code class="docutils literal notranslate"><span class="pre">_closed</span></code> and works correctly.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oca.recipe.odoo.runtime.session.Session.open">
+<span class="sig-name descname"><span class="pre">open</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_demo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/runtime/session.html#Session.open"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.runtime.session.Session.open" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the database</p>
+<p>Loading an empty database in Odoo has the side effect of installing
+the <code class="docutils literal notranslate"><span class="pre">base</span></code> module. Whether to loading demo data or not has therefore
+to be decided right away.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>db</strong> – database name. If not specified, the same cascading of
+defaults as Odoo mainstream will be applied:
+configuration file, psycopg2/lipq defaults.</p></li>
+<li><p><strong>with_demo</strong> – <p>controls the loading of demo data for all
+module installations triggered by this call to
+<a class="reference internal" href="#oca.recipe.odoo.runtime.session.Session.open" title="oca.recipe.odoo.runtime.session.Session.open"><code class="xref py py-meth docutils literal notranslate"><span class="pre">open()</span></code></a> and further uses of <code class="xref py py-meth docutils literal notranslate"><span class="pre">load_modules()</span></code>
+on this <a class="reference internal" href="#oca.recipe.odoo.runtime.session.Session" title="oca.recipe.odoo.runtime.session.Session"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></a> instance:</p>
+<ul>
+<li><p>if <code class="docutils literal notranslate"><span class="pre">True</span></code>, demo data will uniformly be loaded</p></li>
+<li><p>if <code class="docutils literal notranslate"><span class="pre">False</span></code>, no demo data will be loaded</p></li>
+<li><p>if <code class="docutils literal notranslate"><span class="pre">None</span></code>, demo data will be loaded according to
+the value of <code class="docutils literal notranslate"><span class="pre">without_demo</span></code> in configuration</p></li>
+</ul>
+<p>In all cases, the behaviour will stay consistent
+until the next call of <code class="docutils literal notranslate"><span class="pre">open()</span></code>, but the
+implementation does not protect against any race
+conditions in Odoo internals.</p>
+</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="oca.recipe.odoo.runtime.session.Session.package_version">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">package_version</span></span><a class="headerlink" href="#oca.recipe.odoo.runtime.session.Session.package_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Property reading the version file from buildout directory.</p>
+<p>Comments introduced with a hash are accepted.
+Only the first significant line is taken into account.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oca.recipe.odoo.runtime.session.Session.parse_version_string">
+<span class="sig-name descname"><span class="pre">parse_version_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vstring</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/runtime/session.html#Session.parse_version_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.runtime.session.Session.parse_version_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stable method for downstream code needing to instantiate a version.</p>
+<p>This method returns an appropriate version instance, without
+any dependency on where to import the class from. Especially useful
+for applications whose life started before this set of utilities has
+been used : this helps building an usable default.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oca.recipe.odoo.runtime.session.Session.ready">
+<span class="sig-name descname"><span class="pre">ready</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/runtime/session.html#Session.ready"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.runtime.session.Session.ready" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oca.recipe.odoo.runtime.session.Session.ref">
+<span class="sig-name descname"><span class="pre">ref</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">external_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/runtime/session.html#Session.ref"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.runtime.session.Session.ref" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return ir.model.data object id from its external identifier.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>external_id</strong> – External identifier of form module.name.
+e.g. base.user_root</p>
+</dd>
+<dt class="field-even">Raise</dt>
+<dd class="field-even"><p>ValueError if not found or external_id malformed</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oca.recipe.odoo.runtime.session.Session.registry">
+<span class="sig-name descname"><span class="pre">registry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/runtime/session.html#Session.registry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.runtime.session.Session.registry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lookup model by name and return a ready-to-work instance to
+use the old api. However you must use <code class="docutils literal notranslate"><span class="pre">session.env['model']</span></code> to
+get the instance in the new api (from version 8), this expect to raise
+in version 10</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oca.recipe.odoo.runtime.session.Session.rollback">
+<span class="sig-name descname"><span class="pre">rollback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/runtime/session.html#Session.rollback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.runtime.session.Session.rollback" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oca.recipe.odoo.runtime.session.Session.update_modules">
+<span class="sig-name descname"><span class="pre">update_modules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">modules</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/runtime/session.html#Session.update_modules"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.runtime.session.Session.update_modules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the prescribed modules in the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>db</strong> – Database name. If not specified, it is assumed to have
+already been opened with <a class="reference internal" href="#oca.recipe.odoo.runtime.session.Session.open" title="oca.recipe.odoo.runtime.session.Session.open"><code class="xref py py-meth docutils literal notranslate"><span class="pre">open()</span></code></a>, e.g, for a prior
+read of <a class="reference internal" href="#oca.recipe.odoo.runtime.session.Session.db_version" title="oca.recipe.odoo.runtime.session.Session.db_version"><code class="xref py py-meth docutils literal notranslate"><span class="pre">db_version()</span></code></a>.
+If it is specified, then the session in particular opens
+that db and will use it afterwards whether another one
+was already opened or not.</p></li>
+<li><p><strong>modules</strong> – any iterable of module names.
+Not installed modules will be ignored
+The special name <code class="docutils literal notranslate"><span class="pre">'all'</span></code> triggers the update of
+all installed modules.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oca.recipe.odoo.runtime.session.Session.update_modules_list">
+<span class="sig-name descname"><span class="pre">update_modules_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/runtime/session.html#Session.update_modules_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.runtime.session.Session.update_modules_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the list of available Odoo modules, like the UI allows to.</p>
+<p>This is necessary prior to install of any new module.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="oca.recipe.odoo.runtime.session.Session.version_file_path">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">version_file_path</span></span><a class="headerlink" href="#oca.recipe.odoo.runtime.session.Session.version_file_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Absolute path of the flat file storing the package version.</p>
+<p>For now this is not configurable, a later version might read it
+from buildout configuration.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-oca.recipe.odoo.runtime.upgrade">
+<span id="upgrade-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">upgrade</span></code> Module<a class="headerlink" href="#module-oca.recipe.odoo.runtime.upgrade" title="Permalink to this headline">¶</a></h2>
+<p>Uniform encapsulation of buildout-local upgrade script.</p>
+<p>The idea is to provide a common set of options, so that upgrade scripts all
+have the same interface, and project maintainers can focus on the decision
+taking logic.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="oca.recipe.odoo.runtime.upgrade.upgrade">
+<span class="sig-prename descclassname"><span class="pre">oca.recipe.odoo.runtime.upgrade.</span></span><span class="sig-name descname"><span class="pre">upgrade</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">upgrade_script</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upgrade_callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buildout_dir</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/runtime/upgrade.html#upgrade"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.runtime.upgrade.upgrade" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run the upgrade from a source file.</p>
+<p>All arguments are set in the standalone script produced by buildout through
+entry point options.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">upgrade_script</span></code>: absolute path to the upgrade script python source.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">upgrade_callable</span></code>: name of the callable in source file actually
+running the script.</p>
+<p>It must accept the two following positional arguments, in that order:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>a <a class="reference internal" href="#oca.recipe.odoo.runtime.session.Session" title="oca.recipe.odoo.runtime.session.Session"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></a> instance (as in standard “Odoo scripts”)</p></li>
+<li><p>a logger (standard object from the <code class="xref py py-mod docutils literal notranslate"><span class="pre">logging</span></code> module)</p></li>
+</ul>
+</div></blockquote>
+<p>and may return a non zero status code to indicate an error.
+Both <code class="docutils literal notranslate"><span class="pre">None</span></code> and 0 are interpreted as success.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conf</span></code>: path to the Odoo configuration file (managed by the recipe)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">buildout_dir</span></code>: directory of the buildout</p></li>
+</ul>
+</dd></dl>
+
+</section>
+<section id="module-oca.recipe.odoo.runtime.start_odoo">
+<span id="start-openerp-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">start_openerp</span></code> Module<a class="headerlink" href="#module-oca.recipe.odoo.runtime.start_odoo" title="Permalink to this headline">¶</a></h2>
+<p>This module bridges the classical <code class="docutils literal notranslate"><span class="pre">openerp-server</span></code> as a console script.</p>
+<p>The <a class="reference internal" href="#oca.recipe.odoo.runtime.start_odoo.main" title="oca.recipe.odoo.runtime.start_odoo.main"><code class="xref py py-func docutils literal notranslate"><span class="pre">main()</span></code></a> function gets registered on the fly by the server recipe as
+a console script entry point and used in particular for <code class="docutils literal notranslate"><span class="pre">start_odoo</span></code> and
+<code class="docutils literal notranslate"><span class="pre">test_odoo</span></code>.</p>
+<p>Some version independence logic for the startup process also get bootstrapped
+from here.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="oca.recipe.odoo.runtime.start_odoo.insert_args">
+<span class="sig-prename descclassname"><span class="pre">oca.recipe.odoo.runtime.start_odoo.</span></span><span class="sig-name descname"><span class="pre">insert_args</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arguments</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/runtime/start_odoo.html#insert_args"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.runtime.start_odoo.insert_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert <cite>arguments</cite> in <code class="docutils literal notranslate"><span class="pre">sys.argv</span></code> (direct impact on child script).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="oca.recipe.odoo.runtime.start_odoo.main">
+<span class="sig-prename descclassname"><span class="pre">oca.recipe.odoo.runtime.start_odoo.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">starter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">just_test</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">server_wide_modules</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gevent_script_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/runtime/start_odoo.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.runtime.start_odoo.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call the <cite>starter</cite> script, dispatching configuration.</p>
+<p>All arguments are set in the standalone script produced by buildout through
+entry point options.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>starter</strong> – path to the main script source file (currently
+<code class="docutils literal notranslate"><span class="pre">openerp-server</span></code>)</p></li>
+<li><p><strong>conf</strong> – path to the Odoo configuration file (managed by the recipe)</p></li>
+<li><p><strong>version</strong> (<em>tuple of integers</em>) – Odoo major version</p></li>
+<li><p><strong>server_wide_modules</strong> – additional server wide modules, to pass with
+the <code class="docutils literal notranslate"><span class="pre">--load</span></code> command-line option (ignored if the option is actually
+there on the command line)</p></li>
+<li><p><strong>just_test</strong> – if True, only run unit tests</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-oca.recipe.odoo.runtime.test_odoo">
+<span id="test-openerp-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">test_openerp</span></code> Module<a class="headerlink" href="#module-oca.recipe.odoo.runtime.test_odoo" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="oca.recipe.odoo.runtime.test_odoo.insert_args">
+<span class="sig-prename descclassname"><span class="pre">oca.recipe.odoo.runtime.test_odoo.</span></span><span class="sig-name descname"><span class="pre">insert_args</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arguments</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/runtime/test_odoo.html#insert_args"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.runtime.test_odoo.insert_args" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="oca.recipe.odoo.runtime.test_odoo.main">
+<span class="sig-prename descclassname"><span class="pre">oca.recipe.odoo.runtime.test_odoo.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">starter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/runtime/test_odoo.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.runtime.test_odoo.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2011-2021, &lt;a href=&#34;http://anybox.fr/&#34;&gt;Anybox SAS&lt;/a&gt;; 2021 &lt;a href=&#34;https://odoo-community.org/&#34;&gt;Odoo Community Association&lt;/a&gt; and contributors.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,472 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>oca.recipe.odoo.testing &#8212; Odoo buildout recipe 1.9.3.dev0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/bootstrap-sphinx.css" />
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../../../_static/js/jquery-1.12.4.min.js "></script>
+<script type="text/javascript" src="../../../../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../../../../_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../../../../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../../index.html"><span><img src="../../../../_static/logo.png"></span>
+          Odoo buildout recipe</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.9</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../../../../index.html">Home</a></li>
+                <li><a href="https://odoo-community.org">OCA</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../first_steps.html">First steps</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../first_steps.html#how-to-create-and-bootstrap-a-buildout">How to create and bootstrap a buildout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../first_steps.html#example-openerp-7-0-buildouts">Example OpenERP 7.0 buildouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../first_steps.html#example-openerp-6-1-buildout-with-a-custom-addon">Example OpenERP 6.1 buildout with a custom addon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../first_steps.html#example-openerp-6-0-buildout-server-and-clients">Example OpenERP 6.0 buildout (server and clients)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../first_steps.html#continuously-tested-examples">Continuously tested examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../first_steps.html#other-sample-buildouts">Other sample buildouts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../configuration.html">Configuration reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration.html#the-buildout-configuration-file-and-parts">The buildout configuration file and parts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration.html#odoo-recipes">Odoo recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration.html#options-for-assembly-and-source-management">Options for assembly and source management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration.html#options-for-buildout-relocation">Options for buildout relocation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration.html#odoo-options">Odoo options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration.html#options-for-executables-generation-and-serving">Options for executables generation and serving</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration.html#options-for-development-qa-and-introspection">Options for development, QA and introspection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration.html#options-for-download-and-caching-strategies">Options for download and caching strategies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration.html#options-for-release-and-packaging">Options for release and packaging</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../scripts.html">Odoo Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../scripts.html#use-cases">Use cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../scripts.html#declaring-odoo-scripts">Declaring Odoo Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../scripts.html#interactive-consoles">Interactive Consoles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../scripts.html#writing-odoo-scripts">Writing Odoo Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../scripts.html#upgrade-scripts">Upgrade scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../scripts.html#startup-scripts">Startup scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../scripts.html#list-of-internal-entry-points">List of internal entry points</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dev_prod_workflow.html">Full development to production example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../dev_prod_workflow.html#common-setup">Common setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../dev_prod_workflow.html#developer-s-setup">Developer’s setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../dev_prod_workflow.html#release-and-packaging">Release and packaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../dev_prod_workflow.html#deployment-with-a-server-local-configuration-file">Deployment with a server-local configuration file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">For contributors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../contributing.html#source-and-tracking">Source and tracking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../contributing.html#using-a-development-version">Using a development version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../contributing.html#development-setup">Development setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../contributing.html#building-documentation">Building documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../contributing.html#coding-style">Coding style</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../contributing.html#launching-static-analysis-and-unit-tests">Launching static analysis and unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../contributing.html#integration-tests">Integration tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../contributing.html#continuous-integration">Continuous integration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../devnotes/index.html">Development notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../devnotes/git-sparse-shallow.html">Git shallow clones and selective branch fetching</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.html">oca.recipe.odoo Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.html#id1"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oca.recipe.odoo</span></code> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.base"><code class="xref py py-mod docutils literal notranslate"><span class="pre">base</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.devtools"><code class="xref py py-mod docutils literal notranslate"><span class="pre">devtools</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.server"><code class="xref py py-mod docutils literal notranslate"><span class="pre">server</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.testing"><code class="xref py py-mod docutils literal notranslate"><span class="pre">testing</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.html#module-oca.recipe.odoo.utils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">utils</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.runtime.html">runtime Subpackage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime"><code class="xref py py-mod docutils literal notranslate"><span class="pre">runtime</span></code> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime.session"><code class="xref py py-mod docutils literal notranslate"><span class="pre">session</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime.upgrade"><code class="xref py py-mod docutils literal notranslate"><span class="pre">upgrade</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime.start_odoo"><code class="xref py py-mod docutils literal notranslate"><span class="pre">start_openerp</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime.test_odoo"><code class="xref py py-mod docutils literal notranslate"><span class="pre">test_openerp</span></code> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.vcs.html">vcs Subpackage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs"><code class="xref py py-mod docutils literal notranslate"><span class="pre">vcs</span></code> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.base"><code class="xref py py-mod docutils literal notranslate"><span class="pre">base</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.bzr"><code class="xref py py-mod docutils literal notranslate"><span class="pre">bzr</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.git"><code class="xref py py-mod docutils literal notranslate"><span class="pre">git</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.hg"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hg</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.svn"><code class="xref py py-mod docutils literal notranslate"><span class="pre">svn</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../apidoc/oca.recipe.odoo.vcs.html#module-oca.recipe.odoo.vcs.testing"><code class="xref py py-mod docutils literal notranslate"><span class="pre">testing</span></code> Module</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <h1>Source code for oca.recipe.odoo.testing</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Utilities for unit tests.&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">unittest</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">tempfile</span> <span class="kn">import</span> <span class="n">mkdtemp</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">UserDict</span>
+
+<span class="kn">from</span> <span class="nn">zc.buildout.easy_install</span> <span class="kn">import</span> <span class="n">Installer</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">vcs</span>
+<span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">BaseRecipe</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">COMMIT_USER_NAME</span> <span class="o">=</span> <span class="s1">&#39;Test&#39;</span>
+<span class="n">COMMIT_USER_EMAIL</span> <span class="o">=</span> <span class="s1">&#39;test@example.org&#39;</span>
+<span class="n">COMMIT_USER_FULL</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">COMMIT_USER_NAME</span><span class="p">,</span> <span class="n">COMMIT_USER_EMAIL</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="TestingRecipe"><a class="viewcode-back" href="../../../../apidoc/oca.recipe.odoo.html#oca.recipe.odoo.testing.TestingRecipe">[docs]</a><span class="k">class</span> <span class="nc">TestingRecipe</span><span class="p">(</span><span class="n">BaseRecipe</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A subclass with just enough few defaults for unit testing.&quot;&quot;&quot;</span>
+
+    <span class="n">release_filenames</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;10.0&#39;</span><span class="p">:</span> <span class="s1">&#39;blob-</span><span class="si">%s</span><span class="s1">.tgz&#39;</span><span class="p">}</span>
+    <span class="n">nightly_filenames</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;10.0rc1c&#39;</span><span class="p">:</span> <span class="s1">&#39;10-0-nightly-</span><span class="si">%s</span><span class="s1">.tbz&#39;</span><span class="p">}</span>
+    <span class="n">release_dl_url</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;10.0&#39;</span><span class="p">:</span> <span class="s1">&#39;http://release.odoo.test/src/&#39;</span><span class="p">}</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">buildout</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">options</span><span class="p">):</span>
+        <span class="c1"># we need to make buildout a regular object, because some subsystems</span>
+        <span class="c1"># will set extra attributes on it</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">buildout</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="n">buildout</span> <span class="o">=</span> <span class="n">UserDict</span><span class="p">(</span><span class="n">buildout</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TestingRecipe</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">buildout</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="FakeRepo"><a class="viewcode-back" href="../../../../apidoc/oca.recipe.odoo.html#oca.recipe.odoo.testing.FakeRepo">[docs]</a><span class="k">class</span> <span class="nc">FakeRepo</span><span class="p">(</span><span class="n">vcs</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">BaseRepo</span><span class="p">):</span>
+
+    <span class="n">log</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">log_std_options</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="n">vcs_control_dir</span> <span class="o">=</span> <span class="s1">&#39;.fake&#39;</span>
+
+    <span class="n">revision</span> <span class="o">=</span> <span class="s1">&#39;fakerev&#39;</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;fakevcs&#39;</span>  <span class="c1"># for pip.vcs.VersionSupport registration</span>
+
+    <span class="n">schemes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;fakevcs+http&#39;</span><span class="p">]</span>  <span class="c1"># for pip._internal.vcs scheme checking</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_dir</span><span class="o">=</span><span class="s1">&#39;.fake&#39;</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="s1">&#39;.fake&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">target_dir</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>
+
+<div class="viewcode-block" id="FakeRepo.get_update"><a class="viewcode-back" href="../../../../apidoc/oca.recipe.odoo.html#oca.recipe.odoo.testing.FakeRepo.get_update">[docs]</a>    <span class="k">def</span> <span class="nf">get_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">revision</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">revision</span> <span class="o">=</span> <span class="n">revision</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">)</span>
+        <span class="n">control</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">vcs_control_dir</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">control</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">control</span><span class="p">)</span>
+
+        <span class="n">options</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_std_options</span><span class="p">:</span>
+            <span class="n">options</span><span class="p">[</span><span class="s1">&#39;offline&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">offline</span>
+            <span class="n">options</span><span class="p">[</span><span class="s1">&#39;clear_locks&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">clear_locks</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">revision</span><span class="p">,</span> <span class="n">options</span><span class="p">),)</span></div>
+
+<div class="viewcode-block" id="FakeRepo.revert"><a class="viewcode-back" href="../../../../apidoc/oca.recipe.odoo.html#oca.recipe.odoo.testing.FakeRepo.revert">[docs]</a>    <span class="k">def</span> <span class="nf">revert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">revision</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">revision</span> <span class="o">=</span> <span class="n">revision</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s1">&#39;revert&#39;</span><span class="p">,</span> <span class="n">revision</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="FakeRepo.parents"><a class="viewcode-back" href="../../../../apidoc/oca.recipe.odoo.html#oca.recipe.odoo.testing.FakeRepo.parents">[docs]</a>    <span class="k">def</span> <span class="nf">parents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pip_compatible</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">revision</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="FakeRepo.archive"><a class="viewcode-back" href="../../../../apidoc/oca.recipe.odoo.html#oca.recipe.odoo.testing.FakeRepo.archive">[docs]</a>    <span class="k">def</span> <span class="nf">archive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">target</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="s1">&#39;.fake_archival.txt&#39;</span><span class="p">),</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">revision</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="FakeRepo.is_local_fixed_revision"><a class="viewcode-back" href="../../../../apidoc/oca.recipe.odoo.html#oca.recipe.odoo.testing.FakeRepo.is_local_fixed_revision">[docs]</a>    <span class="k">def</span> <span class="nf">is_local_fixed_revision</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">revspec</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">revspec</span> <span class="ow">in</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;fixed_revs&#39;</span><span class="p">,</span> <span class="p">())</span></div></div>
+
+
+<span class="n">vcs</span><span class="o">.</span><span class="n">SUPPORTED</span><span class="p">[</span><span class="s1">&#39;fakevcs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">FakeRepo</span>
+
+
+<div class="viewcode-block" id="get_vcs_log"><a class="viewcode-back" href="../../../../apidoc/oca.recipe.odoo.html#oca.recipe.odoo.testing.get_vcs_log">[docs]</a><span class="k">def</span> <span class="nf">get_vcs_log</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">FakeRepo</span><span class="o">.</span><span class="n">log</span></div>
+
+
+<div class="viewcode-block" id="clear_vcs_log"><a class="viewcode-back" href="../../../../apidoc/oca.recipe.odoo.html#oca.recipe.odoo.testing.clear_vcs_log">[docs]</a><span class="k">def</span> <span class="nf">clear_vcs_log</span><span class="p">():</span>
+    <span class="n">FakeRepo</span><span class="o">.</span><span class="n">log</span> <span class="o">=</span> <span class="p">[]</span></div>
+
+
+<div class="viewcode-block" id="PersistentRevFakeRepo"><a class="viewcode-back" href="../../../../apidoc/oca.recipe.odoo.html#oca.recipe.odoo.testing.PersistentRevFakeRepo">[docs]</a><span class="k">class</span> <span class="nc">PersistentRevFakeRepo</span><span class="p">(</span><span class="n">FakeRepo</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A variant of FakeRepo that still needs the directory structure around.</span>
+
+<span class="sd">    Makes for a more realistic test of some conditions.</span>
+<span class="sd">    In particular, reproduced launchpad #TODO</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">current_revisions</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">revision</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">current_revisions</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">,</span> <span class="s1">&#39;fakerev&#39;</span><span class="p">)</span>
+
+    <span class="nd">@revision</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">revision</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">current_revisions</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+
+<div class="viewcode-block" id="PersistentRevFakeRepo.uncommitted_changes"><a class="viewcode-back" href="../../../../apidoc/oca.recipe.odoo.html#oca.recipe.odoo.testing.PersistentRevFakeRepo.uncommitted_changes">[docs]</a>    <span class="k">def</span> <span class="nf">uncommitted_changes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This needs the directory to really exist and is controllable.&quot;&quot;&quot;</span>
+        <span class="n">files</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_dir</span><span class="p">))</span>
+        <span class="n">files</span><span class="o">.</span><span class="n">discard</span><span class="p">(</span><span class="s1">&#39;.fake&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">files</span><span class="p">)</span></div></div>
+
+
+<span class="n">vcs</span><span class="o">.</span><span class="n">SUPPORTED</span><span class="p">[</span><span class="s1">&#39;pr_fakevcs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">PersistentRevFakeRepo</span>
+
+
+<div class="viewcode-block" id="RecipeTestCase"><a class="viewcode-back" href="../../../../apidoc/oca.recipe.odoo.html#oca.recipe.odoo.testing.RecipeTestCase">[docs]</a><span class="k">class</span> <span class="nc">RecipeTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A base setup for tests of recipe classes&quot;&quot;&quot;</span>
+
+    <span class="n">fictive_dist_name</span> <span class="o">=</span> <span class="s1">&#39;FictiveDist&#39;</span>
+    <span class="n">fictive_name</span> <span class="o">=</span> <span class="s1">&#39;fictivedist&#39;</span>
+    <span class="n">fictive_version</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="RecipeTestCase.setUp"><a class="viewcode-back" href="../../../../apidoc/oca.recipe.odoo.html#oca.recipe.odoo.testing.RecipeTestCase.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">b_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">buildout_dir</span> <span class="o">=</span> <span class="n">mkdtemp</span><span class="p">(</span><span class="s1">&#39;test_oerp_base_recipe&#39;</span><span class="p">)</span>
+        <span class="n">eggs_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">b_dir</span><span class="p">,</span> <span class="s1">&#39;eggs&#39;</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">eggs_dir</span><span class="p">)</span>
+        <span class="n">develop_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">b_dir</span><span class="p">,</span> <span class="s1">&#39;develop-eggs&#39;</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">develop_dir</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">buildout</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">buildout</span><span class="p">[</span><span class="s1">&#39;buildout&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;directory&#39;</span><span class="p">:</span> <span class="n">b_dir</span><span class="p">,</span>
+            <span class="s1">&#39;offline&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s1">&#39;parts-directory&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">b_dir</span><span class="p">,</span> <span class="s1">&#39;parts&#39;</span><span class="p">),</span>
+            <span class="s1">&#39;bin-directory&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">b_dir</span><span class="p">,</span> <span class="s1">&#39;bin&#39;</span><span class="p">),</span>
+            <span class="s1">&#39;find-links&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;allow-hosts&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;eggs-directory&#39;</span><span class="p">:</span> <span class="n">eggs_dir</span><span class="p">,</span>
+            <span class="s1">&#39;develop-eggs-directory&#39;</span><span class="p">:</span> <span class="n">develop_dir</span><span class="p">,</span>
+            <span class="s1">&#39;python&#39;</span><span class="p">:</span> <span class="s1">&#39;main_python&#39;</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">buildout</span><span class="p">[</span><span class="s1">&#39;main_python&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">executable</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">executable</span><span class="p">)</span>
+
+        <span class="c1"># temporary monkey patch of easy_install to avoid actual requests to</span>
+        <span class="c1"># PyPI (offline mode currently does not protect against that, even</span>
+        <span class="c1"># though I checked that it is recognized by zc.recipe.egg</span>
+        <span class="c1"># TODO this does not seem to really work in some context</span>
+        <span class="c1"># (Debian wheezy buildslave in a virtualenv, with zc.recipe.egg 2.0.0a3</span>
+        <span class="c1"># we see nose being downloaded several times)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unreachable_distributions</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exc_distributions</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># distrib name -&gt; exc to raise</span>
+        <span class="n">Installer</span><span class="o">.</span><span class="n">_orig_obtain</span> <span class="o">=</span> <span class="n">Installer</span><span class="o">.</span><span class="n">_obtain</span>
+
+        <span class="k">def</span> <span class="nf">_obtain</span><span class="p">(</span><span class="n">inst</span><span class="p">,</span> <span class="n">requirement</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">requirement</span><span class="o">.</span><span class="n">project_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">unreachable_distributions</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">None</span>
+            <span class="n">exc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">exc_distributions</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">requirement</span><span class="o">.</span><span class="n">project_name</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">exc</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">exc</span>
+            <span class="k">return</span> <span class="n">inst</span><span class="o">.</span><span class="n">_orig_obtain</span><span class="p">(</span><span class="n">requirement</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">)</span>
+        <span class="n">Installer</span><span class="o">.</span><span class="n">_obtain</span> <span class="o">=</span> <span class="n">_obtain</span></div>
+
+<div class="viewcode-block" id="RecipeTestCase.make_recipe"><a class="viewcode-back" href="../../../../apidoc/oca.recipe.odoo.html#oca.recipe.odoo.testing.RecipeTestCase.make_recipe">[docs]</a>    <span class="k">def</span> <span class="nf">make_recipe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;odoo&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">recipe</span> <span class="o">=</span> <span class="n">TestingRecipe</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">buildout</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RecipeTestCase.tearDown"><a class="viewcode-back" href="../../../../apidoc/oca.recipe.odoo.html#oca.recipe.odoo.testing.RecipeTestCase.tearDown">[docs]</a>    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">clear_vcs_log</span><span class="p">()</span>
+        <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">buildout_dir</span><span class="p">)</span>
+        <span class="n">Installer</span><span class="o">.</span><span class="n">_obtain</span> <span class="o">=</span> <span class="n">Installer</span><span class="o">.</span><span class="n">_orig_obtain</span>
+
+        <span class="c1"># leftover egg-info at root of the source dir (frequent cwd)</span>
+        <span class="c1"># impairs use of this very same source dir for real-life testing</span>
+        <span class="c1"># with a &#39;develop&#39; option.</span>
+        <span class="k">for</span> <span class="n">egg_info</span> <span class="ow">in</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fictive_dist_name</span> <span class="o">+</span> <span class="s1">&#39;.egg-info&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;Babel.egg-info&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">egg_info</span><span class="p">):</span>
+                <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">egg_info</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RecipeTestCase.build_babel_egg"><a class="viewcode-back" href="../../../../apidoc/oca.recipe.odoo.html#oca.recipe.odoo.testing.RecipeTestCase.build_babel_egg">[docs]</a>    <span class="k">def</span> <span class="nf">build_babel_egg</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;build an egg for fake babel in buildout&#39;s eggs directory.</span>
+
+<span class="sd">        Require the test case to already have a ``test_dir`` attribute</span>
+<span class="sd">        (typically set on class with the dirname of the test)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">subprocess</span><span class="o">.</span><span class="n">check_call</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">sys</span><span class="o">.</span><span class="n">executable</span><span class="p">,</span> <span class="s1">&#39;setup.py&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;bdist_egg&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;-d&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">recipe</span><span class="o">.</span><span class="n">b_options</span><span class="p">[</span><span class="s1">&#39;eggs-directory&#39;</span><span class="p">],</span>
+             <span class="s1">&#39;-b&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">buildout_dir</span><span class="p">,</span> <span class="s1">&#39;build&#39;</span><span class="p">)],</span>
+            <span class="n">cwd</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_dir</span><span class="p">,</span> <span class="s1">&#39;fake_babel&#39;</span><span class="p">),</span>
+            <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
+            <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RecipeTestCase.build_fictive_egg"><a class="viewcode-back" href="../../../../apidoc/oca.recipe.odoo.html#oca.recipe.odoo.testing.RecipeTestCase.build_fictive_egg">[docs]</a>    <span class="k">def</span> <span class="nf">build_fictive_egg</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;build an egg of a fictive distribution for testing purposes.</span>
+
+<span class="sd">        Require the test case to already have a ``test_dir`` attribute</span>
+<span class="sd">        (typically set on class with the dirname of the test)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">subprocess</span><span class="o">.</span><span class="n">check_call</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">sys</span><span class="o">.</span><span class="n">executable</span><span class="p">,</span> <span class="s1">&#39;setup.py&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;bdist_egg&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;-d&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">recipe</span><span class="o">.</span><span class="n">b_options</span><span class="p">[</span><span class="s1">&#39;eggs-directory&#39;</span><span class="p">],</span>
+             <span class="s1">&#39;-b&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">buildout_dir</span><span class="p">,</span> <span class="s1">&#39;build&#39;</span><span class="p">)],</span>
+            <span class="n">cwd</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_dir</span><span class="p">,</span> <span class="s1">&#39;fictive_dist&#39;</span><span class="p">),</span>
+            <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
+            <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RecipeTestCase.fill_working_set"><a class="viewcode-back" href="../../../../apidoc/oca.recipe.odoo.html#oca.recipe.odoo.testing.RecipeTestCase.fill_working_set">[docs]</a>    <span class="k">def</span> <span class="nf">fill_working_set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fictive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">babel</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">fictive</span> <span class="ow">or</span> <span class="n">babel</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">babel</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">build_babel_egg</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">recipe</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s1">&#39;eggs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Babel&#39;</span>
+        <span class="k">if</span> <span class="n">fictive</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">build_fictive_egg</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">recipe</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s1">&#39;eggs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fictive_dist_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">recipe</span><span class="o">.</span><span class="n">install_requirements</span><span class="p">()</span>  <span class="c1"># to get &#39;ws&#39; attribute</span>
+        <span class="k">if</span> <span class="n">fictive</span><span class="p">:</span>
+            <span class="n">egg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recipe</span><span class="o">.</span><span class="n">ws</span><span class="o">.</span><span class="n">by_key</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fictive_name</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">egg</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">fail</span><span class="p">(</span><span class="s2">&quot;Our crafted testing egg has not been installed&quot;</span><span class="p">)</span>
+            <span class="c1"># precise version depends on the setuptools version</span>
+            <span class="c1"># from setuptools 8.0, normalization to 0.123.dev0</span>
+            <span class="c1"># according to PEP440 occurs</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">egg</span><span class="o">.</span><span class="n">version</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;0.123&#39;</span><span class="p">),</span>
+                            <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;Our crafted testing egg &quot;</span>
+                            <span class="s2">&quot;is being superseded by </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">egg</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fictive_version</span> <span class="o">=</span> <span class="n">egg</span><span class="o">.</span><span class="n">version</span></div>
+
+<div class="viewcode-block" id="RecipeTestCase.silence_buildout_develop"><a class="viewcode-back" href="../../../../apidoc/oca.recipe.odoo.html#oca.recipe.odoo.testing.RecipeTestCase.silence_buildout_develop">[docs]</a>    <span class="k">def</span> <span class="nf">silence_buildout_develop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Silence easy_install develop operations performed by zc.buildout.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># grabbing it with getLogger, even after the import is not</span>
+            <span class="c1"># effective: the level gets overwritten afterwards</span>
+            <span class="kn">from</span> <span class="nn">zc.buildout.easy_install</span> <span class="kn">import</span> <span class="n">logger</span> <span class="k">as</span> <span class="n">zc_logger</span>
+        <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Could not grab zc.buildout.easy_install logger&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">zc_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RecipeTestCase.develop_fictive"><a class="viewcode-back" href="../../../../apidoc/oca.recipe.odoo.html#oca.recipe.odoo.testing.RecipeTestCase.develop_fictive">[docs]</a>    <span class="k">def</span> <span class="nf">develop_fictive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">require_install</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Develop fictive distribution in buildout&#39;s directory.</span>
+
+<span class="sd">        Require the test case to already have a ``test_dir`` attribute</span>
+<span class="sd">        (typically set on class with the dirname of the test)</span>
+
+<span class="sd">        :param bool require_install: if ``True``, will be required from</span>
+<span class="sd">                                     ``eggs`` option, and installed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">silence_buildout_develop</span><span class="p">()</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recipe</span><span class="o">.</span><span class="n">develop</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_dir</span><span class="p">,</span> <span class="s1">&#39;fictive_dist&#39;</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">require_install</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">recipe</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s1">&#39;eggs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fictive_dist_name</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">recipe</span><span class="o">.</span><span class="n">install_requirements</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">res</span></div></div>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2011-2021, &lt;a href=&#34;http://anybox.fr/&#34;&gt;Anybox SAS&lt;/a&gt;; 2021 &lt;a href=&#34;https://odoo-community.org/&#34;&gt;Odoo Community Association&lt;/a&gt; and contributors.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
