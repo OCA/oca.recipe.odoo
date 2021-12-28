@@ -1,21 +1,25 @@
 import os
 from oca.recipe.odoo.runtime.session import Session
-from odoo.tests.common import TransactionCase, get_db_name
+from odoo.tests.common import get_db_name
+from unittest import TestCase
 
 TEST_DATA_DIR = os.path.join(os.path.dirname(__file__), 'data')
 
 
-class VersionTestCase(TransactionCase):
+class VersionTestCase(TestCase):
 
     def setUp(self):
-        super(VersionTestCase, self).setUp()
-        self.session = self.initSession()
+        super().setUp()
+        self.open_session()
 
-    def initSession(self):
-        session = Session(None, None, parse_config=False)
-        session.open(db=get_db_name())
-        session.buildout_dir = TEST_DATA_DIR
-        return session
+    def tearDown(self):
+        self.session.close()
+        super().tearDown()
+
+    def open_session(self):
+        self.session = Session(None, None, parse_config=False)
+        self.session.open(db=get_db_name())
+        self.session.buildout_dir = TEST_DATA_DIR
 
     def test_version_class(self):
         """Test the version class itself.
