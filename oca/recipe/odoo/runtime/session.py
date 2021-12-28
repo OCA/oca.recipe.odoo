@@ -193,11 +193,8 @@ class Session(object):
         """Enter the environments context manager, but don't leave it
 
         Automatically called by :meth:`open` and registry altering methods.
-        See :class:``openerp.api.Environment`` for explanations about
+        See :class:``odoo.api.Environment`` for explanations about
         environments.
-
-        For OpenERP/Odoo versions prior to the new style API merge, this
-        is a no-op.
 
         This thread-local ``environments`` is initialized and cleaned with
         each request in the normal usage of the framework.
@@ -206,13 +203,10 @@ class Session(object):
         Therefore, user code probably needs in some case to clean it to avoid
         side effects. This can be done by calling :meth:`clean_environments`.
         """
-        try:
+        if version_info[0] < 15:
             gen_factory = odoo.api.Environment.manage
-        except AttributeError:
-            return
-
-        self._environments_gen_context = gen_factory().gen
-        next(self._environments_gen_context)
+            self._environments_gen_context = gen_factory().gen
+            next(self._environments_gen_context)
         self.env = odoo.api.Environment(
             self.cr, self.uid, getattr(
                 self, 'context', {}
@@ -228,29 +222,28 @@ class Session(object):
         :param bool reinit: if ``True``, :meth:`init_environments` will be
                             called again after cleaning
         """
-        try:
+        if version_info[0] < 15:
             gen_context = self._environments_gen_context
-        except AttributeError:
-            return
-
-        try:
-            next(gen_context)
-        except StopIteration:
-            pass
-        else:
-            logger.warn("clean_environments: we had the context manager, but "
-                        "it had not been called. This suggest low-leve "
-                        "tampering with it that should be more cautious. "
-                        "Proceeding with cleansing.")
             try:
                 next(gen_context)
             except StopIteration:
                 pass
             else:
-                raise RuntimeError("Called the environments context manager "
-                                   "twice and it's not finished. "
-                                   "This is really unexpected.")
-        del self._environments_gen_context
+                logger.warn(
+                    "clean_environments: we had the context manager, but "
+                    "it had not been called. This suggest low-leve "
+                    "tampering with it that should be more cautious. "
+                    "Proceeding with cleansing.")
+                try:
+                    next(gen_context)
+                except StopIteration:
+                    pass
+                else:
+                    raise RuntimeError(
+                        "Called the environments context manager "
+                        "twice and it's not finished. "
+                        "This is really unexpected.")
+            del self._environments_gen_context
         if reinit:
             self.init_environments()
 
