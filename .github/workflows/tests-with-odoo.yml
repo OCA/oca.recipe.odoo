@@ -1,0 +1,70 @@
+---
+name: test with odoo
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        odoo_release: ["12.0", "13.0", "14.0", "15.0"]
+    env:
+      DB: "odoo"
+      DB_HOST: "localhost"
+      DB_PASSWORD: "odoo"
+      DB_PORT: 5432
+      DB_USERNAME: "odoo"
+      PGHOST: "localhost"
+      PGPASSWORD: "odoo"
+      PGUSER: "odoo"
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Configure Postgres
+        uses: harmon758/postgresql-action@v1
+        with:
+          postgresql version: "12"
+          postgresql user: ${DB_USERNAME}
+          postgresql password: ${DB_PASSWORD}
+      - name: Wait / Sleep
+        uses: jakejarvis/wait-action@v0.1.0
+        with:
+          time: "10s"
+      - name: System dependencies
+        run: |
+          sudo apt update
+          sudo apt install \
+              libevent-dev \
+              libldap2-dev \
+              libsasl2-dev \
+              libxml2-dev \
+              libxslt1-dev \
+              nodejs
+          sudo npm install -g less less-plugin-clean-css
+      - name: Check out oca.recipe.odoo
+        uses: actions/checkout@v2
+        with:
+          path: oca.recipe.odoo
+      - name: Install
+        run: |
+          pip install ./oca.recipe.odoo
+      - name: Configure
+        run: |
+          git config --global init.defaultBranch main
+          git config --global advice.detachedHead false
+          git config --global pull.rebase false
+      - name: Run buildout
+        run: |
+          buildout -c oca.recipe.odoo/tests_with_odoo/recipe.cfg \
+          odoo:release=${{ matrix.odoo_release }}
+      - name: Run tests
+        run: |
+          oca.recipe.odoo/tests_with_odoo/bin/start_odoo -d odoo -i base --stop-after-init
+          oca.recipe.odoo/tests_with_odoo/bin/nosetests \
+          oca.recipe.odoo/tests_with_odoo

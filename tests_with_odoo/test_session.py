@@ -7,7 +7,7 @@ except ImportError:
     from openerp.tests.common import get_db_name
     from openerp.release import version_info
 
-TEST_MODULE = 'report'
+TEST_MODULE = 'web_environment_ribbon'
 
 
 class SessionTestCase(TestCase):
@@ -87,7 +87,7 @@ class SessionTestCase(TestCase):
             ).state
         )
 
-    def test_insall_module(self):
-        self.assertModuleState('report', 'uninstalled')
+    def test_install_module(self):
+        self.assertModuleState(TEST_MODULE, 'uninstalled')
         self.session.install_modules([TEST_MODULE])
-        self.assertModuleState('report', 'installed')
+        self.assertModuleState(TEST_MODULE, 'installed')
