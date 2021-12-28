@@ -52,7 +52,7 @@ class OdooVersion(Version):
     def __repr__(self):
         return 'OdooVersion(%r)' % str(self)
 
-    def __cmp__(self, other):
+    def _cmp(self, other):
         if isinstance(other, tuple):
             other = '.'.join(str(s) for s in other)
         elif not isinstance(other, self.__class__):
