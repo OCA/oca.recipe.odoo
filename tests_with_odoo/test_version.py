@@ -1,9 +1,6 @@
 import os
 from oca.recipe.odoo.runtime.session import Session
-try:
-    from odoo.tests.common import TransactionCase, get_db_name
-except:
-    from openerp.tests.common import TransactionCase, get_db_name
+from odoo.tests.common import TransactionCase, get_db_name
 
 TEST_DATA_DIR = os.path.join(os.path.dirname(__file__), 'data')
 
