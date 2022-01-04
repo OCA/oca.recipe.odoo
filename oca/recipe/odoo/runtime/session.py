@@ -231,7 +231,7 @@ class Session(object):
             else:
                 logger.warn(
                     "clean_environments: we had the context manager, but "
-                    "it had not been called. This suggest low-leve "
+                    "it had not been called. This suggests low-level "
                     "tampering with it that should be more cautious. "
                     "Proceeding with cleansing.")
                 try:
