@@ -390,10 +390,8 @@ the wrapped script).</p>
 <span class="sig-name descname"><span class="pre">init_environments</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/runtime/session.html#Session.init_environments"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.runtime.session.Session.init_environments" title="Permalink to this definition">¶</a></dt>
 <dd><p>Enter the environments context manager, but don’t leave it</p>
 <p>Automatically called by <a class="reference internal" href="#oca.recipe.odoo.runtime.session.Session.open" title="oca.recipe.odoo.runtime.session.Session.open"><code class="xref py py-meth docutils literal notranslate"><span class="pre">open()</span></code></a> and registry altering methods.
-See :class:<code class="docutils literal notranslate"><span class="pre">openerp.api.Environment</span></code> for explanations about
+See :class:<code class="docutils literal notranslate"><span class="pre">odoo.api.Environment</span></code> for explanations about
 environments.</p>
-<p>For OpenERP/Odoo versions prior to the new style API merge, this
-is a no-op.</p>
 <p>This thread-local <code class="docutils literal notranslate"><span class="pre">environments</span></code> is initialized and cleaned with
 each request in the normal usage of the framework.
 That’s why is is provided as a context manager.</p>
