@@ -380,21 +380,43 @@ class BaseRecipe(object):
 
     def merge_requirements(self, reqs=None):
         """Merge eggs option with self.requirements.
-
-
-        TODO refactor all this: merge requirements is not idempotent, it
-        appends. Overall, this going back and forth between the serialized
-        form (self.options['eggs']) and the parsed version has growed too
-        much, up to the point where it's not natural at all.
         """
         if reqs is None:
             reqs = self.requirements
         serial = '\n'.join(reqs)
 
-        if 'eggs' not in self.options:
-            self.options['eggs'] = serial
-        else:
-            self.options['eggs'] += '\n' + serial
+        if 'eggs' in self.options:
+            serial = self.options['eggs'] + '\n' + serial
+
+        merged = {}
+        for req in pkg_resources.parse_requirements(serial):
+            if req.marker and not req.marker.evaluate():
+                continue
+            if req.key in merged:
+                existing = merged[req.key]
+
+                # combine 'werkzeug<0.15' and 'werkzeug<0.16' to
+                # 'werkzeug<0.15,<0.16' which easy_install later resolves
+                existing.specifier &= req.specifier
+
+                # combine 'werkzeug[watchdog]' and 'werkzeug' to
+                # werkzeug[watchdog]
+                existing.extras += req.extras
+
+                if req.url and not existing.url:
+                    existing.url = req.url
+                if req.url and existing.url and req.url != existing.url:
+                    raise pkg_resources.VersionConflict(
+                        '%s to be downloaded from %s and %s' % (
+                            req.project_name, req.url, existing.url,
+                        )
+                    )
+            else:
+                merged[req.key] = req
+
+        self.options['eggs'] = '\n'.join(
+            str(req) for req in merged.values()
+        )
 
     def list_develops(self):
         """At any point in time, list the projects that have been developed.
