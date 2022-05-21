@@ -148,7 +148,7 @@ setuptools.setup(
       url              = url,
       author           = author,
       author_email     = author_email,
-      classifiers      = filter(None, classifiers.split("\n")),
+      classifiers      = list(filter(None, classifiers.split("\n"))),
       license          = license,
       scripts          = ['odoo-bin', 'odoo-gevent', 'odoo.py'],
       data_files       = data(),
