@@ -53,8 +53,6 @@ copyreg.pickle(zipimport.zipimporter, lambda x: (x.__class__, (x.archive, )))
 
 if sys.version_info >= (2, 7):
     unicode = str
-else:
-    from .utils import next
 
 
 def rfc822_time(h):
@@ -93,26 +91,6 @@ GP_VCS_EXTEND_DEVELOP = 'vcs-extend-develop'
 GP_DEVELOP_DIR = 'develop-dir'
 
 WITH_ODOO_REQUIREMENTS_FILE_OPTION = 'apply-requirements-file'
-
-
-def pip_version():
-    import pip
-    # we don't use pip or setuptools APIs for that to avoid going
-    # in a swath of instability.
-    # TODO we could try and use the version class from runtime.session
-    # (has the advantage over pkf_resources' of direct transparent
-    # comparison to tuples), but that'd introduced logical deps problems
-    # that I don't want to solve right now.
-
-    pip_version = pip.__version__
-    # Naturally, pip has strictly conformed to PEP440, and does not use
-    # version epochs, since at least v1.2. the oldest I could easily check
-    # (we claim to support >= 1.4.1).
-    # This equates all pre versions with the final one, and that's good
-    # enough for current purposes:
-    for suffix in ('a', 'b', 'rc', '.dev', '.post'):
-        pip_version = pip_version.split(suffix)[0]
-    return tuple(int(x) for x in pip_version.split('.'))
 
 
 class BaseRecipe(object):
@@ -228,11 +206,7 @@ class BaseRecipe(object):
         self.clear_retry = clear_retry == 'true'
 
         if self.bool_opt_get(WITH_ODOO_REQUIREMENTS_FILE_OPTION):
-            logger.debug("%s option: adding 'pip' to the recipe requirements",
-                         WITH_ODOO_REQUIREMENTS_FILE_OPTION)
             self.with_odoo_requirements_file = True
-            self.recipe_requirements = list(self.recipe_requirements)
-            self.recipe_requirements.append('pip')
 
         self.python_scripts_executable = options.get(
             'python-scripts-executable')
@@ -458,175 +432,27 @@ class BaseRecipe(object):
                         "Proceeding anyway.", req_fname)
             return
 
-        # pip wouldn't be importable before the call to
-        # install_recipe_requirements()
-
-        # if an extension has used pip before, it can be left in a
-        # strange state where pip.req is not usable nor reloadable
-        # anymore. (may have something to do with the fact that the
-        # first import is done from a tmp dir
-        # that does not exist any more).
-        # So, better to clean that before hand.
-        for k in list(sys.modules.keys()):
-            if k.split('.', 1)[0] == 'pip':
-                del sys.modules[k]
-
-        # it is useless to mutate the versions section at this point
-        # it's already been used to populate the Installer class variable
+        odoo_requirements = []
         versions = Installer._versions
         develops = self.list_develops()
+        with open(req_path) as reqs:
+            for req in pkg_resources.parse_requirements(reqs.read()):
+                if req.project_name in versions:
+                    logger.debug("Requirement from Odoo's file %s superseded "
+                                 "by buildout versions configuration as %r",
+                                 req_path, versions[req.key])
+                    continue
 
-        if pip_version() < (8, 1, 2):
-            self.read_requirements_pip_before_v8(req_path, versions, develops)
-        else:
-            self.read_requirements_pip_after_v8(req_path, versions, develops)
+                if req.project_name in develops:
+                    logger.debug("Requirement from Odoo's file %s superseded "
+                                 "by a direct develop directive", req_path)
+                    continue
+
+                odoo_requirements.append(str(req))
+
+        self.requirements = (self.requirements or []) + odoo_requirements
+
         self.merge_requirements()
-
-    def read_requirements_pip_before_v8(self, req_path, versions, develops):
-        from pip.req import parse_requirements
-        if pip_version() < (1, 5):
-            parsed = parse_requirements(req_path)
-        else:
-            # pip internals are protected against the fact of not passing
-            # a session with ``is None``. OTOH, the session is not used
-            # if the file is local (direct path, not an URL), so we cheat
-            # it.
-            # Although this hack still works with pip 8, it's considered to be
-            # the kind of thing that can depend on pip version
-            fake_session = object()
-            parsed = parse_requirements(req_path, session=fake_session)
-
-        for inst_req in parsed:
-            req = inst_req.req
-            logger.debug("Considering requirement from Odoo's file %s",
-                         req)
-            # GR something more interesting would be to apply the
-            # requirement if it does not contradict an existing one.
-            # For now that's too much complicated, but check later if
-            # zc.buildout.easy_install._constrain() fits the bill.
-
-            project_name = req.project_name
-            if project_name not in self.requirements:
-                # TODO maybe convert self.requirements to a set (in
-                # next unstable branch)
-                self.requirements.append(project_name)
-
-            if inst_req.markers:
-                logger.warn("Requirement %s has a marker %s but the evaluation"
-                            " of markers is not supported in this old version "
-                            "of pip. Please upgrade to pip 8.2 or higher. ",
-                            project_name, inst_req.markers)
-
-            if project_name in versions:
-                logger.debug("Requirement from Odoo's file %s superseded "
-                             "by buildout versions configuration as %r",
-                             req, versions[project_name])
-                continue
-
-            if project_name in develops:
-                logger.debug("Requirement from Odoo's file %s superseded "
-                             "by a direct develop directive", req)
-                continue
-
-            if not req.specs:
-                continue
-
-            supported = True
-
-            if len(req.specs) > 1:
-                supported = False
-            spec = req.specs[0]
-            if spec[0] != '==' or '*' in spec[1]:
-                supported = False
-
-            if not supported:
-                raise UserError(
-                    "Version requirement %s from Odoo's requirement file "
-                    "is too complicated to be taken automatically into "
-                    "account. Please override it in your [%s] "
-                    "configuration section. Future support of this format "
-                    "is pending the release of buildout 3.0.0 which relies on "
-                    "pip rather than setuptools.easy_install." % (
-                        req, self.b_options.get('versions', 'versions')))
-
-            logger.debug("Applying requirement %s from Odoo's file",
-                         req)
-            versions[project_name] = spec[1]
-
-    def read_requirements_pip_after_v8(self, req_path, versions, develops):
-        # pip internals are protected against the fact of not passing
-        # a session with ``is None``. OTOH, the session is not used
-        # if the file is local (direct path, not an URL), so we cheat
-        # it.
-        fake_session = object()
-        if pip_version() < (10, 0, 0):
-            from pip.req import parse_requirements
-        else:
-            from pip._internal.req import parse_requirements
-        for inst_req in parse_requirements(req_path, session=fake_session):
-            if hasattr(inst_req, 'req'):  # pre 20.1b1
-                req = inst_req.req
-                project_name = req.name.lower()
-                marker = inst_req.markers
-            else:  # > 20.1b1
-                req = pkg_resources.Requirement.parse(inst_req.requirement)
-                project_name = req.project_name.lower()
-                marker = req.marker
-            if marker and not marker.evaluate():
-                logger.debug("Skipping requirement %s with marker %s",
-                             project_name, marker)
-                continue
-            specs = req.specifier
-            logger.debug("Considering requirement from Odoo's file %s",
-                         req)
-            # GR something more interesting would be to apply the
-            # requirement if it does not contradict an existing one.
-            # For now that's too much complicated, but check later if
-            # zc.buildout.easy_install._constrain() fits the bill.
-
-            # zc.buildout does its version comparison in lower case
-            # watch out for develops if that's the same !
-            if project_name not in self.requirements:
-                # TODO maybe convert self.requirements to a set (in
-                # next unstable branch)
-                self.requirements.append(project_name)
-
-            if project_name in versions:
-                logger.debug("Requirement from Odoo's file %s superseded "
-                             "by buildout versions configuration as %r",
-                             req, versions[project_name])
-                continue
-
-            if project_name in develops:
-                logger.debug("Requirement from Odoo's file %s superseded "
-                             "by a direct develop directive", req)
-                continue
-
-            specs = req.specifier
-            if not specs:
-                continue
-
-            supported = True
-
-            if len(specs) > 1:
-                supported = False
-            spec = next(specs.__iter__())
-            if spec.operator != '==' or '*' in spec.version:
-                supported = False
-
-            if not supported:
-                raise UserError(
-                    "Version requirement %s from Odoo's requirement file "
-                    "is too complicated to be taken automatically into "
-                    "account. Please override it in your [%s] "
-                    "configuration section. Future support of this format "
-                    "is pending the release of buildout 3.0.0 which relies on "
-                    "pip rather than setuptools.easy_install." % (
-                        req, self.b_options.get('versions', 'versions')))
-
-            logger.debug("Applying requirement %s from Odoo's file",
-                         req)
-            versions[project_name] = spec.version
 
     def install_requirements(self):
         """Install egg requirements and scripts.

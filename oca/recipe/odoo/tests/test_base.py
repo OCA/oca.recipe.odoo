@@ -1,5 +1,5 @@
 import os
-import sys
+import pkg_resources
 from copy import deepcopy
 
 from zc.buildout import UserError
@@ -312,7 +312,7 @@ class TestBaseRecipe(RecipeTestCase):
         :param dict pre_versions: if supplied, will be set before calling the
                                   recipe's code
         """
-        import pip as pip_original
+
         from zc.buildout.easy_install import Installer
         versions_original = deepcopy(Installer._versions)
 
@@ -322,9 +322,14 @@ class TestBaseRecipe(RecipeTestCase):
         try:
             self.recipe.apply_odoo_requirements_file()
         finally:
-            sys.modules['pip'] = pip_original
             Installer._versions = versions_original
 
+        requirements = '\n'.join(self.recipe.requirements)
+        for req in pkg_resources.parse_requirements(requirements):
+            if req.specifier:
+                versions[req.project_name] = str(req.specifier).replace(
+                    '==', ''
+                )
         return versions
 
     def test_apply_requirements_file(self):
@@ -335,7 +340,7 @@ class TestBaseRecipe(RecipeTestCase):
         versions = self.apply_requirements_file()
 
         self.assertEqual(versions.get(dist_name), '1.2.3')
-        self.assertTrue(dist_name in self.recipe.requirements,
+        self.assertTrue(dist_name in self.recipe.options['eggs'],
                         msg="Egg %r should have been listed" % dist_name)
 
     def test_apply_requirements_file_no_reqfile(self):
@@ -346,7 +351,7 @@ class TestBaseRecipe(RecipeTestCase):
         versions = self.apply_requirements_file()
 
         self.assertFalse(dist_name in versions)
-        self.assertFalse(dist_name in self.recipe.requirements)
+        self.assertFalse(dist_name in self.recipe.options.get('eggs', {}))
 
     def test_apply_requirements_file_no_version(self):
         """Unit test for Odoo requirements.txt: corner case with no version
@@ -356,7 +361,7 @@ class TestBaseRecipe(RecipeTestCase):
         versions = self.apply_requirements_file()
 
         self.assertFalse(dist_name in versions)
-        self.assertTrue(dist_name in self.recipe.requirements,
+        self.assertTrue(dist_name in self.recipe.options['eggs'],
                         msg="Egg %r should have been listed" % dist_name)
 
     def test_apply_requirements_file_precedence1(self):
@@ -388,15 +393,3 @@ class TestBaseRecipe(RecipeTestCase):
         self.develop_fictive()
         versions = self.apply_requirements_file()
         self.assertFalse(self.fictive_dist_name in versions)
-
-    def test_apply_requirements_file_unsupported(self):
-        """Unit test for Odoo requirements.txt: error paths #1
-        """
-        self.make_recipe_appplying_requirements_file("foo>=1.2.3")
-        self.assertRaises(UserError, self.apply_requirements_file)
-
-    def test_apply_requirements_file_unsupported2(self):
-        """Unit test for Odoo requirements.txt: error paths #2
-        """
-        self.make_recipe_appplying_requirements_file("spam==1.2.3, >2.0")
-        self.assertRaises(UserError, self.apply_requirements_file)
