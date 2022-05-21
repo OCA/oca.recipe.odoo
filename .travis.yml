@@ -32,8 +32,10 @@ before_install:
 install:
   # zc.buildout < 3.0.0 depends on easy_install, dropped by setuptools 52.0
   - pip install "setuptools<52.0"
-  - pip install coveralls${COVERALLS}
   - pip install -e .[test]
+  - pip install coverage
+  - curl -Os https://uploader.codecov.io/latest/linux/codecov
+  - chmod +x codecov
 
 script:
   - |
@@ -43,6 +45,7 @@ script:
         flake8 oca;
     fi
   - python setup.py nosetests
+  - ./codecov
   # install sphinx only after running tests to avoid failing tests
   # gracinet: after merging of the PR this commit concludes,
   # installing sphinx should have no impact on the tests
