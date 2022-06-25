@@ -1,17 +1,35 @@
 ---
 language: python
 os: linux
-dist: bionic
+dist: jammy
 
 virtualenv:
   system_site_packages: false
 
 jobs:
   include:
-    # Disabled Python 3.7 due to pickle problems in working_set deepcopy
-    # - python: "3.7"
-    - python: "3.8"
-    - python: "3.9"
+    - dist: bionic
+      python: 3.7
+      env:
+        - PIP_VERSION=19.0
+    - dist: focal
+      python: 3.8
+      env:
+        - PIP_VERSION=20.0.2
+    - python: 3.8
+      env:
+        - PIP_VERSION=22.1
+    - python: 3.9
+      env:
+        - PIP_VERSION=20.0.2
+    - python: 3.9
+      env:
+        - PIP_VERSION=22.1
+# seems nose has trouble with py3.10
+#    - python: 3.10
+#      env:
+#        - PIP_VERSION=22.1
+    - python: 3.9
       env:
         - FLAKE8=1
 
@@ -28,6 +46,8 @@ before_install:
   # if the wheel package is present, then pip will build an unusable wheel
   # for zc.recipe.egg (see commit msg for analysis of that)
   - pip uninstall -y wheel
+  - echo -e "[easy_install]\nzip_ok = False" > ~/.distutils.cfg
+  - '[ -n "$PIP_VERSION" ] && pip install pip==$PIP_VERSION || true'
 
 install:
   # zc.buildout < 3.0.0 depends on easy_install, dropped by setuptools 52.0
