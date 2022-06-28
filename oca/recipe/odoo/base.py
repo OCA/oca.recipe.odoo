@@ -1,5 +1,6 @@
 # coding: utf-8
 from os.path import join, basename
+import copyreg
 import os
 import sys
 import re
@@ -15,6 +16,7 @@ except ImportError:
     from configparser import ConfigParser, RawConfigParser  # Python 3
 import distutils.core
 import pkg_resources
+import zipimport
 try:
     from collections import OrderedDict
 except ImportError:  # Python < 2.7
@@ -45,6 +47,9 @@ from . import utils
 from .utils import option_splitlines, option_strip, conf_ensure_section
 
 logger = logging.getLogger(__name__)
+
+# support zipped eggs in freeze
+copyreg.pickle(zipimport.zipimporter, lambda x: (x.__class__, (x.archive, )))
 
 if sys.version_info >= (2, 7):
     unicode = str
