@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Odoo Scripts &#8212; Odoo buildout recipe 1.9.3.dev0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
@@ -12,6 +12,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -231,7 +232,7 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="odoo-scripts">
-<h1>Odoo Scripts<a class="headerlink" href="#odoo-scripts" title="Permalink to this headline">¶</a></h1>
+<h1>Odoo Scripts<a class="headerlink" href="#odoo-scripts" title="Permalink to this heading">¶</a></h1>
 <p>The server recipe actually includes a general engine to install Python
 code that needs access to the Odoo API and build
 configuration-aware executables.</p>
@@ -245,7 +246,7 @@ more general concept of console scripts.</p>
 <p>Odoo scripts are currently supported for versions ≥ 6.1 only.</p>
 </div>
 <section id="use-cases">
-<h2>Use cases<a class="headerlink" href="#use-cases" title="Permalink to this headline">¶</a></h2>
+<h2>Use cases<a class="headerlink" href="#use-cases" title="Permalink to this heading">¶</a></h2>
 <p>Odoo scripts can do great in situations where an RPC script might
 not be powerful enough or not practical. Some examples:</p>
 <ul class="simple">
@@ -259,7 +260,7 @@ for details about that.</p></li>
 See <a class="reference internal" href="#interactive-consoles"><span class="std std-ref">Interactive Consoles</span></a>.</p></li>
 </ul>
 <section id="odoo-vs-rpc-scripts-for-administrative-tasks">
-<h3>Odoo vs RPC scripts for administrative tasks<a class="headerlink" href="#odoo-vs-rpc-scripts-for-administrative-tasks" title="Permalink to this headline">¶</a></h3>
+<h3>Odoo vs RPC scripts for administrative tasks<a class="headerlink" href="#odoo-vs-rpc-scripts-for-administrative-tasks" title="Permalink to this heading">¶</a></h3>
 <p>There are several Python distributions that wrap the Odoo RPC APIs
 for easy use within Python code.</p>
 <p>Using an RPC script for administrative tasks usually leads to
@@ -279,7 +280,7 @@ under stress to try and persuade them that it’s only a matter of
 changing an obscure password ?</p>
 </section>
 <section id="odoo-scripts-vs-odoo-cron-jobs">
-<h3>Odoo scripts vs Odoo cron jobs<a class="headerlink" href="#odoo-scripts-vs-odoo-cron-jobs" title="Permalink to this headline">¶</a></h3>
+<h3>Odoo scripts vs Odoo cron jobs<a class="headerlink" href="#odoo-scripts-vs-odoo-cron-jobs" title="Permalink to this heading">¶</a></h3>
 <p>Because they are part of addons, Odoo cron jobs also have full
 unrestricted access to the internal API, and obviously don’t suffer
 from the password plague.</p>
@@ -300,7 +301,7 @@ cron job.</p>
 </section>
 </section>
 <section id="declaring-odoo-scripts">
-<h2>Declaring Odoo Scripts<a class="headerlink" href="#declaring-odoo-scripts" title="Permalink to this headline">¶</a></h2>
+<h2>Declaring Odoo Scripts<a class="headerlink" href="#declaring-odoo-scripts" title="Permalink to this heading">¶</a></h2>
 <p>There are several cases, depending on the script authors
 intentions. Script authors should therefore state clearly in their
 documentation how to declare them.</p>
@@ -323,7 +324,7 @@ that declares a console script entry point named <code class="docutils literal n
 </div>
 <p><a class="reference internal" href="#making-available"><span class="std std-ref">How that distribution can be made available to buildout</span></a> is a different question.</p>
 <section id="bare-declararations">
-<h3>Bare declararations<a class="headerlink" href="#bare-declararations" title="Permalink to this headline">¶</a></h3>
+<h3>Bare declararations<a class="headerlink" href="#bare-declararations" title="Permalink to this heading">¶</a></h3>
 <p>The following configuration:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">openerp</span><span class="o">-</span><span class="n">one</span><span class="p">]</span>
 <span class="p">(</span><span class="o">...</span><span class="p">)</span>
@@ -348,7 +349,7 @@ there is a more integrated way that script authors should be aware of:
 the special <code class="docutils literal notranslate"><span class="pre">session</span></code> argument.</p>
 </section>
 <section id="arguments-and-session">
-<span id="arguments-session"></span><h3>Arguments and session<a class="headerlink" href="#arguments-and-session" title="Permalink to this headline">¶</a></h3>
+<span id="arguments-session"></span><h3>Arguments and session<a class="headerlink" href="#arguments-and-session" title="Permalink to this heading">¶</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>new in version 1.7.0</p>
@@ -376,7 +377,7 @@ what can be done with it.</p>
 </div>
 </section>
 <section id="command-line-options">
-<span id="id1"></span><h3>Command-line options<a class="headerlink" href="#command-line-options" title="Permalink to this headline">¶</a></h3>
+<span id="id1"></span><h3>Command-line options<a class="headerlink" href="#command-line-options" title="Permalink to this heading">¶</a></h3>
 <p>In some cases, it is useful to do some operations, such as preloading
 a database, before actual running of the script. This is intended for
 scripts which have no special knowledge of Odoo but may in turn
@@ -401,13 +402,13 @@ like this:</p>
 </div>
 <p>Currently available command-line-options:</p>
 <dl class="field-list simple">
-<dt class="field-odd">-d DB_NAME</dt>
+<dt class="field-odd">-d DB_NAME<span class="colon">:</span></dt>
 <dd class="field-odd"><p>preload the specified database</p>
 </dd>
 </dl>
 </section>
 <section id="odoo-log-level">
-<span id="openerp-log-level"></span><h3>Odoo log level<a class="headerlink" href="#odoo-log-level" title="Permalink to this headline">¶</a></h3>
+<span id="openerp-log-level"></span><h3>Odoo log level<a class="headerlink" href="#odoo-log-level" title="Permalink to this heading">¶</a></h3>
 <p>This is mostly meant for scripts with the <code class="docutils literal notranslate"><span class="pre">command-line-options=-d</span></code>
 modifier.</p>
 <p>In some cases, one is not interested in the logs during the Odoo
@@ -425,7 +426,7 @@ starts, in which case the modifier is really only about the loading sequence.</p
 </section>
 </section>
 <section id="interactive-consoles">
-<span id="id2"></span><h2>Interactive Consoles<a class="headerlink" href="#interactive-consoles" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2>Interactive Consoles<a class="headerlink" href="#interactive-consoles" title="Permalink to this heading">¶</a></h2>
 <p>One particularly interesting use of <cite>openerp_scripts</cite> is to enable the use of
 enhanced Python interactive interpreters, like <a class="reference external" href="http://ipython.org">IPython</a>
 or <a class="reference external" href="http://bpython-interpreter.org">bPython</a>:</p>
@@ -458,7 +459,7 @@ to disable the default <code class="docutils literal notranslate"><span class="p
 user.</p>
 </section>
 <section id="writing-odoo-scripts">
-<h2>Writing Odoo Scripts<a class="headerlink" href="#writing-odoo-scripts" title="Permalink to this headline">¶</a></h2>
+<h2>Writing Odoo Scripts<a class="headerlink" href="#writing-odoo-scripts" title="Permalink to this heading">¶</a></h2>
 <p>Script authors have to:</p>
 <ul>
 <li><p>write their script as a callable within a setuptools
@@ -505,7 +506,7 @@ total of users in the database:</p>
 </li>
 </ul>
 <section id="making-the-distribution-available">
-<span id="making-available"></span><h3>Making the distribution available<a class="headerlink" href="#making-the-distribution-available" title="Permalink to this headline">¶</a></h3>
+<span id="making-available"></span><h3>Making the distribution available<a class="headerlink" href="#making-the-distribution-available" title="Permalink to this heading">¶</a></h3>
 <p>In order to be used by the recipe, the distribution that holds the
 script code has to be <em>required</em> with the <code class="docutils literal notranslate"><span class="pre">eggs</span></code> option. But how can
 buildout retrieve it ? There’s nothing specific to the Odoo recipe
@@ -542,7 +543,7 @@ uses. There’s no such support of <code class="docutils literal notranslate"><s
 </section>
 </section>
 <section id="upgrade-scripts">
-<span id="id3"></span><h2>Upgrade scripts<a class="headerlink" href="#upgrade-scripts" title="Permalink to this headline">¶</a></h2>
+<span id="id3"></span><h2>Upgrade scripts<a class="headerlink" href="#upgrade-scripts" title="Permalink to this heading">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>new in version 1.8.0</p>
@@ -612,7 +613,7 @@ in turn relaying to that user-level callable.
 See <a class="reference internal" href="apidoc/oca.recipe.odoo.runtime.html#module-oca.recipe.odoo.runtime.upgrade" title="oca.recipe.odoo.runtime.upgrade"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oca.recipe.odoo.runtime.upgrade</span></code></a> for more details
 on how it works.</p>
 <section id="usage-for-instance-creation">
-<h3>Usage for instance creation<a class="headerlink" href="#usage-for-instance-creation" title="Permalink to this headline">¶</a></h3>
+<h3>Usage for instance creation<a class="headerlink" href="#usage-for-instance-creation" title="Permalink to this heading">¶</a></h3>
 <p>For projects with a fixed number of modules to install at a given
 point of code history, upgrade scripts can be used to install a
 fresh database:</p>
@@ -643,7 +644,7 @@ and logs information on how to customize:</p>
 </div>
 </section>
 <section id="options-of-the-produced-executable-upgrade-script">
-<h3>Options of the produced executable upgrade script<a class="headerlink" href="#options-of-the-produced-executable-upgrade-script" title="Permalink to this headline">¶</a></h3>
+<h3>Options of the produced executable upgrade script<a class="headerlink" href="#options-of-the-produced-executable-upgrade-script" title="Permalink to this heading">¶</a></h3>
 <p>Command-line parsing is done with <a class="reference external" href="http://docs.python.org/2/library/argparse.html">argparse</a>. If you have any doubt,
 use <code class="docutils literal notranslate"><span class="pre">--help</span></code> with the version you have. Here’s the current state:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ bin/upgrade_openerp -h
@@ -678,7 +679,7 @@ optional arguments:
 </div>
 </section>
 <section id="sample-output">
-<h3>Sample output<a class="headerlink" href="#sample-output" title="Permalink to this headline">¶</a></h3>
+<h3>Sample output<a class="headerlink" href="#sample-output" title="Permalink to this heading">¶</a></h3>
 <p>Here’s the output of a run of the default upgrade script:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ bin/upgrade_openerp -d testrecipe
 Starting upgrade, logging details to /home/gracinet/openerp/recipe/testing-buildouts/upgrade.log at level INFO, and major steps to console at level INFO
@@ -703,7 +704,7 @@ Starting upgrade, logging details to /home/gracinet/openerp/recipe/testing-build
 </section>
 </section>
 <section id="startup-scripts">
-<h2>Startup scripts<a class="headerlink" href="#startup-scripts" title="Permalink to this headline">¶</a></h2>
+<h2>Startup scripts<a class="headerlink" href="#startup-scripts" title="Permalink to this heading">¶</a></h2>
 <p>The familiar <code class="docutils literal notranslate"><span class="pre">start_openerp</span></code>, and its less pervasing siblings
 (<code class="docutils literal notranslate"><span class="pre">gunicorn_openerp</span></code>, <code class="docutils literal notranslate"><span class="pre">test_openerp</span></code>, …) are also special cases of
 Odoo scripts.</p>
@@ -726,30 +727,30 @@ replace <code class="docutils literal notranslate"><span class="pre">bin/start_o
 </div>
 </section>
 <section id="list-of-internal-entry-points">
-<h2>List of internal entry points<a class="headerlink" href="#list-of-internal-entry-points" title="Permalink to this headline">¶</a></h2>
+<h2>List of internal entry points<a class="headerlink" href="#list-of-internal-entry-points" title="Permalink to this heading">¶</a></h2>
 <p>Here’s the list of currently available internal entry points.</p>
 <dl class="field-list simple">
-<dt class="field-odd">openerp_starter</dt>
+<dt class="field-odd">openerp_starter<span class="colon">:</span></dt>
 <dd class="field-odd"><p>main Odoo startup script (dynamically added
 behing the scenes by the recipe)</p>
 </dd>
-<dt class="field-even">openerp_tester</dt>
+<dt class="field-even">openerp_tester<span class="colon">:</span></dt>
 <dd class="field-even"><p>uniform script to start Odoo, launch all tests and
 exit. This can be achieved with the main startup
 scripts, but options differ among Odoo versions.
 (also dynamically added behind the scenes).</p>
 </dd>
-<dt class="field-odd">openerp_upgrader</dt>
+<dt class="field-odd">openerp_upgrader<span class="colon">:</span></dt>
 <dd class="field-odd"><p>entry point for the upgrade script</p>
 </dd>
-<dt class="field-even">openerp_cron_worker</dt>
+<dt class="field-even">openerp_cron_worker<span class="colon">:</span></dt>
 <dd class="field-even"><p>entry point for the cron worker script that gets
 built for gunicorn setups.</p>
 </dd>
-<dt class="field-odd">oe</dt>
+<dt class="field-odd">oe<span class="colon">:</span></dt>
 <dd class="field-odd"><p>entry point declared by <code class="docutils literal notranslate"><span class="pre">openerp-command</span></code> and used by the recipe.</p>
 </dd>
-<dt class="field-even">gunicorn</dt>
+<dt class="field-even">gunicorn<span class="colon">:</span></dt>
 <dd class="field-even"><p>entry point declared by <code class="docutils literal notranslate"><span class="pre">gunicorn</span></code> and used by the recipe.</p>
 </dd>
 </dl>
@@ -774,7 +775,7 @@ built for gunicorn setups.</p>
     </p>
     <p>
         &copy; Copyright 2011-2021, &lt;a href=&#34;http://anybox.fr/&#34;&gt;Anybox SAS&lt;/a&gt;; 2021 &lt;a href=&#34;https://odoo-community.org/&#34;&gt;Odoo Community Association&lt;/a&gt; and contributors.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.0.2.<br/>
     </p>
   </div>
 </footer>

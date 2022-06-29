@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Full development to production example &#8212; Odoo buildout recipe 1.9.3.dev0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
@@ -12,6 +12,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -210,7 +211,7 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="full-development-to-production-example">
-<h1>Full development to production example<a class="headerlink" href="#full-development-to-production-example" title="Permalink to this headline">¶</a></h1>
+<h1>Full development to production example<a class="headerlink" href="#full-development-to-production-example" title="Permalink to this heading">¶</a></h1>
 <p>In this example, we present one way of organizing a project, to
 provide easy to install development setups, continuous integration and
 production deployments.</p>
@@ -218,10 +219,10 @@ production deployments.</p>
 your development process on it, you’ll have to adapt it to your team’s
 practice anyway.</p>
 <section id="common-setup">
-<h2>Common setup<a class="headerlink" href="#common-setup" title="Permalink to this headline">¶</a></h2>
+<h2>Common setup<a class="headerlink" href="#common-setup" title="Permalink to this heading">¶</a></h2>
 </section>
 <section id="developer-s-setup">
-<h2>Developer’s setup<a class="headerlink" href="#developer-s-setup" title="Permalink to this headline">¶</a></h2>
+<h2>Developer’s setup<a class="headerlink" href="#developer-s-setup" title="Permalink to this heading">¶</a></h2>
 <p>Here we add private read-write access to version control systems.
 We need to version the buildout itself, and make decisions about which
 addons will be under active development within that project.</p>
@@ -229,11 +230,11 @@ addons will be under active development within that project.</p>
 as providing the main URL to get the buildout from VCS.</p>
 </section>
 <section id="release-and-packaging">
-<h2>Release and packaging<a class="headerlink" href="#release-and-packaging" title="Permalink to this headline">¶</a></h2>
+<h2>Release and packaging<a class="headerlink" href="#release-and-packaging" title="Permalink to this heading">¶</a></h2>
 <p>Use of <code class="docutils literal notranslate"><span class="pre">freeze-to</span></code>, <code class="docutils literal notranslate"><span class="pre">extract-downloads-to</span></code>, and production of a tarball.</p>
 </section>
 <section id="deployment-with-a-server-local-configuration-file">
-<h2>Deployment with a server-local configuration file<a class="headerlink" href="#deployment-with-a-server-local-configuration-file" title="Permalink to this headline">¶</a></h2>
+<h2>Deployment with a server-local configuration file<a class="headerlink" href="#deployment-with-a-server-local-configuration-file" title="Permalink to this heading">¶</a></h2>
 <p>You may decide to track the local files with a VCS, too, but it’s
 preferable to keep it distinct from the main code base.</p>
 </section>
@@ -252,7 +253,7 @@ preferable to keep it distinct from the main code base.</p>
     </p>
     <p>
         &copy; Copyright 2011-2021, &lt;a href=&#34;http://anybox.fr/&#34;&gt;Anybox SAS&lt;/a&gt;; 2021 &lt;a href=&#34;https://odoo-community.org/&#34;&gt;Odoo Community Association&lt;/a&gt; and contributors.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.0.2.<br/>
     </p>
   </div>
 </footer>

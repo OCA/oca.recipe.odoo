@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>oca.recipe.odoo Package &#8212; Odoo buildout recipe 1.9.3.dev0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
@@ -12,6 +12,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -213,12 +214,12 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="oca-recipe-odoo-package">
-<h1>oca.recipe.odoo Package<a class="headerlink" href="#oca-recipe-odoo-package" title="Permalink to this headline">¶</a></h1>
+<h1>oca.recipe.odoo Package<a class="headerlink" href="#oca-recipe-odoo-package" title="Permalink to this heading">¶</a></h1>
 <section id="id1">
-<h2><a class="reference internal" href="#module-oca.recipe.odoo" title="oca.recipe.odoo"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oca.recipe.odoo</span></code></a> Package<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2><a class="reference internal" href="#module-oca.recipe.odoo" title="oca.recipe.odoo"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oca.recipe.odoo</span></code></a> Package<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
 <span class="target" id="module-oca.recipe.odoo"></span></section>
 <section id="module-oca.recipe.odoo.base">
-<span id="base-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">base</span></code> Module<a class="headerlink" href="#module-oca.recipe.odoo.base" title="Permalink to this headline">¶</a></h2>
+<span id="base-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">base</span></code> Module<a class="headerlink" href="#module-oca.recipe.odoo.base" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="oca.recipe.odoo.base.BaseRecipe">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oca.recipe.odoo.base.</span></span><span class="sig-name descname"><span class="pre">BaseRecipe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buildout</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/base.html#BaseRecipe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.base.BaseRecipe" title="Permalink to this definition">¶</a></dt>
@@ -230,12 +231,12 @@ software part and the specified addons, with the following structure:</p>
 <blockquote>
 <div><p><code class="docutils literal notranslate"><span class="pre">local</span> <span class="pre">path</span> <span class="pre">-&gt;</span> <span class="pre">(type,</span> <span class="pre">location_spec,</span> <span class="pre">options)</span></code>, in which:</p>
 <dl class="field-list">
-<dt class="field-odd">local path</dt>
+<dt class="field-odd">local path<span class="colon">:</span></dt>
 <dd class="field-odd"><p>is either the <code class="xref py py-data docutils literal notranslate"><span class="pre">main_software</span></code> singleton
 (see <a class="reference internal" href="#oca.recipe.odoo.base.MainSoftware" title="oca.recipe.odoo.base.MainSoftware"><code class="xref py py-class docutils literal notranslate"><span class="pre">MainSoftware</span></code></a>) or a local path to an
 addons directory.</p>
 </dd>
-<dt class="field-even">type</dt>
+<dt class="field-even">type<span class="colon">:</span></dt>
 <dd class="field-even"><p>can be either</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">'local'</span></code></p></li>
@@ -243,13 +244,13 @@ addons directory.</p>
 <li><p>one of the supported vcs</p></li>
 </ul>
 </dd>
-<dt class="field-odd">location_spec</dt>
+<dt class="field-odd">location_spec<span class="colon">:</span></dt>
 <dd class="field-odd"><p>is, depending on the type, a tuple specifying how
 fetch is to be done:</p>
 <p><code class="docutils literal notranslate"><span class="pre">url</span></code>, or <code class="docutils literal notranslate"><span class="pre">(vcs_url,</span> <span class="pre">vcs_revision)</span></code>
 or <code class="docutils literal notranslate"><span class="pre">None</span></code></p>
 </dd>
-<dt class="field-even">addons options</dt>
+<dt class="field-even">addons options<span class="colon">:</span></dt>
 <dd class="field-even"><p>are typically used to specify that the addons
 directory is actually a subdir of the specified one.</p>
 <p>VCS support classes (see
@@ -298,7 +299,7 @@ more complicated.</p>
 <dd><p>Retrieve an option and interpret it as boolean.</p>
 <p>Factorized to improve code readability.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>is_global</strong> – if <code class="docutils literal notranslate"><span class="pre">True</span></code>, the option is taken from the
 global buildout options instead of the part
 taken care of by this recipe instance.</p>
@@ -327,14 +328,14 @@ taken care of by this recipe instance.</p>
 <a class="reference internal" href="#oca.recipe.odoo.base.BaseRecipe.develop" title="oca.recipe.odoo.base.BaseRecipe.develop"><code class="xref py py-meth docutils literal notranslate"><span class="pre">develop()</span></code></a> launches a subprocess, to which we need to forward
 the paths to requirements via PYTHONPATH.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>setup_has_pil</strong> – if <code class="docutils literal notranslate"><span class="pre">True</span></code>, an altered version of setup that
 does not require PIL is produced to perform the
 develop, so that installation can be done with
 <code class="docutils literal notranslate"><span class="pre">Pillow</span></code> instead. Recent enough versions of
 OpenERP/Odoo are directly based on Pillow.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>project name of the distribution that’s been “developed”
 This is useful for OpenERP/Odoo itself, whose project name
 changed within the 8.0 stable branch.</p>
@@ -362,7 +363,7 @@ these are assumed to be already taken care of.</p>
 <span class="sig-name descname"><span class="pre">finalize_addons_paths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">check_existence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/base.html#BaseRecipe.finalize_addons_paths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.base.BaseRecipe.finalize_addons_paths" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add implicit paths and serialize in the addons_path option.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>check_existence</strong> – if <code class="docutils literal notranslate"><span class="pre">True</span></code>, all the paths will be checked for
 existence (useful for unit tests)</p>
 </dd>
@@ -397,7 +398,7 @@ if it is not set, it will be placed at the beginning just after
 <p>Care is taken not to break configurations that corrected this manually
 with a <code class="docutils literal notranslate"><span class="pre">local</span></code> source in the <code class="docutils literal notranslate"><span class="pre">addons</span></code> option.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>base_addons</strong> – the path to previously detected <code class="docutils literal notranslate"><span class="pre">base</span></code> addons,
 to properly insert right after them</p>
 </dd>
@@ -451,7 +452,7 @@ In particular, it does not rely on the workingset init done by
 can be used in precedence rules that need to be executed before calling
 the Installer indirectly via <code class="docutils literal notranslate"><span class="pre">zc.recipe.eggs</span></code></p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>list of project names</p>
 </dd>
 </dl>
@@ -677,7 +678,7 @@ This is a helper to support Python 2 and 3.</p>
 
 </section>
 <section id="module-oca.recipe.odoo.devtools">
-<span id="devtools-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">devtools</span></code> Module<a class="headerlink" href="#module-oca.recipe.odoo.devtools" title="Permalink to this headline">¶</a></h2>
+<span id="devtools-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">devtools</span></code> Module<a class="headerlink" href="#module-oca.recipe.odoo.devtools" title="Permalink to this heading">¶</a></h2>
 <p>Provide devtools to openerp.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="oca.recipe.odoo.devtools.load">
@@ -686,11 +687,11 @@ This is a helper to support Python 2 and 3.</p>
 
 </section>
 <section id="module-oca.recipe.odoo.server">
-<span id="server-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">server</span></code> Module<a class="headerlink" href="#module-oca.recipe.odoo.server" title="Permalink to this headline">¶</a></h2>
+<span id="server-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">server</span></code> Module<a class="headerlink" href="#module-oca.recipe.odoo.server" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="oca.recipe.odoo.server.ServerRecipe">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oca.recipe.odoo.server.</span></span><span class="sig-name descname"><span class="pre">ServerRecipe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/server.html#ServerRecipe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.server.ServerRecipe" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#oca.recipe.odoo.base.BaseRecipe" title="oca.recipe.odoo.base.BaseRecipe"><code class="xref py py-class docutils literal notranslate"><span class="pre">oca.recipe.odoo.base.BaseRecipe</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#oca.recipe.odoo.base.BaseRecipe" title="oca.recipe.odoo.base.BaseRecipe"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseRecipe</span></code></a></p>
 <p>Recipe for server install and config</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="oca.recipe.odoo.server.ServerRecipe.apply_version_dependent_decisions">
@@ -750,7 +751,7 @@ of adding Pillow, which is now in Odoo’s <code class="docutils literal notrans
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oca.recipe.odoo.server.ServerRecipe.template_upgrade_script">
-<span class="sig-name descname"><span class="pre">template_upgrade_script</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/oca/recipe/odoo/upgrade.py.tmpl'</span></em><a class="headerlink" href="#oca.recipe.odoo.server.ServerRecipe.template_upgrade_script" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">template_upgrade_script</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'/opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/oca/recipe/odoo/upgrade.py.tmpl'</span></em><a class="headerlink" href="#oca.recipe.odoo.server.ServerRecipe.template_upgrade_script" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -772,12 +773,12 @@ of adding Pillow, which is now in Odoo’s <code class="docutils literal notrans
 
 </section>
 <section id="module-oca.recipe.odoo.testing">
-<span id="testing-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">testing</span></code> Module<a class="headerlink" href="#module-oca.recipe.odoo.testing" title="Permalink to this headline">¶</a></h2>
+<span id="testing-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">testing</span></code> Module<a class="headerlink" href="#module-oca.recipe.odoo.testing" title="Permalink to this heading">¶</a></h2>
 <p>Utilities for unit tests.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="oca.recipe.odoo.testing.FakeRepo">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oca.recipe.odoo.testing.</span></span><span class="sig-name descname"><span class="pre">FakeRepo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.fake'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.fake'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">options</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/testing.html#FakeRepo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.testing.FakeRepo" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.base.BaseRepo" title="oca.recipe.odoo.vcs.base.BaseRepo"><code class="xref py py-class docutils literal notranslate"><span class="pre">oca.recipe.odoo.vcs.base.BaseRepo</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.base.BaseRepo" title="oca.recipe.odoo.vcs.base.BaseRepo"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseRepo</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="oca.recipe.odoo.testing.FakeRepo.archive">
 <span class="sig-name descname"><span class="pre">archive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/testing.html#FakeRepo.archive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.testing.FakeRepo.archive" title="Permalink to this definition">¶</a></dt>
@@ -794,7 +795,7 @@ considered VCS).</p>
 wanted revision does not exist locally and offline mode has been
 selected.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Raises</dt>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><a class="reference internal" href="oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.base.CloneError" title="oca.recipe.odoo.vcs.base.CloneError"><strong>CloneError</strong></a> – if initial cloning fails</p></li>
 <li><p><a class="reference internal" href="oca.recipe.odoo.vcs.html#oca.recipe.odoo.vcs.base.UpdateError" title="oca.recipe.odoo.vcs.base.UpdateError"><strong>UpdateError</strong></a> – if update of existing repository fails</p></li>
@@ -846,7 +847,7 @@ due to the promise that this method does not query any remote repo.</p>
 <dd><p>Return universal identifier for parent nodes, aka current revisions.</p>
 <p>There might be more than one with some VCSes (ex: pending merge in hg).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>pip_compatible</strong> – if <code class="docutils literal notranslate"><span class="pre">True</span></code>, only <a class="reference external" href="http://pip.readthedocs.org/en/latest/reference/pip_install.html#vcs-support">pip compatible</a>
 revision specifications are returned, depending
 on the VCS type.</p>
@@ -880,7 +881,7 @@ on the VCS type.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="oca.recipe.odoo.testing.PersistentRevFakeRepo">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oca.recipe.odoo.testing.</span></span><span class="sig-name descname"><span class="pre">PersistentRevFakeRepo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.fake'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.fake'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">options</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/testing.html#PersistentRevFakeRepo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.testing.PersistentRevFakeRepo" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#oca.recipe.odoo.testing.FakeRepo" title="oca.recipe.odoo.testing.FakeRepo"><code class="xref py py-class docutils literal notranslate"><span class="pre">oca.recipe.odoo.testing.FakeRepo</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#oca.recipe.odoo.testing.FakeRepo" title="oca.recipe.odoo.testing.FakeRepo"><code class="xref py py-class docutils literal notranslate"><span class="pre">FakeRepo</span></code></a></p>
 <p>A variant of FakeRepo that still needs the directory structure around.</p>
 <p>Makes for a more realistic test of some conditions.
 In particular, reproduced launchpad #TODO</p>
@@ -914,7 +915,7 @@ errors defaults to ‘strict’.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="oca.recipe.odoo.testing.RecipeTestCase">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oca.recipe.odoo.testing.</span></span><span class="sig-name descname"><span class="pre">RecipeTestCase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/testing.html#RecipeTestCase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.testing.RecipeTestCase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">unittest.case.TestCase</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
 <p>A base setup for tests of recipe classes</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="oca.recipe.odoo.testing.RecipeTestCase.build_babel_egg">
@@ -939,7 +940,7 @@ errors defaults to ‘strict’.</p>
 <p>Require the test case to already have a <code class="docutils literal notranslate"><span class="pre">test_dir</span></code> attribute
 (typically set on class with the dirname of the test)</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>require_install</strong> (<em>bool</em>) – if <code class="docutils literal notranslate"><span class="pre">True</span></code>, will be required from
 <code class="docutils literal notranslate"><span class="pre">eggs</span></code> option, and installed.</p>
 </dd>
@@ -994,7 +995,7 @@ errors defaults to ‘strict’.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="oca.recipe.odoo.testing.TestingRecipe">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oca.recipe.odoo.testing.</span></span><span class="sig-name descname"><span class="pre">TestingRecipe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buildout</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/testing.html#TestingRecipe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.testing.TestingRecipe" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#oca.recipe.odoo.base.BaseRecipe" title="oca.recipe.odoo.base.BaseRecipe"><code class="xref py py-class docutils literal notranslate"><span class="pre">oca.recipe.odoo.base.BaseRecipe</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#oca.recipe.odoo.base.BaseRecipe" title="oca.recipe.odoo.base.BaseRecipe"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseRecipe</span></code></a></p>
 <p>A subclass with just enough few defaults for unit testing.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oca.recipe.odoo.testing.TestingRecipe.nightly_filenames">
@@ -1030,7 +1031,7 @@ at some point.</p>
 
 </section>
 <section id="module-oca.recipe.odoo.utils">
-<span id="utils-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">utils</span></code> Module<a class="headerlink" href="#module-oca.recipe.odoo.utils" title="Permalink to this headline">¶</a></h2>
+<span id="utils-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">utils</span></code> Module<a class="headerlink" href="#module-oca.recipe.odoo.utils" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="oca.recipe.odoo.utils.WorkingDirectoryKeeper">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oca.recipe.odoo.utils.</span></span><span class="sig-name descname"><span class="pre">WorkingDirectoryKeeper</span></span><a class="reference internal" href="../_modules/oca/recipe/odoo/utils.html#WorkingDirectoryKeeper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.utils.WorkingDirectoryKeeper" title="Permalink to this definition">¶</a></dt>
@@ -1152,10 +1153,10 @@ hash-comments.</p>
 </li>
 </ul>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>opt_val</strong> (<em>basestring</em>) – the raw option value</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>tuple of strings</p>
 </dd>
 </dl>
@@ -1203,10 +1204,10 @@ hash-comments.</p>
 <span class="sig-prename descclassname"><span class="pre">oca.recipe.odoo.utils.</span></span><span class="sig-name descname"><span class="pre">total_seconds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">td</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/utils.html#total_seconds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.utils.total_seconds" title="Permalink to this definition">¶</a></dt>
 <dd><p>Uniformity backport of <code class="xref py py-meth docutils literal notranslate"><span class="pre">datetime.timedelta.total_seconds`()</span></code></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>td</strong> – a <code class="xref py py-class docutils literal notranslate"><span class="pre">datetime.timedelta</span></code> instance</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>the number of seconds in <code class="docutils literal notranslate"><span class="pre">tdelta</span></code></p>
 </dd>
 </dl>
@@ -1224,7 +1225,7 @@ None is passed.</p>
 
 </section>
 <section id="subpackages">
-<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="oca.recipe.odoo.runtime.html">runtime Subpackage</a><ul>
@@ -1266,7 +1267,7 @@ None is passed.</p>
     </p>
     <p>
         &copy; Copyright 2011-2021, &lt;a href=&#34;http://anybox.fr/&#34;&gt;Anybox SAS&lt;/a&gt;; 2021 &lt;a href=&#34;https://odoo-community.org/&#34;&gt;Odoo Community Association&lt;/a&gt; and contributors.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.0.2.<br/>
     </p>
   </div>
 </footer>

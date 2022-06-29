@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>First steps &#8212; Odoo buildout recipe 1.9.3.dev0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
@@ -12,6 +12,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -219,9 +220,9 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="first-steps">
-<h1>First steps<a class="headerlink" href="#first-steps" title="Permalink to this headline">¶</a></h1>
+<h1>First steps<a class="headerlink" href="#first-steps" title="Permalink to this heading">¶</a></h1>
 <section id="how-to-create-and-bootstrap-a-buildout">
-<span id="howto"></span><h2>How to create and bootstrap a buildout<a class="headerlink" href="#how-to-create-and-bootstrap-a-buildout" title="Permalink to this headline">¶</a></h2>
+<span id="howto"></span><h2>How to create and bootstrap a buildout<a class="headerlink" href="#how-to-create-and-bootstrap-a-buildout" title="Permalink to this heading">¶</a></h2>
 <p>To create a buildout and run the build, you just need <strong>1 file</strong> and <strong>2 commands</strong>:</p>
 <ul class="simple">
 <li><p>Create a single <code class="docutils literal notranslate"><span class="pre">buildout.cfg</span></code> file.</p></li>
@@ -231,12 +232,12 @@
 </ul>
 <p>The same with more details below :</p>
 <section id="creating-the-buildout">
-<h3>Creating the buildout<a class="headerlink" href="#creating-the-buildout" title="Permalink to this headline">¶</a></h3>
+<h3>Creating the buildout<a class="headerlink" href="#creating-the-buildout" title="Permalink to this heading">¶</a></h3>
 <p>Create a <code class="docutils literal notranslate"><span class="pre">buildout.cfg</span></code> file in an empty directory, containing the
 configuration of the <a class="reference internal" href="#example-6-1">example 6.1</a> section.</p>
 </section>
 <section id="installing-build-dependencies">
-<span id="dependencies"></span><h3>Installing build dependencies<a class="headerlink" href="#installing-build-dependencies" title="Permalink to this headline">¶</a></h3>
+<span id="dependencies"></span><h3>Installing build dependencies<a class="headerlink" href="#installing-build-dependencies" title="Permalink to this heading">¶</a></h3>
 <p>You basically need typical development tools needed to build all the Python
 dependency eggs of Odoo. You can do this by yourself with your system or
 Linux distribution.</p>
@@ -271,7 +272,7 @@ PostgreSQL server on the same host, that’s not in the recipe scope,
 just install it as well.</p>
 </section>
 <section id="bootstrapping-the-buildout">
-<h3>Bootstrapping the buildout<a class="headerlink" href="#bootstrapping-the-buildout" title="Permalink to this headline">¶</a></h3>
+<h3>Bootstrapping the buildout<a class="headerlink" href="#bootstrapping-the-buildout" title="Permalink to this heading">¶</a></h3>
 <p>Bootstrapping the buildout consists in creating the basic structure of
 the buildout, and installing buildout itself in the directory.
 Once it’s been done, everything is under tight control.</p>
@@ -332,7 +333,7 @@ shell script, using options such as <code class="docutils literal notranslate"><
 </div>
 </section>
 <section id="running-the-build">
-<h3>Running the build<a class="headerlink" href="#running-the-build" title="Permalink to this headline">¶</a></h3>
+<h3>Running the build<a class="headerlink" href="#running-the-build" title="Permalink to this heading">¶</a></h3>
 <p>This is the day-to-day operation. Just run</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ bin/buildout
 </pre></div>
@@ -340,7 +341,7 @@ shell script, using options such as <code class="docutils literal notranslate"><
 <p>And rerun to apply any changes you could later make to <code class="docutils literal notranslate"><span class="pre">buildout.cfg</span></code>.</p>
 </section>
 <section id="starting-odoo">
-<h3>Starting Odoo<a class="headerlink" href="#starting-odoo" title="Permalink to this headline">¶</a></h3>
+<h3>Starting Odoo<a class="headerlink" href="#starting-odoo" title="Permalink to this heading">¶</a></h3>
 <p>Just run</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ bin/start_openerp
 </pre></div>
@@ -348,7 +349,7 @@ shell script, using options such as <code class="docutils literal notranslate"><
 </section>
 </section>
 <section id="example-openerp-7-0-buildouts">
-<span id="example-7-0"></span><h2>Example OpenERP 7.0 buildouts<a class="headerlink" href="#example-openerp-7-0-buildouts" title="Permalink to this headline">¶</a></h2>
+<span id="example-7-0"></span><h2>Example OpenERP 7.0 buildouts<a class="headerlink" href="#example-openerp-7-0-buildouts" title="Permalink to this heading">¶</a></h2>
 <p>This example builds the latest nightly OpenERP 7 version.
 Note how most Python distribution versions are pinned.</p>
 <p>While not mandatory, version pinning is an
@@ -408,7 +409,7 @@ ready-to-run buildout on some dedicated support branch, Git mirrors, etc.</p>
 directories, and how uniform it is.</p>
 </section>
 <section id="example-openerp-6-1-buildout-with-a-custom-addon">
-<span id="example-6-1"></span><h2>Example OpenERP 6.1 buildout with a custom addon<a class="headerlink" href="#example-openerp-6-1-buildout-with-a-custom-addon" title="Permalink to this headline">¶</a></h2>
+<span id="example-6-1"></span><h2>Example OpenERP 6.1 buildout with a custom addon<a class="headerlink" href="#example-openerp-6-1-buildout-with-a-custom-addon" title="Permalink to this heading">¶</a></h2>
 <p>Here is a very simple example for a latest OpenERP 6.1 nightly and a
 custom addon hosted on Bitbucket:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">buildout</span><span class="p">]</span>
@@ -459,7 +460,7 @@ client, unless that’s what you really want to do.</p>
 </div>
 </section>
 <section id="example-openerp-6-0-buildout-server-and-clients">
-<h2>Example OpenERP 6.0 buildout (server and clients)<a class="headerlink" href="#example-openerp-6-0-buildout-server-and-clients" title="Permalink to this headline">¶</a></h2>
+<h2>Example OpenERP 6.0 buildout (server and clients)<a class="headerlink" href="#example-openerp-6-0-buildout-server-and-clients" title="Permalink to this heading">¶</a></h2>
 <p>Here is a sample buildout with version specification, 2 OpenERP servers (with
 one using the latest 6.0 branch on the launchpad) using only NETRPC and
 listening on 2 different ports, and 2 web clients:</p>
@@ -525,7 +526,7 @@ listening on 2 different ports, and 2 web clients:</p>
 </div>
 </section>
 <section id="continuously-tested-examples">
-<h2>Continuously tested examples<a class="headerlink" href="#continuously-tested-examples" title="Permalink to this headline">¶</a></h2>
+<h2>Continuously tested examples<a class="headerlink" href="#continuously-tested-examples" title="Permalink to this heading">¶</a></h2>
 <p>Other examples are available in the <code class="docutils literal notranslate"><span class="pre">buildbot</span></code> subdirectory of the
 source distribution archive of this recipe (the <code class="docutils literal notranslate"><span class="pre">tar.gz</span></code> file that
 can be downloaded <a class="reference external" href="http://pypi.python.org/pypi/anybox.recipe.openerp">from the PyPI</a>), and are
@@ -536,7 +537,7 @@ continuously tested in the
 tested examples.</p>
 </section>
 <section id="other-sample-buildouts">
-<h2>Other sample buildouts<a class="headerlink" href="#other-sample-buildouts" title="Permalink to this headline">¶</a></h2>
+<h2>Other sample buildouts<a class="headerlink" href="#other-sample-buildouts" title="Permalink to this heading">¶</a></h2>
 <p>Here are a few ready-to-use buildouts:</p>
 <p>(Be sure to install system <a class="reference internal" href="#dependencies">dependencies</a> first)</p>
 <p>OpenERP with the development branches of the Magento connector addons:</p>
@@ -571,7 +572,7 @@ $ bin/start_openerp
     </p>
     <p>
         &copy; Copyright 2011-2021, &lt;a href=&#34;http://anybox.fr/&#34;&gt;Anybox SAS&lt;/a&gt;; 2021 &lt;a href=&#34;https://odoo-community.org/&#34;&gt;Odoo Community Association&lt;/a&gt; and contributors.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.0.2.<br/>
     </p>
   </div>
 </footer>

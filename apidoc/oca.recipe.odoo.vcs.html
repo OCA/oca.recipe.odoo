@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>vcs Subpackage &#8212; Odoo buildout recipe 1.9.3.dev0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
@@ -12,6 +12,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -208,9 +209,9 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="vcs-subpackage">
-<h1>vcs Subpackage<a class="headerlink" href="#vcs-subpackage" title="Permalink to this headline">¶</a></h1>
+<h1>vcs Subpackage<a class="headerlink" href="#vcs-subpackage" title="Permalink to this heading">¶</a></h1>
 <section id="module-oca.recipe.odoo.vcs">
-<span id="vcs-package"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">vcs</span></code> Package<a class="headerlink" href="#module-oca.recipe.odoo.vcs" title="Permalink to this headline">¶</a></h2>
+<span id="vcs-package"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">vcs</span></code> Package<a class="headerlink" href="#module-oca.recipe.odoo.vcs" title="Permalink to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="oca.recipe.odoo.vcs.get_update">
 <span class="sig-prename descclassname"><span class="pre">oca.recipe.odoo.vcs.</span></span><span class="sig-name descname"><span class="pre">get_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vcs_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">revision</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">options</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/vcs.html#get_update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.vcs.get_update" title="Permalink to this definition">¶</a></dt>
@@ -224,14 +225,14 @@
 
 </section>
 <section id="module-oca.recipe.odoo.vcs.base">
-<span id="base-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">base</span></code> Module<a class="headerlink" href="#module-oca.recipe.odoo.vcs.base" title="Permalink to this headline">¶</a></h2>
+<span id="base-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">base</span></code> Module<a class="headerlink" href="#module-oca.recipe.odoo.vcs.base" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="oca.recipe.odoo.vcs.base.BaseRepo">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oca.recipe.odoo.vcs.base.</span></span><span class="sig-name descname"><span class="pre">BaseRepo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clear_retry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offline</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clear_locks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">options</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/vcs/base.html#BaseRepo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.vcs.base.BaseRepo" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>The common interface that all repository classes implement.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>target_dir</strong> – the local directory which will serve as a working tree</p></li>
 <li><p><strong>offline</strong> – if <code class="docutils literal notranslate"><span class="pre">True</span></code>, the repository instance will perform no
@@ -290,7 +291,7 @@ considered VCS).</p>
 wanted revision does not exist locally and offline mode has been
 selected.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Raises</dt>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><a class="reference internal" href="#oca.recipe.odoo.vcs.base.CloneError" title="oca.recipe.odoo.vcs.base.CloneError"><strong>CloneError</strong></a> – if initial cloning fails</p></li>
 <li><p><a class="reference internal" href="#oca.recipe.odoo.vcs.base.UpdateError" title="oca.recipe.odoo.vcs.base.UpdateError"><strong>UpdateError</strong></a> – if update of existing repository fails</p></li>
@@ -334,7 +335,7 @@ due to the promise that this method does not query any remote repo.</p>
 <dd><p>Return universal identifier for parent nodes, aka current revisions.</p>
 <p>There might be more than one with some VCSes (ex: pending merge in hg).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>pip_compatible</strong> – if <code class="docutils literal notranslate"><span class="pre">True</span></code>, only <a class="reference external" href="http://pip.readthedocs.org/en/latest/reference/pip_install.html#vcs-support">pip compatible</a>
 revision specifications are returned, depending
 on the VCS type.</p>
@@ -360,14 +361,14 @@ on the VCS type.</p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="oca.recipe.odoo.vcs.base.CloneError">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oca.recipe.odoo.vcs.base.</span></span><span class="sig-name descname"><span class="pre">CloneError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">returncode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/vcs/base.html#CloneError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.vcs.base.CloneError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">subprocess.CalledProcessError</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">CalledProcessError</span></code></p>
 <p>Class to easily signal errors in initial cloning.</p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="oca.recipe.odoo.vcs.base.UpdateError">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oca.recipe.odoo.vcs.base.</span></span><span class="sig-name descname"><span class="pre">UpdateError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">returncode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/vcs/base.html#UpdateError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.vcs.base.UpdateError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">subprocess.CalledProcessError</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">CalledProcessError</span></code></p>
 <p>Specific class for errors occurring during updates of existing repos.</p>
 </dd></dl>
 
@@ -398,11 +399,11 @@ on the VCS type.</p>
 
 </section>
 <section id="module-oca.recipe.odoo.vcs.bzr">
-<span id="bzr-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">bzr</span></code> Module<a class="headerlink" href="#module-oca.recipe.odoo.vcs.bzr" title="Permalink to this headline">¶</a></h2>
+<span id="bzr-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">bzr</span></code> Module<a class="headerlink" href="#module-oca.recipe.odoo.vcs.bzr" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="oca.recipe.odoo.vcs.bzr.BzrBranch">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oca.recipe.odoo.vcs.bzr.</span></span><span class="sig-name descname"><span class="pre">BzrBranch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/vcs/bzr.html#BzrBranch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.vcs.bzr.BzrBranch" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#oca.recipe.odoo.vcs.base.BaseRepo" title="oca.recipe.odoo.vcs.base.BaseRepo"><code class="xref py py-class docutils literal notranslate"><span class="pre">oca.recipe.odoo.vcs.base.BaseRepo</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#oca.recipe.odoo.vcs.base.BaseRepo" title="oca.recipe.odoo.vcs.base.BaseRepo"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseRepo</span></code></a></p>
 <p>Represent a Bazaar branch tied to a reference branch.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="oca.recipe.odoo.vcs.bzr.BzrBranch.archive">
@@ -430,10 +431,10 @@ appear as a local modification.</p>
 <span class="sig-name descname"><span class="pre">get_revid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">revision</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/vcs/bzr.html#BzrBranch.get_revid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.vcs.bzr.BzrBranch.get_revid" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert a locally available revision to a revid.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>revision</strong> (<em>str</em>) – any valid revision string.</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">LookupError</span></code> if not actually available.</p>
 </dd>
 </dl>
@@ -483,7 +484,7 @@ due to the promise that this method does not query any remote repo.</p>
 <dd><p>True iff revspec is a fixed revision number.</p>
 <p>Valid revision numbers are integers separated by dots.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>fixed</strong> – if <code class="docutils literal notranslate"><span class="pre">True</span></code>, it is further checked that integers
 are positive.</p>
 </dd>
@@ -495,7 +496,7 @@ are positive.</p>
 <span class="sig-name descname"><span class="pre">parents</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">as_revno</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pip_compatible</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/vcs/bzr.html#BzrBranch.parents"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.vcs.bzr.BzrBranch.parents" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return current revision.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>as_revno</strong> – if <code class="docutils literal notranslate"><span class="pre">True</span></code>, the revno will be returned. By default,
 a full revision id is issued (see <a class="reference internal" href="#oca.recipe.odoo.vcs.bzr.BzrBranch.revision_id" title="oca.recipe.odoo.vcs.bzr.BzrBranch.revision_id"><code class="xref py py-meth docutils literal notranslate"><span class="pre">revision_id()</span></code></a>)</p></li>
@@ -537,10 +538,10 @@ features.</p>
 <span class="sig-name descname"><span class="pre">revision_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">revspec</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/vcs/bzr.html#BzrBranch.revision_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.vcs.bzr.BzrBranch.revision_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert revision number (revno) to globally unique revision id.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>revspec</strong> (<em>str</em>) – any revision specification</p>
 </dd>
-<dt class="field-even">Returns str</dt>
+<dt class="field-even">Returns str<span class="colon">:</span></dt>
 <dd class="field-even"><p>revision id specification (directly usable as -r
 argument)</p>
 </dd>
@@ -565,7 +566,7 @@ argument)</p>
 <span class="sig-name descname"><span class="pre">update_conf</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/vcs/bzr.html#BzrBranch.update_conf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.vcs.bzr.BzrBranch.update_conf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Update branch.conf.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return bool</dt>
+<dt class="field-odd">Return bool<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if parent URL has changed (see lp:1320198)</p>
 </dd>
 </dl>
@@ -591,11 +592,11 @@ argument)</p>
 
 </section>
 <section id="module-oca.recipe.odoo.vcs.git">
-<span id="git-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">git</span></code> Module<a class="headerlink" href="#module-oca.recipe.odoo.vcs.git" title="Permalink to this headline">¶</a></h2>
+<span id="git-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">git</span></code> Module<a class="headerlink" href="#module-oca.recipe.odoo.vcs.git" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="oca.recipe.odoo.vcs.git.GitRepo">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oca.recipe.odoo.vcs.git.</span></span><span class="sig-name descname"><span class="pre">GitRepo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/vcs/git.html#GitRepo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.vcs.git.GitRepo" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#oca.recipe.odoo.vcs.base.BaseRepo" title="oca.recipe.odoo.vcs.base.BaseRepo"><code class="xref py py-class docutils literal notranslate"><span class="pre">oca.recipe.odoo.vcs.base.BaseRepo</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#oca.recipe.odoo.vcs.base.BaseRepo" title="oca.recipe.odoo.vcs.base.BaseRepo"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseRepo</span></code></a></p>
 <p>Represent a Git clone tied to a reference branch/commit/tag.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="oca.recipe.odoo.vcs.git.GitRepo.archive">
@@ -637,7 +638,7 @@ people depend on it, for not having enough privileges to add tags.</p>
 <span class="sig-name descname"><span class="pre">get_local_hash_for_ref</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ref</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/vcs/git.html#GitRepo.get_local_hash_for_ref"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.vcs.git.GitRepo.get_local_hash_for_ref" title="Permalink to this definition">¶</a></dt>
 <dd><p>Query the local git database for sha of a given ref.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">sha</span></code> the hash of a given ref if known to the local git repo
 <code class="docutils literal notranslate"><span class="pre">None</span></code> if the ref is unkown</p>
 </dd>
@@ -668,7 +669,7 @@ merge revision into current branch.</p>
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">init_git_version</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v_str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/vcs/git.html#GitRepo.init_git_version"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.vcs.git.GitRepo.init_git_version" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse git version string and store the resulting tuple on self.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>the parsed version tuple</p>
 </dd>
 </dl>
@@ -733,7 +734,7 @@ the proper detected one, if needed:</p>
 <span class="sig-name descname"><span class="pre">log_call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callwith=&lt;function</span> <span class="pre">check_call&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_level=20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kw</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/vcs/git.html#GitRepo.log_call"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.vcs.git.GitRepo.log_call" title="Permalink to this definition">¶</a></dt>
 <dd><p>Wrap a subprocess call with logging</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>meth</strong> – the calling method to use.</p>
 </dd>
 </dl>
@@ -761,7 +762,7 @@ the proper detected one, if needed:</p>
 <span class="sig-name descname"><span class="pre">parents</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pip_compatible</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/vcs/git.html#GitRepo.parents"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.vcs.git.GitRepo.parents" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return full hash of parent nodes.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>pip_compatible</strong> – ignored, all Git revspecs are pip compatible</p>
 </dd>
 </dl>
@@ -772,7 +773,7 @@ the proper detected one, if needed:</p>
 <span class="sig-name descname"><span class="pre">query_remote_ref</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">remote</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/vcs/git.html#GitRepo.query_remote_ref"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.vcs.git.GitRepo.query_remote_ref" title="Permalink to this definition">¶</a></dt>
 <dd><p>Query remote repo about given ref.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">('tag',</span> <span class="pre">sha)</span></code> if ref is a tag in remote
 <code class="docutils literal notranslate"><span class="pre">('branch',</span> <span class="pre">sha)</span></code> if ref is branch (aka “head”) in remote
 <code class="docutils literal notranslate"><span class="pre">(None,</span> <span class="pre">ref)</span></code> if ref does not exist in remote. This happens
@@ -824,11 +825,11 @@ notably if ref if a commit sha (they can’t be queried)</p>
 
 </section>
 <section id="module-oca.recipe.odoo.vcs.hg">
-<span id="hg-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">hg</span></code> Module<a class="headerlink" href="#module-oca.recipe.odoo.vcs.hg" title="Permalink to this headline">¶</a></h2>
+<span id="hg-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">hg</span></code> Module<a class="headerlink" href="#module-oca.recipe.odoo.vcs.hg" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="oca.recipe.odoo.vcs.hg.HgRepo">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oca.recipe.odoo.vcs.hg.</span></span><span class="sig-name descname"><span class="pre">HgRepo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clear_retry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offline</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clear_locks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">options</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/vcs/hg.html#HgRepo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.vcs.hg.HgRepo" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#oca.recipe.odoo.vcs.base.BaseRepo" title="oca.recipe.odoo.vcs.base.BaseRepo"><code class="xref py py-class docutils literal notranslate"><span class="pre">oca.recipe.odoo.vcs.base.BaseRepo</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#oca.recipe.odoo.vcs.base.BaseRepo" title="oca.recipe.odoo.vcs.base.BaseRepo"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseRepo</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="oca.recipe.odoo.vcs.hg.HgRepo.archive">
 <span class="sig-name descname"><span class="pre">archive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/vcs/hg.html#HgRepo.archive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.vcs.hg.HgRepo.archive" title="Permalink to this definition">¶</a></dt>
@@ -888,7 +889,7 @@ practices.</p>
 <span class="sig-name descname"><span class="pre">parents</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pip_compatible</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/vcs/hg.html#HgRepo.parents"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.vcs.hg.HgRepo.parents" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return full hash of parent nodes.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>pip_compatible</strong> – ignored, all Hg revspecs are pip compatible</p>
 </dd>
 </dl>
@@ -921,11 +922,11 @@ practices.</p>
 
 </section>
 <section id="module-oca.recipe.odoo.vcs.svn">
-<span id="svn-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">svn</span></code> Module<a class="headerlink" href="#module-oca.recipe.odoo.vcs.svn" title="Permalink to this headline">¶</a></h2>
+<span id="svn-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">svn</span></code> Module<a class="headerlink" href="#module-oca.recipe.odoo.vcs.svn" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="oca.recipe.odoo.vcs.svn.SvnCheckout">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oca.recipe.odoo.vcs.svn.</span></span><span class="sig-name descname"><span class="pre">SvnCheckout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clear_retry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offline</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clear_locks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">options</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/vcs/svn.html#SvnCheckout"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.vcs.svn.SvnCheckout" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#oca.recipe.odoo.vcs.base.BaseRepo" title="oca.recipe.odoo.vcs.base.BaseRepo"><code class="xref py py-class docutils literal notranslate"><span class="pre">oca.recipe.odoo.vcs.base.BaseRepo</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#oca.recipe.odoo.vcs.base.BaseRepo" title="oca.recipe.odoo.vcs.base.BaseRepo"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseRepo</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="oca.recipe.odoo.vcs.svn.SvnCheckout.get_update">
 <span class="sig-name descname"><span class="pre">get_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">revision</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/vcs/svn.html#SvnCheckout.get_update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.vcs.svn.SvnCheckout.get_update" title="Permalink to this definition">¶</a></dt>
@@ -948,11 +949,11 @@ Offline-mode: no branch nor pull, but update.</p>
 
 </section>
 <section id="module-oca.recipe.odoo.vcs.testing">
-<span id="testing-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">testing</span></code> Module<a class="headerlink" href="#module-oca.recipe.odoo.vcs.testing" title="Permalink to this headline">¶</a></h2>
+<span id="testing-module"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">testing</span></code> Module<a class="headerlink" href="#module-oca.recipe.odoo.vcs.testing" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="oca.recipe.odoo.vcs.testing.VcsTestCase">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oca.recipe.odoo.vcs.testing.</span></span><span class="sig-name descname"><span class="pre">VcsTestCase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/vcs/testing.html#VcsTestCase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.vcs.testing.VcsTestCase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">unittest.case.TestCase</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
 <p>Common fixture</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="oca.recipe.odoo.vcs.testing.VcsTestCase.assertShaEqual">
@@ -997,7 +998,7 @@ Offline-mode: no branch nor pull, but update.</p>
     </p>
     <p>
         &copy; Copyright 2011-2021, &lt;a href=&#34;http://anybox.fr/&#34;&gt;Anybox SAS&lt;/a&gt;; 2021 &lt;a href=&#34;https://odoo-community.org/&#34;&gt;Odoo Community Association&lt;/a&gt; and contributors.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.0.2.<br/>
     </p>
   </div>
 </footer>

@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>For contributors &#8212; Odoo buildout recipe 1.9.3.dev0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
@@ -12,6 +12,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -218,9 +219,9 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="for-contributors">
-<h1>For contributors<a class="headerlink" href="#for-contributors" title="Permalink to this headline">¶</a></h1>
+<h1>For contributors<a class="headerlink" href="#for-contributors" title="Permalink to this heading">¶</a></h1>
 <section id="source-and-tracking">
-<h2>Source and tracking<a class="headerlink" href="#source-and-tracking" title="Permalink to this headline">¶</a></h2>
+<h2>Source and tracking<a class="headerlink" href="#source-and-tracking" title="Permalink to this heading">¶</a></h2>
 <p>The recipe is being hosted in a <a class="reference external" href="https://github.com/OCA/oca.recipe.odoo">Git repository</a>.</p>
 <p>We follow the standard GitHub workflow (issues, pull requests…).
 Code contributors are systematically added to the list of
@@ -229,7 +230,7 @@ not to (what GitHub does is obviously out of our scope).</p>
 <p>Members of the “OCA” project have push privileges on this repository.</p>
 </section>
 <section id="using-a-development-version">
-<h2>Using a development version<a class="headerlink" href="#using-a-development-version" title="Permalink to this headline">¶</a></h2>
+<h2>Using a development version<a class="headerlink" href="#using-a-development-version" title="Permalink to this heading">¶</a></h2>
 <p>To use a local version of the recipe, you may use the <code class="docutils literal notranslate"><span class="pre">develop</span></code>
 general buildout option:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">buildout</span><span class="p">]</span>
@@ -260,7 +261,7 @@ for <code class="docutils literal notranslate"><span class="pre">zc.buildout</sp
 </div>
 </section>
 <section id="development-setup">
-<h2>Development setup<a class="headerlink" href="#development-setup" title="Permalink to this headline">¶</a></h2>
+<h2>Development setup<a class="headerlink" href="#development-setup" title="Permalink to this heading">¶</a></h2>
 <p>We recommend “developing” the source code in a virtualenv, for instance:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">virtualenv</span> <span class="n">recipe</span><span class="o">-</span><span class="n">env</span>
 <span class="n">cd</span> <span class="n">recipe</span><span class="o">-</span><span class="n">env</span>
@@ -271,7 +272,7 @@ for <code class="docutils literal notranslate"><span class="pre">zc.buildout</sp
 </div>
 </section>
 <section id="building-documentation">
-<h2>Building documentation<a class="headerlink" href="#building-documentation" title="Permalink to this headline">¶</a></h2>
+<h2>Building documentation<a class="headerlink" href="#building-documentation" title="Permalink to this heading">¶</a></h2>
 <p>We are using <a class="reference external" href="https://pypi.python.org/pypi/sphinx-bootstrap-theme/">sphinx_bootstrap_theme</a> to easly get responsive
 design documentation.</p>
 <p>You will find <code class="docutils literal notranslate"><span class="pre">sphinx_static/united.oca.bootswatch.bootstrap.min.css</span></code> file
@@ -288,7 +289,7 @@ generate <code class="docutils literal notranslate"><span class="pre">.css</span
 </div>
 </section>
 <section id="coding-style">
-<h2>Coding style<a class="headerlink" href="#coding-style" title="Permalink to this headline">¶</a></h2>
+<h2>Coding style<a class="headerlink" href="#coding-style" title="Permalink to this heading">¶</a></h2>
 <p>The recipe follows the same strong code development coding principles
 as many other projects:</p>
 <ul class="simple">
@@ -304,7 +305,7 @@ doing real Odoo installations with the latest revision of the recipe.</p></li>
 </ul>
 </section>
 <section id="launching-static-analysis-and-unit-tests">
-<h2>Launching static analysis and unit tests<a class="headerlink" href="#launching-static-analysis-and-unit-tests" title="Permalink to this headline">¶</a></h2>
+<h2>Launching static analysis and unit tests<a class="headerlink" href="#launching-static-analysis-and-unit-tests" title="Permalink to this heading">¶</a></h2>
 <p>Install <code class="docutils literal notranslate"><span class="pre">flake8</span></code> and, optionally, <code class="docutils literal notranslate"><span class="pre">coverage</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">../</span><span class="nb">bin</span><span class="o">/</span><span class="n">pip</span> <span class="n">install</span> <span class="n">coverage</span> <span class="n">flake8</span>
 </pre></div>
@@ -319,7 +320,7 @@ doing real Odoo installations with the latest revision of the recipe.</p></li>
 </div>
 </section>
 <section id="integration-tests">
-<span id="id1"></span><h2>Integration tests<a class="headerlink" href="#integration-tests" title="Permalink to this headline">¶</a></h2>
+<span id="id1"></span><h2>Integration tests<a class="headerlink" href="#integration-tests" title="Permalink to this heading">¶</a></h2>
 <p>There is a special category of tests: those that need a real Odoo
 instance, built with the recipe, to run.</p>
 <p>They are located within the <code class="docutils literal notranslate"><span class="pre">tests_with_openerp</span></code> subdirectory and
@@ -358,9 +359,9 @@ at this point.</p>
 </div>
 </section>
 <section id="continuous-integration">
-<span id="id2"></span><h2>Continuous integration<a class="headerlink" href="#continuous-integration" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2>Continuous integration<a class="headerlink" href="#continuous-integration" title="Permalink to this heading">¶</a></h2>
 <section id="basic-builds">
-<h3>Basic builds<a class="headerlink" href="#basic-builds" title="Permalink to this headline">¶</a></h3>
+<h3>Basic builds<a class="headerlink" href="#basic-builds" title="Permalink to this heading">¶</a></h3>
 <p>Upon each push on the main branches, Anybox’ public
 buildbot awakes to check the coding style, run the tests and build
 this documentation. You may check the status there:</p>
@@ -370,7 +371,7 @@ this documentation. You may check the status there:</p>
 </ul>
 </section>
 <section id="actual-runs">
-<h3>Actual runs<a class="headerlink" href="#actual-runs" title="Permalink to this headline">¶</a></h3>
+<h3>Actual runs<a class="headerlink" href="#actual-runs" title="Permalink to this heading">¶</a></h3>
 <p>Furthermore, this buildbot instance runs <a class="reference external" href="https://pypi.python.org/pypi/anybox.buildbot.openerp">anybox.buildbot.openerp</a>,
 a buildbot configurator for Odoo installations based on the recipe.</p>
 <p>This is used in turn to run high-level integration tests, having the
@@ -413,7 +414,7 @@ be greatly appreciated.</p>
     </p>
     <p>
         &copy; Copyright 2011-2021, &lt;a href=&#34;http://anybox.fr/&#34;&gt;Anybox SAS&lt;/a&gt;; 2021 &lt;a href=&#34;https://odoo-community.org/&#34;&gt;Odoo Community Association&lt;/a&gt; and contributors.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.0.2.<br/>
     </p>
   </div>
 </footer>
