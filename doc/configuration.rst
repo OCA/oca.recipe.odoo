@@ -400,9 +400,9 @@ write-requirements-file
 
 Default value: ``''``
 
-If set, this string option makes the recipe write the versions it has installed
- - including pinned versions which is the difference to the standard
-``update-versions-file`` - into the filename given in requirements.txt syntax.
+If set, this string option makes the recipe write the versions it has installed,
+including pinned versions which is the difference to the standard
+``update-versions-file``, into the filename given in requirements.txt syntax.
 
 This is useful for mixed buildout/pip environments, and for tools like `pip-audit
 <https://pypi.org/project/pip-audit>`_ or `dependabot
