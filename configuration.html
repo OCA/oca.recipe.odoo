@@ -181,7 +181,8 @@
 </li>
 <li><a class="reference internal" href="#merges">merges</a></li>
 <li><a class="reference internal" href="#eggs">eggs</a></li>
-<li><a class="reference internal" href="#apply-requirements-file">apply-requirements-file</a><ul>
+<li><a class="reference internal" href="#apply-requirements-file">apply-requirements-file</a></li>
+<li><a class="reference internal" href="#write-requirements-file">write-requirements-file</a><ul>
 <li><a class="reference internal" href="#precedence-among-requirements">Precedence among requirements</a></li>
 <li><a class="reference internal" href="#requirements-file-limitations">Requirements file limitations</a></li>
 </ul>
@@ -681,6 +682,16 @@ eggs needed by addons, or just useful ones:</p>
 <p>Default value: <code class="docutils literal notranslate"><span class="pre">False</span></code></p>
 <p>If set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, this boolean option makes the recipe read Odoo’s
 <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file if available, and apply its prescriptions.</p>
+</section>
+<section id="write-requirements-file">
+<h3>write-requirements-file<a class="headerlink" href="#write-requirements-file" title="Permalink to this heading">¶</a></h3>
+<p>Default value: <code class="docutils literal notranslate"><span class="pre">''</span></code></p>
+<p>If set, this string option makes the recipe write the versions it has installed,
+including pinned versions which is the difference to the standard
+<code class="docutils literal notranslate"><span class="pre">update-versions-file</span></code>, into the filename given in requirements.txt syntax.</p>
+<p>This is useful for mixed buildout/pip environments, and for tools like <a class="reference external" href="https://pypi.org/project/pip-audit">pip-audit</a> or <cite>dependabot
+&lt;https://docs.github.com/en/code-security/dependabot/dependabot-alerts/about-dependabot-alerts&gt;</cite>
+(which uses the former) that don’t understand buildout, but can work on a requirements file.</p>
 <section id="precedence-among-requirements">
 <h4>Precedence among requirements<a class="headerlink" href="#precedence-among-requirements" title="Permalink to this heading">¶</a></h4>
 <p>In short, Odoo’s requirement file has the lowest precedence of all

@@ -395,6 +395,20 @@ Default value: ``False``
 If set to ``True``, this boolean option makes the recipe read Odoo's
 ``requirements.txt`` file if available, and apply its prescriptions.
 
+write-requirements-file
+-----------------------
+
+Default value: ``''``
+
+If set, this string option makes the recipe write the versions it has installed,
+including pinned versions which is the difference to the standard
+``update-versions-file``, into the filename given in requirements.txt syntax.
+
+This is useful for mixed buildout/pip environments, and for tools like `pip-audit
+<https://pypi.org/project/pip-audit>`_ or `dependabot
+<https://docs.github.com/en/code-security/dependabot/dependabot-alerts/about-dependabot-alerts>`
+(which uses the former) that don't understand buildout, but can work on a requirements file.
+
 Precedence among requirements
 `````````````````````````````
 In short, Odoo's requirement file has the lowest precedence of all
