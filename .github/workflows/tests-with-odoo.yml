@@ -8,11 +8,12 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-${{ matrix.ubuntu_version }}
     strategy:
       fail-fast: false
       matrix:
         odoo_release: ["12.0", "13.0", "14.0", "15.0"]
+        ubuntu_version: ["18.04", "20.04", "22.04"]
     env:
       DB: "odoo"
       DB_HOST: "localhost"
