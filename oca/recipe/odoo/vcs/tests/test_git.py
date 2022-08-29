@@ -132,7 +132,7 @@ class GitTestCase(GitBaseTestCase):
         repo = GitRepo(target_dir, self.src_repo)
         try:
             repo.clean()
-        except:  # noqa: E722
+        except Exception:  # noqa: E722
             self.fail("clean() should not fail if "
                       "clone not already done")
 

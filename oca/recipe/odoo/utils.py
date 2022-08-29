@@ -114,13 +114,13 @@ def clean_object_files(directory):
         for p in to_delete:
             try:
                 os.unlink(p)
-            except:  # noqa: E722
+            except Exception:  # noqa: E722
                 logger.exception("Error attempting to unlink %r. "
                                  "Proceeding anyway.", p)
     for d in dirs_to_remove:
         try:
             os.rmdir(d)
-        except:  # noqa: E722
+        except Exception:  # noqa: E722
             logger.exception("Error attempting to rmdir %r",
                              "Proceeding anyway.", p)
 

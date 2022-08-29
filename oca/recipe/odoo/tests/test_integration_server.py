@@ -34,7 +34,7 @@ class IntegrationTestCase(unittest.TestCase):
                             self.buildout_dir)
             os.chdir(self.buildout_dir)
             self.provide_dependencies()
-        except:  # noqa: E722
+        except Exception:  # noqa: E722
             self.tearDown()
             raise
 
@@ -75,7 +75,7 @@ class IntegrationTestCase(unittest.TestCase):
     def tearDown(self):
         try:
             shutil.rmtree(self.sandbox_dir)
-        except:  # noqa: E722
+        except Exception:  # noqa: E722
             pass
 
         sys.modules['pip'] = self.pip_original
