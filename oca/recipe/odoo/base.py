@@ -832,7 +832,7 @@ class BaseRecipe(object):
                 else:  # vcs
                     repo_url, addons_dir, repo_rev = split[1:4]
                     location_spec = (repo_url, repo_rev)
-            except:  # noqa: E722
+            except Exception:  # noqa: E722
                 raise UserError("Could not parse addons line: %r. "
                                 "Please check format " % line)
 
@@ -1106,12 +1106,12 @@ class BaseRecipe(object):
             # Everything that follows assumes all tarball members
             # are inside a directory with an expected name such
             # as odoo-6.1-1
-            assert(first.isdir())
+            assert first.isdir()
             extracted_name = first.name.split('/')[0]
             self.odoo_dir = join(self.parts, extracted_name)
             # protection against malicious tarballs
-            assert(not os.path.isabs(extracted_name))
-            assert(self.odoo_dir.startswith(self.parts))
+            assert not os.path.isabs(extracted_name)
+            assert self.odoo_dir.startswith(self.parts)
 
             logger.info("Cleaning existing %s", self.odoo_dir)
             if os.path.exists(self.odoo_dir):

@@ -132,7 +132,7 @@ class GitRepo(BaseRepo):
         try:
             version = cls._git_version = tuple(
                 int(x) for x in v_str.split()[2].split('.')[:3])
-        except:  # noqa: E722 do not use bare 'except'
+        except Exception:  # noqa: E722 do not use bare 'except'
             raise ValueError("Could not parse git version output %r. Please "
                              "report this" % v_str)
         return version
