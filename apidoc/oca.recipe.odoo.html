@@ -488,10 +488,6 @@ buildout directory.</p>
 <dt class="sig sig-object py" id="oca.recipe.odoo.base.BaseRecipe.merge_requirements">
 <span class="sig-name descname"><span class="pre">merge_requirements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reqs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/base.html#BaseRecipe.merge_requirements"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.base.BaseRecipe.merge_requirements" title="Permalink to this definition">¶</a></dt>
 <dd><p>Merge eggs option with self.requirements.</p>
-<p>TODO refactor all this: merge requirements is not idempotent, it
-appends. Overall, this going back and forth between the serialized
-form (self.options[‘eggs’]) and the parsed version has growed too
-much, up to the point where it’s not natural at all.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -554,16 +550,6 @@ This allows for easy fixing of revisions in an extension buildout</p>
 in an old OpenERP version. Could become the norm, but setup is also
 used to list dependencies.</p>
 </dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="oca.recipe.odoo.base.BaseRecipe.read_requirements_pip_after_v8">
-<span class="sig-name descname"><span class="pre">read_requirements_pip_after_v8</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">req_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">versions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">develops</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/base.html#BaseRecipe.read_requirements_pip_after_v8"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.base.BaseRecipe.read_requirements_pip_after_v8" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="oca.recipe.odoo.base.BaseRecipe.read_requirements_pip_before_v8">
-<span class="sig-name descname"><span class="pre">read_requirements_pip_before_v8</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">req_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">versions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">develops</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/base.html#BaseRecipe.read_requirements_pip_before_v8"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.base.BaseRecipe.read_requirements_pip_before_v8" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="oca.recipe.odoo.base.BaseRecipe.recipe_requirements">
@@ -664,11 +650,6 @@ standard distribution.</p>
 <dd><p>Return the mimetype of the HTTP message.
 This is a helper to support Python 2 and 3.</p>
 </dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="oca.recipe.odoo.base.pip_version">
-<span class="sig-prename descclassname"><span class="pre">oca.recipe.odoo.base.</span></span><span class="sig-name descname"><span class="pre">pip_version</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oca/recipe/odoo/base.html#pip_version"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oca.recipe.odoo.base.pip_version" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="oca.recipe.odoo.base.rfc822_time">

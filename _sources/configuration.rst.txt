@@ -395,20 +395,6 @@ Default value: ``False``
 If set to ``True``, this boolean option makes the recipe read Odoo's
 ``requirements.txt`` file if available, and apply its prescriptions.
 
-write-requirements-file
------------------------
-
-Default value: ``''``
-
-If set, this string option makes the recipe write the versions it has installed,
-including pinned versions which is the difference to the standard
-``update-versions-file``, into the filename given in requirements.txt syntax.
-
-This is useful for mixed buildout/pip environments, and for tools like `pip-audit
-<https://pypi.org/project/pip-audit>`_ or `dependabot
-<https://docs.github.com/en/code-security/dependabot/dependabot-alerts/about-dependabot-alerts>`
-(which uses the former) that don't understand buildout, but can work on a requirements file.
-
 Precedence among requirements
 `````````````````````````````
 In short, Odoo's requirement file has the lowest precedence of all
@@ -431,23 +417,36 @@ suggest as a workaround to you convert it temporarily to
 developers.
 
 .. note:: At the time of this writing, the ``requirements.txt`` file shipping
-          within Odoo's main 8.0 branch is fully supported, but :
+          within Odoo's main 14.0 branch is fully supported, but :
 
           * you are free to use any alternative branch, including your
             own baked
           * the mainline requirements file may change in the future.
 
-Only a small subset of the `pip's requirement specifiers
+Only a subset of the `pip's requirement specifiers
 <https://pip.pypa.io/en/latest/reference/pip_install.html#requirement-specifiers>`_
 is actually supported, notably:
 
-* version inequalities, such as ``>=2.0`` and boolean expressions are
-  not currently implemented. They will be if needed, and you should
-  get an understandable message about the condition being "too complicated"
 * no specifier involving network operations is supported. In
   particular, the VCS URLs are not (to workaround that, use
   ``gp.vcsdevelop``), and the ``-r`` (``--requirements``) specifiers
   work for local files only (path relative to the Odoo part directory).
+
+.. _write_requirements_file:
+
+write-requirements-file
+-----------------------
+
+Default value: ``''``
+
+If set, this string option makes the recipe write the versions it has installed,
+including pinned versions which is the difference to the standard
+``update-versions-file``, into the filename given in requirements.txt syntax.
+
+This is useful for mixed buildout/pip environments, and for tools like `pip-audit
+<https://pypi.org/project/pip-audit>`_ or `dependabot
+<https://docs.github.com/en/code-security/dependabot/dependabot-alerts/about-dependabot-alerts>`
+(which uses the former) that don't understand buildout, but can work on a requirements file.
 
 .. _revisions:
 

@@ -181,18 +181,18 @@
 </li>
 <li><a class="reference internal" href="#merges">merges</a></li>
 <li><a class="reference internal" href="#eggs">eggs</a></li>
-<li><a class="reference internal" href="#apply-requirements-file">apply-requirements-file</a></li>
-<li><a class="reference internal" href="#write-requirements-file">write-requirements-file</a><ul>
+<li><a class="reference internal" href="#apply-requirements-file">apply-requirements-file</a><ul>
 <li><a class="reference internal" href="#precedence-among-requirements">Precedence among requirements</a></li>
 <li><a class="reference internal" href="#requirements-file-limitations">Requirements file limitations</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#write-requirements-file">write-requirements-file</a></li>
 <li><a class="reference internal" href="#revisions">revisions</a></li>
 <li><a class="reference internal" href="#clean">clean</a></li>
 <li><a class="reference internal" href="#vcs-revert">vcs-revert</a></li>
 <li><a class="reference internal" href="#vcs-clear-retry">vcs-clear-retry</a></li>
 <li><a class="reference internal" href="#vcs-clear-locks">vcs-clear-locks</a></li>
-<li><a class="reference internal" href="#id8">git-depth</a></li>
+<li><a class="reference internal" href="#id9">git-depth</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#options-for-buildout-relocation">Options for buildout relocation</a><ul>
@@ -682,16 +682,6 @@ eggs needed by addons, or just useful ones:</p>
 <p>Default value: <code class="docutils literal notranslate"><span class="pre">False</span></code></p>
 <p>If set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, this boolean option makes the recipe read Odoo’s
 <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file if available, and apply its prescriptions.</p>
-</section>
-<section id="write-requirements-file">
-<h3>write-requirements-file<a class="headerlink" href="#write-requirements-file" title="Permalink to this heading">¶</a></h3>
-<p>Default value: <code class="docutils literal notranslate"><span class="pre">''</span></code></p>
-<p>If set, this string option makes the recipe write the versions it has installed,
-including pinned versions which is the difference to the standard
-<code class="docutils literal notranslate"><span class="pre">update-versions-file</span></code>, into the filename given in requirements.txt syntax.</p>
-<p>This is useful for mixed buildout/pip environments, and for tools like <a class="reference external" href="https://pypi.org/project/pip-audit">pip-audit</a> or <cite>dependabot
-&lt;https://docs.github.com/en/code-security/dependabot/dependabot-alerts/about-dependabot-alerts&gt;</cite>
-(which uses the former) that don’t understand buildout, but can work on a requirements file.</p>
 <section id="precedence-among-requirements">
 <h4>Precedence among requirements<a class="headerlink" href="#precedence-among-requirements" title="Permalink to this heading">¶</a></h4>
 <p>In short, Odoo’s requirement file has the lowest precedence of all
@@ -715,19 +705,16 @@ developers.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>At the time of this writing, the <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file shipping
-within Odoo’s main 8.0 branch is fully supported, but :</p>
+within Odoo’s main 14.0 branch is fully supported, but :</p>
 <ul class="simple">
 <li><p>you are free to use any alternative branch, including your
 own baked</p></li>
 <li><p>the mainline requirements file may change in the future.</p></li>
 </ul>
 </div>
-<p>Only a small subset of the <a class="reference external" href="https://pip.pypa.io/en/latest/reference/pip_install.html#requirement-specifiers">pip’s requirement specifiers</a>
+<p>Only a subset of the <a class="reference external" href="https://pip.pypa.io/en/latest/reference/pip_install.html#requirement-specifiers">pip’s requirement specifiers</a>
 is actually supported, notably:</p>
 <ul class="simple">
-<li><p>version inequalities, such as <code class="docutils literal notranslate"><span class="pre">&gt;=2.0</span></code> and boolean expressions are
-not currently implemented. They will be if needed, and you should
-get an understandable message about the condition being “too complicated”</p></li>
 <li><p>no specifier involving network operations is supported. In
 particular, the VCS URLs are not (to workaround that, use
 <code class="docutils literal notranslate"><span class="pre">gp.vcsdevelop</span></code>), and the <code class="docutils literal notranslate"><span class="pre">-r</span></code> (<code class="docutils literal notranslate"><span class="pre">--requirements</span></code>) specifiers
@@ -735,8 +722,18 @@ work for local files only (path relative to the Odoo part directory).</p></li>
 </ul>
 </section>
 </section>
+<section id="write-requirements-file">
+<span id="id6"></span><h3>write-requirements-file<a class="headerlink" href="#write-requirements-file" title="Permalink to this heading">¶</a></h3>
+<p>Default value: <code class="docutils literal notranslate"><span class="pre">''</span></code></p>
+<p>If set, this string option makes the recipe write the versions it has installed,
+including pinned versions which is the difference to the standard
+<code class="docutils literal notranslate"><span class="pre">update-versions-file</span></code>, into the filename given in requirements.txt syntax.</p>
+<p>This is useful for mixed buildout/pip environments, and for tools like <a class="reference external" href="https://pypi.org/project/pip-audit">pip-audit</a> or <cite>dependabot
+&lt;https://docs.github.com/en/code-security/dependabot/dependabot-alerts/about-dependabot-alerts&gt;</cite>
+(which uses the former) that don’t understand buildout, but can work on a requirements file.</p>
+</section>
 <section id="revisions">
-<span id="id6"></span><h3>revisions<a class="headerlink" href="#revisions" title="Permalink to this heading">¶</a></h3>
+<span id="id7"></span><h3>revisions<a class="headerlink" href="#revisions" title="Permalink to this heading">¶</a></h3>
 <p>This option allows to further precise what has been specified through
 the  <a class="reference internal" href="#addons"><span class="std std-ref">addons</span></a> and <a class="reference internal" href="#version"><span class="std std-ref">version</span></a> options by fixing VCS revisions.</p>
 <p>The main use-case it to apply it in an <a class="reference internal" href="#extends"><span class="std std-ref">extension buildout
@@ -763,7 +760,7 @@ do that automatically for you, see <code class="docutils literal notranslate"><s
 </ul>
 </section>
 <section id="clean">
-<span id="id7"></span><h3>clean<a class="headerlink" href="#clean" title="Permalink to this heading">¶</a></h3>
+<span id="id8"></span><h3>clean<a class="headerlink" href="#clean" title="Permalink to this heading">¶</a></h3>
 <p>If set to true, this option will clean remove python object files from
 the main server part and addons before any update or install, and
 perform relevant VCS idea of “clean, purge”.</p>
@@ -802,8 +799,8 @@ This is intended for brittle VCSes from CI robots.</p>
 way to break them. If <code class="docutils literal notranslate"><span class="pre">True</span></code>,the repo will break any locks prior to
 operations (mostly useful for automated agents, such as CI robots)</p>
 </section>
-<section id="id8">
-<h3>git-depth<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h3>
+<section id="id9">
+<h3>git-depth<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h3>
 <p>This is the global variant of the <a class="reference internal" href="#git-depth"><span class="std std-ref">The depth Git option</span></a> option (please read
 the provisions there carefully, as it is potentially dangerous).</p>
 <p>Setting a value to <code class="docutils literal notranslate"><span class="pre">git-depth</span></code> is the same as doing it for all
@@ -821,13 +818,13 @@ they can easily add it from the command-line to any buildout.</p>
 <section id="options-for-buildout-relocation">
 <span id="relocation-options"></span><h2>Options for buildout relocation<a class="headerlink" href="#options-for-buildout-relocation" title="Permalink to this heading">¶</a></h2>
 <section id="relative-paths">
-<span id="id9"></span><h3>relative-paths<a class="headerlink" href="#relative-paths" title="Permalink to this heading">¶</a></h3>
+<span id="id10"></span><h3>relative-paths<a class="headerlink" href="#relative-paths" title="Permalink to this heading">¶</a></h3>
 <p>If set to true, this option will set up a movable buildout. Paths in scripts
 will be made relative to the buildout directory so that it can be relocated
 on the file system.</p>
 </section>
 <section id="python-scripts-executable">
-<span id="id10"></span><h3>python-scripts-executable<a class="headerlink" href="#python-scripts-executable" title="Permalink to this heading">¶</a></h3>
+<span id="id11"></span><h3>python-scripts-executable<a class="headerlink" href="#python-scripts-executable" title="Permalink to this heading">¶</a></h3>
 <p>Specify an alternative Python executable to be used in the she-bang of
 generated scripts. For use in a jail root, <code class="docutils literal notranslate"><span class="pre">/usr/bin/env</span> <span class="pre">python</span></code> should
 be a sane value, or you could hardcode the path to the Python executable
@@ -894,7 +891,7 @@ configuration or even set it temporarily in the
 <section id="options-for-executables-generation-and-serving">
 <h2>Options for executables generation and serving<a class="headerlink" href="#options-for-executables-generation-and-serving" title="Permalink to this heading">¶</a></h2>
 <section id="script-name">
-<span id="id11"></span><h3>script_name<a class="headerlink" href="#script-name" title="Permalink to this heading">¶</a></h3>
+<span id="id12"></span><h3>script_name<a class="headerlink" href="#script-name" title="Permalink to this heading">¶</a></h3>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>as of version 1.7.0, this option is deprecated because of its
@@ -924,7 +921,7 @@ install).</p>
 </div>
 </section>
 <section id="openerp-scripts">
-<span id="id12"></span><h3>openerp_scripts<a class="headerlink" href="#openerp-scripts" title="Permalink to this heading">¶</a></h3>
+<span id="id13"></span><h3>openerp_scripts<a class="headerlink" href="#openerp-scripts" title="Permalink to this heading">¶</a></h3>
 <p>This option lets you install console scripts provided by any of the loaded eggs,
 so that they can access to Odoo internals and load databases.</p>
 <div class="admonition note">
@@ -963,7 +960,7 @@ dedicated chapter about Odoo scripts</span></a>).</p>
 </div>
 </section>
 <section id="upgrade-script-name">
-<span id="id13"></span><h3>upgrade_script_name<a class="headerlink" href="#upgrade-script-name" title="Permalink to this heading">¶</a></h3>
+<span id="id14"></span><h3>upgrade_script_name<a class="headerlink" href="#upgrade-script-name" title="Permalink to this heading">¶</a></h3>
 <p>This option lets you specify the wished name for the upgrade script.
 The default value is <code class="docutils literal notranslate"><span class="pre">upgrade_&lt;part_name&gt;</span></code>.</p>
 <div class="admonition note">
@@ -974,7 +971,7 @@ redundant with <a class="reference internal" href="#openerp-scripts"><span class
 </div>
 </section>
 <section id="upgrade-script">
-<span id="id14"></span><h3>upgrade_script<a class="headerlink" href="#upgrade-script" title="Permalink to this heading">¶</a></h3>
+<span id="id15"></span><h3>upgrade_script<a class="headerlink" href="#upgrade-script" title="Permalink to this heading">¶</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>new in version 1.8.0</p>
@@ -1001,7 +998,7 @@ about upgrade scripts.</p>
 </div>
 </section>
 <section id="gunicorn">
-<span id="id15"></span><h3>gunicorn<a class="headerlink" href="#gunicorn" title="Permalink to this heading">¶</a></h3>
+<span id="id16"></span><h3>gunicorn<a class="headerlink" href="#gunicorn" title="Permalink to this heading">¶</a></h3>
 <p>Gunicorn integration is only supported on Odoo ≥ 6.1.
 Any value of this option makes the recipe generate a script to start
 Odoo with Gunicorn and (<em>new in version 1.1</em>) a dedicated script to
@@ -1060,7 +1057,7 @@ allows for graceful restarts (use this for minor changes only).</p>
 </section>
 </section>
 <section id="server-wide-modules">
-<span id="id16"></span><h3>server_wide_modules<a class="headerlink" href="#server-wide-modules" title="Permalink to this heading">¶</a></h3>
+<span id="id17"></span><h3>server_wide_modules<a class="headerlink" href="#server-wide-modules" title="Permalink to this heading">¶</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>new in version 1.9.0</p>
@@ -1085,7 +1082,7 @@ notably the <a class="reference internal" href="#gunicorn"><span class="std std-
 </div>
 </section>
 <section id="openerp-command-name">
-<span id="id17"></span><h3>openerp_command_name<a class="headerlink" href="#openerp-command-name" title="Permalink to this heading">¶</a></h3>
+<span id="id18"></span><h3>openerp_command_name<a class="headerlink" href="#openerp-command-name" title="Permalink to this heading">¶</a></h3>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>as of version 1.7.0, this option is deprecated because of
@@ -1148,7 +1145,7 @@ parts or rename them. See
 details.</p>
 </section>
 <section id="startup-delay">
-<span id="id18"></span><h3>startup_delay<a class="headerlink" href="#startup-delay" title="Permalink to this heading">¶</a></h3>
+<span id="id19"></span><h3>startup_delay<a class="headerlink" href="#startup-delay" title="Permalink to this heading">¶</a></h3>
 <p>Specifies a delay in seconds to wait before actually launching Odoo. This
 option was a preliminary hack to support both gunicorn instance and a legacy
 instance.  The Gunicorn startup script (see below) itself is not affected by
@@ -1161,7 +1158,7 @@ this setting</p>
 <section id="options-for-development-qa-and-introspection">
 <h2>Options for development, QA and introspection<a class="headerlink" href="#options-for-development-qa-and-introspection" title="Permalink to this heading">¶</a></h2>
 <section id="with-devtools">
-<span id="id19"></span><h3>with_devtools<a class="headerlink" href="#with-devtools" title="Permalink to this heading">¶</a></h3>
+<span id="id20"></span><h3>with_devtools<a class="headerlink" href="#with-devtools" title="Permalink to this heading">¶</a></h3>
 <p>Allows to load development and install useful devlopment and testing
 tools, notably the following scripts:</p>
 <ul class="simple">
@@ -1180,7 +1177,7 @@ needed helpers, such as <a class="reference external" href="http://pypi.python.o
 cheat with system time).</p>
 </section>
 <section id="test-script-name">
-<span id="id20"></span><h3>test_script_name<a class="headerlink" href="#test-script-name" title="Permalink to this heading">¶</a></h3>
+<span id="id21"></span><h3>test_script_name<a class="headerlink" href="#test-script-name" title="Permalink to this heading">¶</a></h3>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>as of version 1.7.0, this option is deprecated because of its
@@ -1206,7 +1203,7 @@ expanded on-the-fly as <code class="docutils literal notranslate"><span class="p
 with <code class="docutils literal notranslate"><span class="pre">-i</span> <span class="pre">all</span></code>: the latter is equivalent to <code class="docutils literal notranslate"><span class="pre">-i</span> <span class="pre">base</span></code>).</p>
 </section>
 <section id="interpreter-name">
-<span id="id21"></span><h3>interpreter_name<a class="headerlink" href="#interpreter-name" title="Permalink to this heading">¶</a></h3>
+<span id="id22"></span><h3>interpreter_name<a class="headerlink" href="#interpreter-name" title="Permalink to this heading">¶</a></h3>
 <p>The recipe will automatically create a python interpreter with a
 <code class="docutils literal notranslate"><span class="pre">session</span></code> object that can bootstrap Odoo with a database right
 away. You can use that for interactive sessions or to launch a script:</p>
@@ -1285,7 +1282,7 @@ break each time a new version gets referenced on PyPI.</p>
 </dl>
 <p>The Odoo recipes define a few more.</p>
 <section id="base-url">
-<span id="id22"></span><h3>base_url<a class="headerlink" href="#base-url" title="Permalink to this heading">¶</a></h3>
+<span id="id23"></span><h3>base_url<a class="headerlink" href="#base-url" title="Permalink to this heading">¶</a></h3>
 <p>This option is local to the <em>part</em>.</p>
 <p>URL from which to download official and nightly versions
 (assuming the archive filenames are constistent with those in
@@ -1295,7 +1292,7 @@ Odoo download server). This is a basic mirroring capability:</p>
 </div>
 </section>
 <section id="openerp-downloads-directory">
-<span id="id23"></span><h3>openerp-downloads-directory<a class="headerlink" href="#openerp-downloads-directory" title="Permalink to this heading">¶</a></h3>
+<span id="id24"></span><h3>openerp-downloads-directory<a class="headerlink" href="#openerp-downloads-directory" title="Permalink to this heading">¶</a></h3>
 <p>This is an option for the <code class="docutils literal notranslate"><span class="pre">[buildout]</span></code> section</p>
 <p>Allows to share Odoo downloads among several buildouts. You should put this
 option in your <code class="docutils literal notranslate"><span class="pre">~/.buildout/default.cfg</span></code> file.  It specifies the destination
@@ -1317,7 +1314,7 @@ executables, not by options. These options should disappear
 at some point between 1.8 and 1.9 versions.</p>
 </div>
 <section id="freeze-to">
-<span id="id24"></span><h3>freeze-to<a class="headerlink" href="#freeze-to" title="Permalink to this heading">¶</a></h3>
+<span id="id25"></span><h3>freeze-to<a class="headerlink" href="#freeze-to" title="Permalink to this heading">¶</a></h3>
 <p>This option is meant to produce an extension buildout configuration
 that effectively freezes the variable versions and revisions of the
 current configuration.</p>
@@ -1376,7 +1373,7 @@ to non-openerp parts.</p>
 </div>
 </section>
 <section id="freeze-allow-picked-versions">
-<span id="id25"></span><h3>freeze-allow-picked-versions<a class="headerlink" href="#freeze-allow-picked-versions" title="Permalink to this heading">¶</a></h3>
+<span id="id26"></span><h3>freeze-allow-picked-versions<a class="headerlink" href="#freeze-allow-picked-versions" title="Permalink to this heading">¶</a></h3>
 <p>This option is to be used in conjunction with <a class="reference internal" href="#freeze-to"><span class="std std-ref">freeze-to</span></a>. If set to
 <code class="docutils literal notranslate"><span class="pre">False</span></code>, it will add <code class="docutils literal notranslate"><span class="pre">allow-picked-versions</span> <span class="pre">=</span> <span class="pre">false</span></code>
 for <code class="docutils literal notranslate"><span class="pre">zc.buildout</span></code> versions that support this flag.</p>
@@ -1388,7 +1385,7 @@ in <a class="reference internal" href="#freeze-to"><span class="std std-ref">fre
 </div>
 </section>
 <section id="extract-downloads-to">
-<span id="id26"></span><h3>extract-downloads-to<a class="headerlink" href="#extract-downloads-to" title="Permalink to this heading">¶</a></h3>
+<span id="id27"></span><h3>extract-downloads-to<a class="headerlink" href="#extract-downloads-to" title="Permalink to this heading">¶</a></h3>
 <p>Following the same kind of logic as <a class="reference internal" href="#freeze-to"><span class="std std-ref">freeze-to</span></a>, this option allows
 to turn a buildout that aggregates from various remote sources
 (tarball downloads, VCSes) into a self-contained buildout archive
