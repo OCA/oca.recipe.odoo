@@ -17,7 +17,7 @@ if sys.version_info < (2, 7):
     requires.append('ordereddict')
     requires.append('argparse')
 
-tests_require = ['nose']
+tests_require = ['nose2']
 
 setup(
     name="oca.recipe.odoo",
