@@ -6,7 +6,6 @@ taking logic.
 """
 import os
 import sys
-import imp
 import logging
 from argparse import ArgumentParser
 from argparse import ArgumentDefaultsHelpFormatter
@@ -81,10 +80,7 @@ def upgrade(upgrade_script, upgrade_callable, conf, buildout_dir):
 
     session = Session(conf, buildout_dir)
 
-    try:
-        from odoo.tools import config
-    except ImportError:
-        from openerp.tools import config
+    from odoo.tools import config
 
     config['logfile'] = log_path
     config['log-level'] = log_level
@@ -146,8 +142,8 @@ def upgrade(upgrade_script, upgrade_callable, conf, buildout_dir):
     else:
         logger.info("Database latest upgrade version : %s", db_version)
 
-    upgrade_module = imp.load_source('oca.recipe.odoo.upgrade_odoo',
-                                     upgrade_script)
+    from odoo.modules.migration import load_script
+    upgrade_module = load_script(upgrade_script, "oca.recipe.odoo.upgrade_odoo")
     statuscode = getattr(upgrade_module, upgrade_callable)(session, logger)
     if statuscode is None or statuscode == 0:
         if pkg_version is not None:
