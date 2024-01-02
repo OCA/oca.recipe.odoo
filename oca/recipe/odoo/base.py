@@ -1,5 +1,6 @@
 # coding: utf-8
 from os.path import join, basename
+import ast
 import copyreg
 import os
 import sys
@@ -8,7 +9,6 @@ import tarfile
 import setuptools
 import logging
 import stat
-import imp
 import shutil
 try:
     from ConfigParser import ConfigParser, RawConfigParser  # Python 2
@@ -529,66 +529,48 @@ class BaseRecipe(object):
             return None
         return utils.major_version(detected)
 
-    def read_release(self):
-        """Try and read the release.py file directly.
-
-        Used as a fallback in case reading setup.py failed, which happened
-        in an old OpenERP version. Could become the norm, but setup is also
-        used to list dependencies.
-        """
-        with open(join(self.odoo_dir, 'bin', 'release.py'), 'rb') as f:
-            mod = imp.load_module('release', f, 'release.py',
-                                  ('.py', 'r', imp.PY_SOURCE))
-        self.version_detected = mod.version
-
     def read_odoo_setup(self):
-        """Ugly method to extract requirements & version from ugly setup.py.
+        """Extract requirements & version from the Odoo distribution"""
+        # Load release variables
+        release = {}
+        exec(open(join(self.odoo_dir, 'odoo', 'release.py'), 'rb').read(), release)
+        self.version_detected = release["version"]
+        logger.debug(
+            "Fetched version from Odoo's setup.py: %s", self.version_detected
+        )
+        # Parse requirements from setup.py
+        requirements = None
 
-        Primarily designed for 6.0, but works with 6.1 as well.
-        """
-        old_setup = setuptools.setup
-        old_distutils_setup = distutils.core.setup  # 5.0 directly imports this
+        def get_element_value(elt):
+            if hasattr(elt, "value"):  # ast.Constant
+                return elt.value
+            return elt.s  # ast.Str, deprecated in Python 3.8
 
-        def new_setup(*args, **kw):
-            self.requirements.extend(kw.get('install_requires', ()))
-            self.version_detected = kw['version']
-        setuptools.setup = new_setup
-        distutils.core.setup = new_setup
-        sys.path.insert(0, '.')
         with open(join(self.odoo_dir, 'setup.py'), 'rb') as f:
-            saved_argv = sys.argv
-            sys.argv = ['setup.py', 'develop']
-            try:
-                imp.load_module('setup', f, 'setup.py',
-                                ('.py', 'r', imp.PY_SOURCE))
-            except SystemExit as exception:
-                if 'dsextras' in unicode(exception):
-                    raise EnvironmentError(
-                        'Please first install PyGObject and PyGTK !')
-                else:
-                    try:
-                        self.read_release()
-                    except Exception as exc:
-                        raise EnvironmentError(
-                            'Problem while reading Odoo release.py: %s' % exc)
-            except ImportError as exception:
-                if 'babel' in unicode(exception):
-                    raise EnvironmentError(
-                        'OpenERP setup.py has an unwanted import Babel.\n'
-                        '=> First install Babel on your system or '
-                        'virtualenv :(\n'
-                        '(sudo aptitude install python-babel, '
-                        'or pip install babel)')
-                else:
-                    raise exception
-            except Exception as exception:
-                raise EnvironmentError('Problem while reading Odoo '
-                                       'setup.py: %s' % exception)
-            finally:
-                sys.argv = saved_argv
-        sys.path.pop(0)
-        setuptools.setup = old_setup
-        distutils.core.setup = old_distutils_setup
+            setup_node = ast.parse(f.read())
+            for node in setup_node.body:
+                try:
+                    if node.value.func.id == "setup":
+                        for keyword in node.value.keywords:
+                            if keyword.arg == "install_requires":
+                                requirements = [
+                                    get_element_value(elt)
+                                    for elt in keyword.value.elts
+                                ]
+                                break
+                        break
+                except AttributeError:
+                    continue
+        if requirements is not None:
+            logger.debug(
+                "Fetched requirements from Odoo's setup.py: %s",
+                requirements
+            )
+            self.requirements.extend(requirements)
+        else:
+            raise EnvironmentError(
+                "Requirements not found in Odoo's setup.py."
+            )
         self.apply_version_dependent_decisions()
 
     def make_absolute(self, path):
